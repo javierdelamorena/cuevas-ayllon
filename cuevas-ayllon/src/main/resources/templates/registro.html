@@ -13,7 +13,7 @@
     border-radius: 10px;
     width: 40%;">
 <div th:if="${usuarioExiste}" th:text="${usuarioExiste}"></div>
-        <form th:action="@{/cuevas-ayllon/registrar}" th:object="${usuario}" id="formularioRegistro" class="text-dark" style="width: 250%;
+        <form th:action="@{/registrar}" th:object="${usuario}" id="formularioRegistro" class="text-dark" style="width: 250%;
         padding: 30px;" method="post" enctype="multipart/form-data">
             <div class="row col-sm-4">
                 <label form="nombre" class="col-form-label col-sm-2" th:text="${nombre}"></label>
