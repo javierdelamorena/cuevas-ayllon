@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body style="background-color: blueviolet;">
+
+  <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+<div class="container py-4" style=" width: 1000%; border-radius: 8px; margin-bottom: 3%; margin-top: 3%;">
+  <div  class="card-body" style="border-style: solid; width: 100%; border-radius: 8px; background-color: rgb(133, 194, 247);padding: 30px">
+    <p style="font-size: 30px; font-style:aria-current;"> Este espacio va dirigido a que los vecinos propongan propuestas para que las mas interesantes y que tengan mas aprobacion pueda ser estudiada
+       su viabilidad para poder realizarlas</p>
+
+  </div>
+
+</div>
+
+  <!-- <div class="container py-4" > -->
+
+    <div class="card-body" th:object="${usuario}" style="border-style: solid;
+    width: 25%;
+    border-radius: 8px;
+    float: left;
+    background-color: aliceblue;
+    margin-left: 24%;">
+      <!-- <div class="container" th:object="${unUsuario}">
+                <legend>Informacion Usuario</legend> -->
+      <img class="img-thumbnail  float-left" style="max-width: 25% ;float: left; margin: 10px; border-radius: 8px;"
+        th:src="@{'/uploads/'+${usuario.foto}}" th:alt="${usuario.foto}" />
+
+      <ul class="list-group">
+        <li type="text" id="nombre" th:text="${usuario.nombre.toUpperCase()}" class="list-group-item rounded float-right"
+          style="margin: 10px;">
+        </li>
+        <li type="text" id="apellido1" th:text="${usuario.apellido1.toUpperCase()}" class="list-group-item rounded float-right"
+          style="margin: 10px;">
+        </li>
+        <li type="text" id="apellido2" th:text="${usuario.apellido2.toUpperCase()}" class="list-group-item rounded float-right"
+          style="margin: 10px;">
+        </li>
+        <li type="text" id="email" th:text="${usuario.email.toUpperCase()}" class="list-group-item rounded float-right"
+          style="margin: 10px;">
+        </li>
+      </ul>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        style="margin: 10px;">
+        Realizar Propuesta
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Propuesta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <label form="titulo" class="col-form-label col-sm-2" maxlength="50">Titulo</label>
+              <input type="text" id="titulo" class="form-control">
+              <textarea id="texto" name="texto" rows="4" cols="50"
+                style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255">
+            </textarea>
+              <button type="button" id="enviarPropuesta">enviar propuestas</button>
+              <p class="text-start">Realiza tu propuesta pra que la conozcan los demas vecinos</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  <!-- </div> -->
+
+  <!-- <div class="container py-4" > -->
+
+    <div class="card-body"
+      style="border-style: solid;
+      width: 25%;
+      border-radius: 8px;
+      float: left;
+      background-color: aliceblue;
+      margin-left: 2%;"
+      id="todasPropuestas">
+
+    </div>
+  <!-- </div> -->
+
+  <footer th:replace="layouts/fragmentoUsuarios :: footer"></footer>
+
+
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+  $(document).ready(function () {
+    $.ajax({
+
+      type: 'get',
+      url: "propuesta",
+
+
+
+    }).done(function (data) {
+      console.log("swich1");
+      var html2 = '';
+      html2 += '<table  class="table table-condensed" border="1">';
+      html2 += '<thead>';
+      html2 += '<tr> ';
+      html2 += '<th>Titulo de las propuestas</th>';
+      html2 += '</tr>';
+      html2 += '</thead>';
+
+
+      for (var i = 0; i < data.length; i++) {
+
+        console.log('estamos en la tabla', data)
+        html2 += '<tr> ';
+        html2 += "<td><a href=comentarios?idPropuesta=" + data[i].idPropuesta + ">" + data[i].titulo.toUpperCase() + "</a></td>";
+        
+        html2 += "</tr>"
+
+      }
+      html2 += '<tr> ';
+      html2 += '<td id="anadirPropuesta"> </td>';
+      html2 += "</tr>";
+
+      html2 += " </table>";
+      $('#todasPropuestas').append(html2);
+
+
+
+
+    });
+  })
+
+
+
+
+  $('#enviarPropuesta').on('click', function () {
+    // var div = document.getElementById('todasPropuestas');
+    // while (div.firstChild) {
+    //   div.removeChild(div.firstChild);
+    // }
+
+
+    $.ajax({
+
+      type: 'POST',
+      url: "propuesta",
+      data: { 'propuesta': $('#texto').val(), 'titulo': $('#titulo').val() }
+
+
+    }).done(function (data) {
+      console.log("swich1");
+      var html2 = '';
+
+
+
+
+
+      console.log('estamos en la tabla', data)
+
+      html2 += "<a href=comentarios?idPropuesta=" + data.idPropuesta + ">" + data.titulo +data.Usuario.nombre+"</a>";
+
+
+      $('#anadirPropuesta').append(html2);
+
+
+
+
+    });
+  })
+
+
+
+
+
+
+
+</script>
+
+</html>

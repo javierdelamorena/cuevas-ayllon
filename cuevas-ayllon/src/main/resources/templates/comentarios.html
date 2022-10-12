@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="body">
+
+  <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+  <div class="container" data-bs-spy="scroll"
+    style="background-color: rgb(123 140 247);
+    border-style: solid;
+    width: 100%;
+    height: 50%;
+    border-radius: 8px;
+    margin-top: 1%;
+    height: 80%;">
+    <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}" style="color: white;padding: 1%;"></h5>
+    <h5 id="propuesta"th:text="${'Titulo: '+propuestas.titulo}" style="color: white;padding: 1%;"></h5>
+    <textarea disabled th:text="${propuestas.propuesta}" style="border-style: solid;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: rgb(251, 251, 251);
+    font-weight: bold;
+    border-width: thin;
+    width: 100%;
+    height: 150px;"></textarea>
+
+    <table class="table-responsive table-striped" style="max-height: 70%;width: 100%;display: block; overflow-y: auto;">
+      <thead style="display: block;">
+        <th ></th>
+        <th ></th>
+        <th ></th>
+        <!-- <th> <textarea th:if="${propuestas}" th:text="${propuestas.propuesta}" style="width: 100%;"></textarea>   </th>  -->
+      </thead>
+      <tbody th:each="comentario:${comentarios}">
+        <tr>
+          <td ><img class="img-thumbnail  float-left" style="width: 50px ;float: left;  border-radius: 90px;"
+            th:src="@{'/uploads/'+${comentario.usuario.foto}}"></td>
+          </tr>
+            <tr >
+          <td th:text="${comentario.usuario.nombre.toUpperCase()}"style=" border-style: solid;font-weight: bold;color: white;"></td>                  
+        </tr>
+        <tr>          
+          <td ><textarea th:text="${'Ha dicho : '+comentario.comentario}" style="    border-style: solid;
+            padding: 10px;
+            border-radius: 30px;
+            background-color: rgb(251, 251, 251);
+            font-weight: bold;
+            border-width: thin;
+            width: 600px;
+            height: 150px;" disabled></textarea></td>          
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="container"
+    style="background-color: rgb(127, 146, 173);
+    border-style: solid;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 3px;
+    padding: 10px;">
+    <form th:action="@{/salvarcomentario}" method="get">
+      <input type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required>
+      <input type="submit" class="btn btn-dark" value="Agregar Comentario" >
+      <a type="button" th:href="@{/usuario}" class="btn btn-dark" style="float:right;"
+        id="cerrarComentario">Cerrar</a>
+      
+    </form>
+      <!-- <button type="button" id="agregarComentario" class="btn btn-primary">Agregar Comentario</button> -->
+      
+   
+  </div>
+
+
+
+  <!-- <footer th:replace="layouts/fragmentoUsuarios :: footer"></footer> -->
+
+
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+
+if (window.history.replaceState) { // verificamos disponibilidad
+    window.history.replaceState(null, null, "/spring-boot-cuevas-de-ayllon/usuario");
+// window.history.replaceState(state, title, "/home");
+   
+}
+    
+
+
+
+  // $('#agregarComentario').on('click', function () {
+  // console.log('hemos pulsado agregar')
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: "salvarcomentario",
+  //     data: { 'comentario': $('#comentario').val() }
+
+
+  //   }).done(function (data) {
+      
+
+
+
+
+  //   });
+  // });
+
+
+
+
+
+
+
+
+</script>
+
+</html>

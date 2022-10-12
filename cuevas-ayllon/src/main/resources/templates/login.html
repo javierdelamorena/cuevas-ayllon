@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layouts/fragmentoprincipal :: head"></head>
+
+<body class="bodyRegistro">
+
+	<nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+
+	<div class="container py-4" id="registro"
+		style="margin-left: 30%; margin-top: 5%; background-color: white; border-radius: 10px; width: 40%;">
+		<h5 id="formularioRegistro">Entra en la Pagina con tu nombre y
+			contraseña</h5>
+		<form th:action="@{/login}" id="formularioRegistro" class="text-dark"
+			method="post" style="width: 250%; margin: 20px;">
+			<div class="row col-sm-4" th:if="${loginIncorrecto}" th:text="${loginIncorrecto}"></div>
+			<div class="row col-sm-4">
+				<label form="nombre" class="col-form-label col-sm-2"
+					th:text="${nombre}"></label>
+			</div>
+			<div class="row col-sm-4">
+				<input type="text" id="nombre" name="nombre" class="form-control">
+
+			</div>
+
+			<div class="row col-sm-4">
+				<label form="password" class="col-form-label col-sm-2"
+					th:text="${Password}">Contraseña</label>
+			</div>
+			<div class="row col-sm-4">
+
+				<input type="password" id="password" name="password"
+					class="form-control">
+
+			</div>
+			</br>
+			</br>
+			<!-- <div th:if="${error !=null && error.containsKey('password')}" th:text="${error.get('password')}"></div> -->
+
+			<div class="row col-sm-2">
+				<input type="submit" id="activarNombre" value="ENTRAR"
+					class="btn btn-primary">
+			</div>
+
+		</form>
+	</div>
+
+
+	<footer th:replace="layouts/fragmentoprincipal :: footer"></footer>
+	<script src="js/abrirSesion.js"></script>
+
+</body>
+
+</html>
