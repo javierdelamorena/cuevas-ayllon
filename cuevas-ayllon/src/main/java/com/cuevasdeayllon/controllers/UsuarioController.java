@@ -46,7 +46,7 @@ public class UsuarioController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	@PostMapping("/registrar")
-	public String registrarUsuario(@ModelAttribute("usuario") Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+	public String registrarUsuario(Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		Usuario usuariocomprobacion=null;
 		if( usuario!=null) {
 			usuariocomprobacion=service.usuarioPorNombre(usuario.getNombre());
