@@ -46,6 +46,7 @@ public class PropuestaController {
 
 
 		propuestaService.save(propuestas);
+		
 
 
 		return propuestaService.findBtNombre(titulo);
