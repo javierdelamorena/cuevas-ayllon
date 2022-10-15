@@ -7,9 +7,6 @@ import org.springframework.validation.Validator;
 import com.cuevasdeayllon.entity.Usuario;
 
 
-
-
-
 @Component
 public class UsuarioValidation implements Validator {
 

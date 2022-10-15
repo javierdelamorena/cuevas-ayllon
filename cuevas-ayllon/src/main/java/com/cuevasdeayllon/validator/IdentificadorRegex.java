@@ -13,6 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy =IdentificadorRegexValidator.class)
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
+
 public @interface IdentificadorRegex {
 	String message() default "El identificador no es correcto";
 

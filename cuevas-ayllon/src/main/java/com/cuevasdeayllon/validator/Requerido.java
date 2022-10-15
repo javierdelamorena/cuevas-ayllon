@@ -11,6 +11,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Constraint(validatedBy=RequeridoValidador.class)
+
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface Requerido {
