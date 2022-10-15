@@ -10,6 +10,7 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +46,7 @@ public class UsuarioController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	@PostMapping("/registrar")
-	public String registrarUsuario(@ModelAttribute("usuario") Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+	public String registrarUsuario(@Valid Usuario usuario, BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		Usuario usuariocomprobacion=null;
 		if( usuario!=null) {
 			usuariocomprobacion=service.usuarioPorNombre(usuario.getNombre());
