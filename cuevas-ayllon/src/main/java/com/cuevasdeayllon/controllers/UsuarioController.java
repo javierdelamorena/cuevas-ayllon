@@ -40,7 +40,7 @@ public class UsuarioController {
 	UsuarioService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
-	@PostMapping("/registrar")
+	@PostMapping( path= "/registrar")
 	public String registrarUsuario(@ModelAttribute("usuario")Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo registrar");
 		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword());
@@ -106,7 +106,7 @@ public class UsuarioController {
 	//		return "usuario";
 	//		
 	//	}
-	@GetMapping("/usuario")
+	@GetMapping( path="/usuario")
 	public String usuario(HttpServletRequest request,Model model) {
 		HttpSession sesion=request.getSession(true); 
 		logger.info("Entramos en metodo usuario");
