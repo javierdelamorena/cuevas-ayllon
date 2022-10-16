@@ -40,6 +40,7 @@ public class UsuarioController {
 	UsuarioService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
+	
 	@PostMapping( path= "/registrar")
 	public String registrarUsuario(@ModelAttribute("usuario")Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo registrar");
