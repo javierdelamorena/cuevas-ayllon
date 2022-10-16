@@ -48,6 +48,7 @@ public class UsuarioController {
 	@PostMapping("/registrar")
 	public String registrarUsuario(@ModelAttribute("usuario")Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo registrar");
+		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword());
 		Usuario usuariocomprobacion=null;
 		if( usuario!=null) {
 			logger.info("El usuario es distinto de null");
