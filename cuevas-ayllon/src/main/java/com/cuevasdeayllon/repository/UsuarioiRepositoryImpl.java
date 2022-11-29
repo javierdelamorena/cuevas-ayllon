@@ -41,4 +41,11 @@ public class UsuarioiRepositoryImpl implements UsuarioRepository {
 		return usuarioRepository.findByNombre(nombre);
 	}
 
+	@Override
+	public void borrarUsuarioi(Usuario usuario) {
+		usuarioRepository.delete(usuario);
+		
+		
+	}
+
 }

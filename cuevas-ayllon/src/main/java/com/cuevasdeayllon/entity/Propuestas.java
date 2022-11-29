@@ -40,11 +40,13 @@ public class Propuestas implements Serializable{
 	@OneToMany(mappedBy="propuesta",cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Comentarios> comentario;
+	
 
 	public Propuestas() {
 		super();
 	}
 
+	
 	
 	public String getPropuesta() {
 		return propuesta;

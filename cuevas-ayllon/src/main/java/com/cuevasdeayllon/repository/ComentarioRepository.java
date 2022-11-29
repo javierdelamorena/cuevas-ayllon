@@ -8,12 +8,14 @@ public interface ComentarioRepository {
 	
 	void save(Comentarios porpuesta);
 	
-	List<Comentarios> findAll(int idPropuesta);
+	List<Comentarios> findAllByIdPropuesta(int idPropuesta);
 	
 	void deleteById(Comentarios propuesta,int id);
 	
 	Comentarios findByComentario(String comentario);
 	
 	void deleteByComentario(String comentario);
+	
+	List<Comentarios> findAllComentarios();
 
 }

@@ -2,123 +2,142 @@
 <html>
 
 <head th:replace="layouts/fragmentoUsuarios :: head"></head>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
 
-<body class="body">
+<body class="bodyComentarios">
 
   <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
 
-
-
-  <div class="container" data-bs-spy="scroll"
-    style="background-color: rgb(123 140 247);
-    border-style: solid;
+  <div class="container" data-bs-spy="scroll" style="
+    background-color: rgb(117 159 61 / 68%);
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
+    overflow: hidden;
+    padding: 15px;
+    position: relative;
     width: 100%;
-    height: 50%;
-    border-radius: 8px;
-    margin-top: 1%;
-    height: 80%;">
-    <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}" style="color: white;padding: 1%;"></h5>
-    <h5 id="propuesta"th:text="${'Titulo: '+propuestas.titulo}" style="color: white;padding: 1%;"></h5>
-    <textarea disabled th:text="${propuestas.propuesta}" style="border-style: solid;
-    padding: 10px;
-    border-radius: 30px;
-    background-color: rgb(251, 251, 251);
-    font-weight: bold;
-    border-width: thin;
-    width: 100%;
-    height: 150px;"></textarea>
+    height: 80%;
+    
+  ">
+    <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}" style="color: white;padding: 1%;float: left;"></h5>
+    <!-- <input type="hidden" name="nombre" value="propuestas.usuario.nombre" id="nombre"> -->
+    <div>
+      <div id="puntuacionTotal" style="color: white;padding: 1%;float: left;"></div>
 
-    <table class="table-responsive table-striped" style="max-height: 70%;width: 100%;display: block; overflow-y: auto;">
+      <form th:action="@{/puntuacionMas}" method="get" style="margin-left: 82%;
+      width: 10%;">
+        <input type="hidden" name="mas" value="mas">
+        <input type="submit" id="puntuacionMass" class="btn btn-dark" value="  Voto a favor  " style="margin-top: 10px;">
+
+      </form>
+      <form th:action="@{/puntuacionMenos}" method="get" style="margin-left: 82%;
+      width: 10%;">
+        <input type="hidden" name="menos" value="menos">
+        <input type="submit" class="btn btn-dark" value="Voto en contra" style="
+        margin-top: 3%;">
+
+      </form>
+
+    </div>
+    <h5 id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" style="color: white;padding: 1%;float: left;"></h5>
+
+    <textarea disabled th:text="${propuestas.propuesta}"
+      style="border-style: solid;padding: 10px;border-radius: 30px; background-color: rgb(251, 251, 251);font-weight: bold;border-width: thin; width: 100%;height: 150px;"></textarea>
+
+    <table class="table-responsive table-striped" style="max-height: 60%;width: 100%;display: block; overflow-y: auto;">
       <thead style="display: block;">
-        <th ></th>
-        <th ></th>
-        <th ></th>
-        <!-- <th> <textarea th:if="${propuestas}" th:text="${propuestas.propuesta}" style="width: 100%;"></textarea>   </th>  -->
+        <!-- <th></th>
+        <th></th>
+        <th></th> -->
+
       </thead>
-      <tbody th:each="comentario:${comentarios}">
+      <tbody th:if="comentarios" th:each="comentario:${comentarios}">
         <tr>
-          <td ><img class="img-thumbnail  float-left" style="width: 50px ;float: left;  border-radius: 90px;"
-            th:src="@{'/uploads/'+${comentario.usuario.foto}}"></td>
-          </tr>
-            <tr >
-          <td th:text="${comentario.usuario.nombre.toUpperCase()}"style=" border-style: solid;font-weight: bold;color: white;"></td>                  
+          <td><img class="logo  float-left" style="width: 50px ;float: left; border-radius: 90px;"
+              th:src="@{'/uploads/'+${comentario.usuario.foto}}"></td>
         </tr>
-        <tr>          
-          <td ><textarea th:text="${'Ha dicho : '+comentario.comentario}" style="    border-style: solid;
-            padding: 10px;
-            border-radius: 30px;
-            background-color: rgb(251, 251, 251);
-            font-weight: bold;
-            border-width: thin;
-            width: 600px;
-            height: 150px;" disabled></textarea></td>          
+        <tr>
+          <td style=" border-style: solid;font-weight: bold;color: white;"
+            th:text="${comentario.usuario.nombre.toUpperCase()}"></td>
+        </tr>
+        <tr>
+          <td>
+            <p style="
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            box-shadow: 0px 10px 3px 0px rgba(0,0,0,0.5);
+            position: relative;
+            margin-bottom: 30px;padding: 5px;
+          " th:text="'Ha dicho:  '+${comentario.comentario}" disabled></p>
+          </td>
         </tr>
       </tbody>
+      <tbody id="todosLosComentarios"></tbody>
+
     </table>
 
   </div>
   <div class="container"
-    style="background-color: rgb(127, 146, 173);
-    border-style: solid;
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 3px;
-    padding: 10px;">
-    <form th:action="@{/salvarcomentario}" method="get">
-      <input type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required>
-      <input type="submit" class="btn btn-dark" value="Agregar Comentario" >
-      <a type="button" th:href="@{/usuario}" class="btn btn-dark" style="float:right;"
-        id="cerrarComentario">Cerrar</a>
-      
-    </form>
-      <!-- <button type="button" id="agregarComentario" class="btn btn-primary">Agregar Comentario</button> -->
-      
-   
+  style="
+   background-color: rgb(117 159 61 / 68%);
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  width: 100%;
+  height: 10%;">
+
+    <input type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required>
+    <button class="btn btn-dark" id="salvarComentario">Agregar Comentario</button>
+    <a type="button" th:href="@{/usuario}" class="btn btn-dark" style="float:right;" id="cerrarComentario">Cerrar</a>
+
   </div>
 
 
 
-  <!-- <footer th:replace="layouts/fragmentoUsuarios :: footer"></footer> -->
 
+  <!-- <script src="js/todosComentarios.js"></script> -->
+  <script src="js/salvarComentario.js"></script>
 
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 
 <script>
 
-if (window.history.replaceState) { // verificamos disponibilidad
-    window.history.replaceState(null, null, "/spring-boot-cuevas-de-ayllon/usuario");
-// window.history.replaceState(state, title, "/home");
-   
-}
-    
+
+  // $('#puntuacionMass').on('click', function(){ 
+  // alert('Prevenido');
+
+  // setTimeout(() => {
+  $(document).ready(function script() {
+    $.ajax({
+
+      type: 'GET',
+      url: "puntuacionTotal",
+    }).done(function (data) {
+
+
+      console.log("Hecho Correcto!");
+      console.log('el numero de graficos es:  ', data);
+      var html2 = '';
+      html2 += '<h5>Esta propuesta tiene: ' + data + ' votos</h5>';
+
+      $('#puntuacionTotal').append(html2);
 
 
 
-  // $('#agregarComentario').on('click', function () {
-  // console.log('hemos pulsado agregar')
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: "salvarcomentario",
-  //     data: { 'comentario': $('#comentario').val() }
-
-
-  //   }).done(function (data) {
-      
-
-
-
-
-  //   });
-  // });
-
-
-
-
-
-
-
+    }).fail(function () {
+      console.log("Fallo!");
+    })
+      .always(function () {
+        console.log("Completo!");
+      });
+  });
 
 </script>
+
 
 </html>

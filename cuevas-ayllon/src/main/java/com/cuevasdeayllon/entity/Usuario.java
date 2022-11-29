@@ -15,6 +15,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -29,13 +31,22 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_usuario")
 	private int idUsuario;
+	@NotEmpty
+	
 	private String nombre;
+	@NotEmpty
 	private String apellido1;
+	@NotEmpty
 	private String apellido2;
+	@Email
+	@NotEmpty
 	private String email;
+	@NotEmpty
 	private String password;
+	
 	private String foto;
 	private String roles;
+	@NotEmpty
 	private String direccion;
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)
@@ -47,6 +58,7 @@ public class Usuario implements Serializable{
 	@JsonIgnore
 	private List<Comentarios> comentarios;
 	@PrePersist
+	
 	public void prePersist() {
 		createAt=new Date();
 	}

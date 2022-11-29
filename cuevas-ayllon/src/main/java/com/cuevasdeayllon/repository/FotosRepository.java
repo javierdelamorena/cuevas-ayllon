@@ -1,0 +1,15 @@
+package com.cuevasdeayllon.repository;
+
+import java.util.List;
+
+import com.cuevasdeayllon.entity.Fotos;
+
+public interface FotosRepository {
+	
+	public List<Fotos> todasLasFotos();
+	
+	void salvarFoto(Fotos foto);
+	
+	void deleteFoto(Fotos foto);
+
+}

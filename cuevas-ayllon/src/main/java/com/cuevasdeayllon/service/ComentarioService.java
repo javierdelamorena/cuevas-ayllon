@@ -10,7 +10,7 @@ public interface ComentarioService {
 	
      void save(Comentarios porpuesta);
 	
-	List<Comentarios> findAll(int idPropuesta);
+	List<Comentarios> findAllByIdPropuesta(int idPropuesta);
 	
 	void deleteById(Comentarios propuesta,int id);
 	
@@ -19,6 +19,6 @@ public interface ComentarioService {
 	void deleteByComentario(String comentario);
 	
 	
-
+	List<Comentarios> findAll();
 
 }

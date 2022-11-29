@@ -1,5 +1,6 @@
 package com.cuevasdeayllon.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,34 +11,54 @@ import com.cuevasdeayllon.repository.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
-    
+
 	@Autowired
 	UsuarioRepository usuarioService;
-	
+
 	@Override
 	public Usuario usuarioPorId(int idUsuario) {
-		
-		
+
+
 		return usuarioService.usuarioPorId(idUsuario);
 	}
 
 	@Override
 	public void salvarUsuario(Usuario usuario) {
-		Usuario usuarios=new Usuario();
-		
-		usuarios.setIdUsuario(0);
-		usuarios.setNombre(usuario.getNombre());
-		usuarios.setApellido1(usuario.getApellido1());
-		usuarios.setApellido2(usuario.getApellido2());
-		usuarios.setEmail(usuario.getEmail());		
-		usuarios.setPassword(usuario.getPassword());
-		usuarios.setFoto(usuario.getFoto());
-		usuarios.setEnabled(true);
-		usuarios.setDireccion(usuario.getDireccion());
-		usuarios.setRoles("USER");
-		 
-		usuarioService.salvarUsuario(usuarios);
-		
+
+		List<Usuario> listaUsuarios=usuarioService.todosLosUsuarios();
+		if(listaUsuarios.size()==0) {
+			Usuario usuarios=new Usuario();
+
+			usuarios.setIdUsuario(0);
+			usuarios.setNombre(usuario.getNombre());
+			usuarios.setApellido1(usuario.getApellido1());
+			usuarios.setApellido2(usuario.getApellido2());
+			usuarios.setEmail(usuario.getEmail());		
+			usuarios.setPassword(usuario.getPassword());
+			usuarios.setFoto(usuario.getFoto());
+			usuarios.setEnabled(true);
+			usuarios.setDireccion(usuario.getDireccion());
+			usuarios.setRoles("ADMIN");
+
+			usuarioService.salvarUsuario(usuarios);
+		}else {
+			Usuario usuarios=new Usuario();
+
+			usuarios.setIdUsuario(0);
+			usuarios.setNombre(usuario.getNombre());
+			usuarios.setApellido1(usuario.getApellido1());
+			usuarios.setApellido2(usuario.getApellido2());
+			usuarios.setEmail(usuario.getEmail());		
+			usuarios.setPassword(usuario.getPassword());
+			usuarios.setFoto(usuario.getFoto());
+			usuarios.setEnabled(true);
+			usuarios.setDireccion(usuario.getDireccion());
+			usuarios.setRoles("USER");
+
+			usuarioService.salvarUsuario(usuarios);
+
+		}
+
 	}
 
 	@Override
@@ -48,14 +69,41 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public Usuario usuarioPorNombre(String nombre) {
-	Usuario usuario=usuarioService.usuarioPorNombre(nombre);
-	
-	if(usuario!=null) {
-		
-		return usuarioService.usuarioPorNombre(nombre);
-		
+		Usuario usuario=usuarioService.usuarioPorNombre(nombre);
+
+		if(usuario!=null) {
+
+			return usuarioService.usuarioPorNombre(nombre);
+
+		}
+		return null;
+
 	}
-	return null;
+
+	@Override
+	public void borrarUsuario(Usuario usuario) {
+		usuarioService.borrarUsuarioi(usuario);
+
+	}
+
+	@Override
+	public void editarUsuario(Usuario usuario) {
+		Usuario usuarios=new Usuario();
+
+		usuarios.setIdUsuario(usuario.getIdUsuario());
+		usuarios.setNombre(usuario.getNombre());
+		usuarios.setApellido1(usuario.getApellido1());
+		usuarios.setApellido2(usuario.getApellido2());
+		usuarios.setEmail(usuario.getEmail());		
+		usuarios.setPassword(usuario.getPassword());
+		usuarios.setCreateAt(new Date());
+		usuarios.setFoto(usuario.getFoto());
+		usuarios.setEnabled(true);
+		usuarios.setDireccion(usuario.getDireccion());
+		usuarios.setRoles("USER");
+
+		usuarioService.salvarUsuario(usuarios);
+
 		
 	}
 

@@ -14,4 +14,5 @@ public interface UsuarioRepository {
 	List<Usuario> todosLosUsuarios();
 	
 	Usuario usuarioPorNombre(String nombre);
+	void borrarUsuarioi(Usuario usuario);
 }

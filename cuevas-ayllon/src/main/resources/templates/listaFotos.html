@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="body">
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+    <div class="container">
+
+        <table class="table table-bordered">
+
+            <thead class="thead-dark">
+                <tr class="bg-primary">
+                    <th scope="col">idFoto</th>
+                    <th scope="col">foto</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Borrar</th>
+
+
+                </tr>
+            </thead>
+            <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+                th:text="${usuarioBorrado}"></div> -->
+            <tr th:each="foto:${fotosLista}">
+
+                <td class="bg-info" th:if="${foto.idFotos}" th:text="${foto.idFotos}"></td>
+                
+                <td class="bg-info" th:if="${foto.fotos}"><img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid"
+                        style="border-radius:30px;padding:10px; height: 300px;width: 300px;" alt="Responsive image"></td>
+
+                <td class="bg-info" th:if="${foto.id_usuario}" th:text="${foto.id_usuario}"></td>
+
+
+                <form th:action="@{/borrarFoto}" method="post">
+
+                    <input type="hidden" name="idFotos" th:value="${foto.idFotos}">
+                    <input type="hidden" name="fotos" th:value="${foto.fotos}">
+                    <input type="hidden" name="id_usuario" th:value="${foto.id_usuario}">
+
+
+                    <td class="bg-info"><input type="submit" value="Borrar"></td>
+                </form>
+
+
+            </tr>
+
+        </table>
+
+
+
+    </div>
+
+
+</body>
+
+</html>

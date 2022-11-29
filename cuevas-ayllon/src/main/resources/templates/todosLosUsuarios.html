@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="body">
+
+
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+    <div class="container">
+
+        <table class="table table-bordered">
+
+            <thead class="thead-dark">
+                <tr class="bg-primary">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido1</th>
+                    <th scope="col">Apellido2</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Borrar</th>
+
+                </tr>
+            </thead>
+            <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+                th:text="${usuarioBorrado}"></div>
+            <tr th:each="usuario:${todosLosusuarios}">
+
+                <td class="bg-info" th:if="${usuario.nombre}" th:text="${usuario.nombre}"></td>
+
+                <td class="bg-info" th:if="${usuario.apellido1}" th:text="${usuario.apellido1}"></td>
+
+                <td class="bg-info" th:if="${usuario.apellido2}" th:text="${usuario.apellido2}"></td>
+
+                <td class="bg-info" th:if="${usuario.email}" th:text="${usuario.email}"></td>
+
+
+
+                <form th:action="@{/doeditarDesdeLista}" method="post">
+
+                    <input type="hidden" name="idUsuario" th:value="${usuario.idUsuario}">
+
+
+                    <td class="bg-info"><input type="submit" value="Editar"></td>
+                </form>
+                <form th:action="@{/doBorrarDesdeLista}" method="post">
+
+                    <input type="hidden" name="idUsuario" th:value="${usuario.idUsuario}">
+
+
+                    <td class="bg-info"><input type="submit" value="Borrar"></td>
+                </form>
+
+
+            </tr>
+
+        </table>
+
+
+
+    </div>
+
+
+</body>
+
+</html>

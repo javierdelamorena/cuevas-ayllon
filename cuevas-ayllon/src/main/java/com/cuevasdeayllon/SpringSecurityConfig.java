@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.cuevasdeayllon.service.UsuarioDetailsService;
@@ -45,12 +47,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
 		http.csrf().disable().authorizeRequests().antMatchers("/,/registrarse,/home,/galeriaFotografica,/historiaPueblo,/toRutas,/tablonAnuncios,/casasRurales").permitAll()
 		.antMatchers("/login*").permitAll()
-		.antMatchers("/usuario").hasAuthority(AuthoritiesConstants.USER)
-		.antMatchers("/propuesta").hasAnyAuthority(AuthoritiesConstants.USER)
-		.and()
+		.antMatchers("/usuario").hasAnyAuthority(AuthoritiesConstants.USER,AuthoritiesConstants.ADMIN)
+		.antMatchers("/propuesta").hasAnyAuthority(AuthoritiesConstants.USER,AuthoritiesConstants.ADMIN)
+		.antMatchers("/editarUsuario").hasAnyAuthority(AuthoritiesConstants.USER,AuthoritiesConstants.ADMIN)
+		.antMatchers("/todosUsuarios").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+		.antMatchers("/fotosGaleriaLista").hasAnyAuthority(AuthoritiesConstants.ADMIN)
 		
+		.and()
+		.exceptionHandling().accessDeniedPage("/error_403")
+		.and()		
 		.formLogin()
 		.loginPage("/login").permitAll()
 		.usernameParameter("nombre")
@@ -63,7 +71,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		 .clearAuthentication(true)
 		 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		 .logoutSuccessUrl("/login?logout")
-		 .permitAll();
+		 .permitAll()
+		 .and()
+		 .headers().addHeaderWriter(
+			        new XFrameOptionsHeaderWriter(
+			            XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
+		 
+		 ;
 			
 //		 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 //		 .logoutSuccessUrl("/home").deleteCookies("JSESSIONID")

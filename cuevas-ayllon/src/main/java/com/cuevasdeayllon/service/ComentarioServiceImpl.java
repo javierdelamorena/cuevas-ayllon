@@ -24,9 +24,9 @@ public class ComentarioServiceImpl implements ComentarioService{
 	}
 
 	@Override
-	public List<Comentarios> findAll(int idPropuesta) {
+	public List<Comentarios> findAllByIdPropuesta(int idPropuesta) {
 		// TODO Auto-generated method stub
-		return service.findAll(idPropuesta);
+		return service.findAllByIdPropuesta(idPropuesta);
 	}
 
 	@Override
@@ -49,6 +49,12 @@ public class ComentarioServiceImpl implements ComentarioService{
 
     service.deleteByComentario(comentario); 
 		
+	}
+
+	@Override
+	public List<Comentarios> findAll() {
+		// TODO Auto-generated method stub
+		return service.findAllComentarios();
 	}
 
 }

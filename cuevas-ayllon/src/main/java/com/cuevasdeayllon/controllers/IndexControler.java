@@ -1,5 +1,7 @@
 package com.cuevasdeayllon.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,7 @@ import com.cuevasdeayllon.entity.Usuario;
 
 @Controller
 public class IndexControler {
-	
+
 	private static final Logger logger=LoggerFactory.getLogger(IndexControler.class);
 
 	@GetMapping({"/index","/home"})
@@ -24,9 +26,9 @@ public class IndexControler {
 	}
 	@GetMapping("/registrarse")
 	public String registro(Model model) {
-		
+
 		Usuario usuario=new Usuario();
-		
+
 		model.addAttribute("nombre","Nombre");
 		model.addAttribute("apellido1","Apellido1");
 		model.addAttribute("apellido2","Apellido2");
@@ -54,25 +56,25 @@ public class IndexControler {
 	}
 	@GetMapping("/galeriaFotografica")
 	public String galerioa(Model model) {
-		
+
 
 		logger.info("Entramos en metodo galeriaFotografica");
 
 		return "galeriafoto";
 
 	}
-	@GetMapping("/casasRurales")
+	@GetMapping("/orfeo")
 	public String casas(Model model) {
-		
+
 
 		logger.info("Entramos en metodo /casasRurales");
 
-		return "casasrurales";
+		return "campusOrfeo";
 
 	}
 	@GetMapping("/historiaPueblo")
 	public String historia(Model model) {
-		
+
 
 		logger.info("Entramos en metodo /historiaPueblo");
 
@@ -81,7 +83,7 @@ public class IndexControler {
 	}
 	@GetMapping("/tablonAnuncios")
 	public String anuncios(Model model) {
-		
+
 
 		logger.info("Entramos en metodo /tablonAnuncios");
 
@@ -90,11 +92,36 @@ public class IndexControler {
 	}
 	@GetMapping("/toRutas")
 	public String rutas(Model model) {
-		
+
 
 		logger.info("Entramos en metodo /rutas");
 
 		return "rutas";
+
+	}
+	@GetMapping("/subirFotos")
+	public String subirFoto(Model model,HttpSession sesion) {
+
+		Usuario usuario=new Usuario();
+		if(sesion.getAttribute("usuario")!=null) {
+			usuario=(Usuario) sesion.getAttribute("usuario");
+			model.addAttribute("usuario", usuario);
+			logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
+
+			logger.info("Entramos en metodo index subirFoto");
+
+			return "subirFoto";
+		}
+		return "login";
+	}
+	@GetMapping("/toUsuario")
+	public String usuario(Model model,HttpSession sesion) {
+
+		Usuario usuario=(Usuario) sesion.getAttribute("usuario");
+		model.addAttribute("usuario", usuario);
+		logger.info("Entramos en metodo /toUsuario");
+
+		return "usuario";
 
 	}
 

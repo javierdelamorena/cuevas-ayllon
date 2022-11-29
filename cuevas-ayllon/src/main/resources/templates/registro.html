@@ -9,25 +9,26 @@
 
     <div class="container py-4" id="registro" style="margin-left: 30%;
     margin-top: 5%;
-    background-color: white;
+    background-color: #d8852e99;
     border-radius: 10px;
     width: 40%;">
-<div th:if="${usuarioExiste}" th:text="${usuarioExiste}"></div>
-        <form th:action="@{/registrar}" th:object="${usuario}" id="formularioRegistro" class="text-dark" style="width: 250%;
+<div th:if="${usuarioExiste}" th:text="${usuarioExiste}" style="font-size: 20px;"></div>
+<div th:if="${fotoVacia}" th:text="${fotoVacia}" style="font-size: 20px;"></div>
+        <form th:action="@{/registrar}" th:object="${usuario}" id="formularioRegistro" class="text-dark" style="width: 150%;
         padding: 30px;" method="post" enctype="multipart/form-data">
             <div class="row col-sm-4">
                 <label form="nombre" class="col-form-label col-sm-2" th:text="${nombre}"></label>
             </div>
             <div class="row col-sm-4">
-                <input type="text" id="nombre" th:field="*{nombre}" class="form-control">
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="20" placeholder="Nombre" autocomplete="off">
                 <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger">
                 </div>
             </div>
             <div class="row col-sm-4">
-                <label form="apellido1" class="col-form-label col-sm-2" th:text="${apellido1}"></label>
+                <label form="apellido1" class="col-form-label col-sm-2" th:text="${apellido1}" ></label>
             </div>
             <div class="row col-sm-4">
-                <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control">
+                <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control" maxlength="20" placeholder="Primer Apellido" autocomplete="off">
                 <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}" class="alert alert-danger">
                 </div>
             </div>
@@ -35,15 +36,15 @@
                 <label form="apellido2" class="col-form-label col-sm-2" th:text="${apellido2}"></label>
             </div>
             <div class="row col-sm-4">
-                <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control">
-                <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}" class="alert alert-danger">
+                <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control" maxlength="20" placeholder="Segundo Apellido" autocomplete="off">
+                <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}" class="alert alert-danger"  >
                 </div>
             </div>
             <div class="row col-sm-4">
                 <label form="email" class="col-form-label col-sm-2" th:text="${email}"></label>
             </div>
             <div class="row col-sm-4">
-                <input type="text" id="email" th:field="*{email}" class="form-control">
+                <input type="text" id="email" th:field="*{email}" class="form-control"  placeholder="@Email" autocomplete="off">
                 <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger">
                 </div>
             </div>
@@ -51,15 +52,15 @@
                 <label form="direccion" class="col-form-label col-sm-6" th:text="${direccion}"></label>
             </div>
             <div class="row col-sm-4">
-                <input type="text" id="direccion" th:field="*{direccion}" class="form-control">
-                <div th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="alert alert-danger">
+                <input type="text" id="direccion" th:field="*{direccion}" class="form-control" placeholder="Direccion del Pueblo" autocomplete="off">
+                <div th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="alert alert-danger" >
                 </div>
             </div>
             <div class="row col-sm-4">
                 <label form="file" class="col-form-label col-sm-2" th:text="${foto}"></label>
             </div>
             <div class="row col-sm-4">
-                <input type="file" id="foto" name="file" class="form-control">
+                <input type="file" id="foto" name="file" class="form-control" autocomplete="off">
                 <div th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="alert alert-danger">
                 </div>
             </div>
@@ -67,21 +68,37 @@
                 <label form="password" class="col-form-label col-sm-2" th:text="${Password}"></label>
             </div>
             <div class="row col-sm-4">
-                <input type="password" id="password" th:field="*{password}" class="form-control">
+                <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Contraseña" autocomplete="off">
                 <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">
                 </div>
             </div></br></br>
             <div class="row col-sm-2">
-                <input type="submit" id="enviarAlta" value="ENVIAR" class="btn btn-primary">
+                <input type="submit" id="enviarAlta" value="ENVIAR" class="btn " style="color: #eeeeee;background-color: #463232a3;">
             </div>
 
         </form>
     </div>
 
 
-    <footer th:replace="layouts/fragmentoprincipal :: footer"></footer>
+    <!-- <footer th:replace="layouts/fragmentoprincipal :: footer"></footer> -->
 
 
 </body>
+<!-- <script>
+    $('#enviarAlta').on('click', function () {
+
+var password = $("#password").val();
+var nombre = $("#nombre").val();
+var email = $("#email").val();
+
+
+
+var url = "doVerificar?password=" + password + "&nombre=" + nombre + "&email=" + email;
+$.get(url);
+console.log('estamos ewn script enviar password')
+
+
+});
+</script> -->
 
 </html>

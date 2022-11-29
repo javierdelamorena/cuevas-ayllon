@@ -1,10 +1,35 @@
-.bodyRegistro {
 
-	background-color: #464343;
-}
 
 .bodyGaleria{
 	background-image: url("19.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+.bodyRegistro{
+	background-image: url("25.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+.bodyUsuario{
+	background-image: url("22.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+}
+.bodyLogin{
+	background-image: url("24.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+}
+.bodyComentarios{
+	background-image: url("23.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
@@ -25,12 +50,26 @@
 	height: 100vh;
 }
 .body {
-	background-image: url("imagenDeFondo.jpg");
+	background-image: url("2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0;
 	height: 100vh;
 
+}
+.bodyChat {
+	background-color: #5570b1;
+	margin: 0;
+	height: 100vh;
+
+}
+.bodyOrfeo{
+	background-image: url("21.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+	
 }
 /* body{
 	display: flex;

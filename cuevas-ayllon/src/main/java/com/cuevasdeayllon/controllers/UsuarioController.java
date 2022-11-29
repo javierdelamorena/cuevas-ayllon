@@ -4,24 +4,31 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,13 +46,22 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService service;
 
+	@Autowired
+	private JavaMailSender mailSender;
+
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
-	
+
+
 	@PostMapping( path= "/registrar")
-	public String registrarUsuario(@ModelAttribute("usuario")Usuario usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+	public String registrarUsuario(@Valid Usuario usuario,BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo registrar");
 		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword());
 		Usuario usuariocomprobacion=null;
+		String passwordSinEncriptar=usuario.getPassword();
+		
+		
+		try {
+		
 		if( usuario!=null) {
 			logger.info("El usuario es distinto de null");
 			usuariocomprobacion=service.usuarioPorNombre(usuario.getNombre());
@@ -59,11 +75,12 @@ public class UsuarioController {
 			return "registro";
 
 		}
+		//String rootPath="/uploads/";
+		String rootPath="C://TEMP//uploads";
 
 		if(!foto.isEmpty()&&usuario!=null) {
 
-			
-			String rootPath="/uploads**/";
+
 			try {
 				byte[]bytes=foto.getBytes();
 				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
@@ -74,8 +91,19 @@ public class UsuarioController {
 				usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
 				service.salvarUsuario(usuario);
 
+
 				Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
-				logger.info("Entramos en metodo registrar Usuario y recogemos este"+usuari);
+				if(usuari!=null) {
+					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
+					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+					SimpleMailMessage message = new SimpleMailMessage();
+					message.setTo(usuari.getEmail());
+					message.setSubject(
+							"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllon,  aqui te dejamos los datos de tu registro:");
+					message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+							+ usuari.getEmail());
+					mailSender.send(message);
+				}
 				model.addAttribute("usuario", usuari);
 				sesion.setAttribute("usuario", usuari);
 				return "login";
@@ -85,6 +113,38 @@ public class UsuarioController {
 				e.printStackTrace();
 			}
 
+		}else {
+			//				byte[]bytes="sinFoto.jpg".getBytes();
+			//				Path rutaCompleta=Paths.get(rootPath+"//"+"sinFoto.jpg");
+			//				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+			//				Files.write(rutaCompleta,bytes);
+			usuario.setFoto("sinFoto.jpg");
+			String passwordEncriptada = usuario.getPassword();
+			usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
+			service.salvarUsuario(usuario);
+
+
+			Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+			if(usuari!=null) {
+				logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
+				logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(usuari.getEmail());
+				message.setSubject(
+						"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllon,  aqui te dejamos los datos de tu registro:");
+				message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+						+ usuari.getEmail());
+				mailSender.send(message);
+			}
+			model.addAttribute("usuario", usuari);
+			sesion.setAttribute("usuario", usuari);
+			return "login";
+
+		}
+		}catch(javax.validation.ConstraintViolationException e) {
+			
+			return "registro";
+			
 		}
 
 
@@ -107,21 +167,66 @@ public class UsuarioController {
 	//		return "usuario";
 	//		
 	//	}
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@GetMapping( path="/usuario")
 	public String usuario(HttpServletRequest request,Model model) {
 		HttpSession sesion=request.getSession(true); 
 		logger.info("Entramos en metodo usuario");
-      if(sesion.getAttribute("usuario")!=null) {
-		Usuario usuario=(Usuario) sesion.getAttribute("usuario");
-		logger.info("Recogemos este usuario["+usuario+"]");
+		if(sesion.getAttribute("usuario")!=null) {
+			Usuario usuario=(Usuario) sesion.getAttribute("usuario");
+			logger.info("Recogemos este usuario["+usuario+"]");
 
-		model.addAttribute("usuario", usuario);
+			model.addAttribute("usuario", usuario);
 
-		return "usuario";
-      }else {
-    	  logger.info("La sesion esta a null y no se ha creado");
-    	  return "/login";
-      }
+			return "usuario";
+		}else {
+			logger.info("La sesion esta a null y no se ha creado");
+			return "/login";
+		}
+
+	}
+	/**
+	 * 
+	 * @param idUsuario
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@PostMapping( path="/doBorrarDesdeLista")
+	public String borrarUsuario(@RequestParam("idUsuario") int  idUsuario,HttpServletRequest request,Model model) {
+
+		Usuario usuario=service.usuarioPorId(idUsuario);
+		if(usuario!=null) {
+
+			service.borrarUsuario(usuario);
+		}
+
+		model.addAttribute("usuarioBorrado", "El suario se ha borrado con exito");
+
+		return "todosLosUsuarios";
+
+
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@GetMapping( path="/todosUsuarios")
+	public String todossuario(HttpServletRequest request,Model model) {
+
+		List<Usuario>todos=service.todosLosUsuarios();
+
+		model.addAttribute("todosLosusuarios", todos);
+
+		return "todosLosUsuarios";
+
 
 	}
 	@GetMapping(value = "/unUsuarioSesion", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -152,13 +257,131 @@ public class UsuarioController {
 	 * @param response
 	 * @return
 	 */
-		@RequestMapping(value = "/logout", method = RequestMethod.POST)
-		public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			if (auth != null) {
-				new SecurityContextLogoutHandler().logout(request, response, auth);
-			}
-			return "redirect:/login";// para redirigir a la pantalla de login
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
+		return "redirect:/login";// para redirigir a la pantalla de login
+	}
+	/**
+	 *  Recibe una llamada con la password para recibirla sin encriptar y manda un mail con los datos recibidos en el registro
+	 * @param password
+	 * @param sesion
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	//	@GetMapping(value="/doVerificar", produces = MediaType.APPLICATION_JSON_VALUE)
+	//	public void enviar(@RequestParam(value="password",required =true) String password,@RequestParam(value="nombre",required = true) String nombre,@RequestParam(value="email",required=true) String email,  HttpSession sesion, Model model) throws Exception {
+	//		logger.info("entramos en metodo doVerificar y recogemos este password:["+password+"] nombre:["+nombre+"] email:["+email+"]");
+	//		SimpleMailMessage message = new SimpleMailMessage();
+	//		message.setTo(email);
+	//		message.setSubject(
+	//				"Muchas Gracias por registrarte en el espacio vecinal de cuevas de ayllopn,  aqui te dejamos los datos de tu registro:");
+	//		message.setText("Usuario: " + nombre + " password:" + password + " email de registro:"
+	//				+ email);
+	//		mailSender.send(message);
 
+
+	//return "login";
+	//	}
+
+	@PostMapping(path="/editarUsuario")
+	public String editarUsuario(@Valid Usuario usuario,BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+		logger.info("Entramos en metodo registrar");
+
+		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword()+" con idUsuario: "+usuario.getIdUsuario());
+		//Usuario usuariocomprobacion=(Usuario) sesion.getAttribute("usuario");
+
+		String passwordSinEncriptar=usuario.getPassword();
+		//		if(foto==null||foto.isEmpty()||foto.equals(null)) {
+		//			logger.info("Es necesario ingresar una foto para registrarse");
+		//			model.addAttribute("fotoVacia", "Es necesario ingresar una foto para registrarse");
+		//
+		//
+		//		}
+		//		if( usuario!=null) {
+		//			logger.info("El usuario es distinto de null");
+		//			usuariocomprobacion=service.usuarioPorNombre(usuario.getNombre());
+		//		}
+		//		if(usuariocomprobacion!=null ) {
+		//
+		//			model.addAttribute("usuarioExiste", "El nombre ya existe registrese con otro nombre, añada una letra al final o si es compuesto pruebe solo con uno");
+		//
+		//			logger.info("Entramos en metodo registrar Usuario");
+		//
+		//			
+		//
+		//		}
+
+		if(!foto.isEmpty()&&usuario!=null) {
+
+			//String rootPath="/uploads/";
+			String rootPath="C://TEMP//uploads";
+			try {
+				byte[]bytes=foto.getBytes();
+				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
+				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+				Files.write(rutaCompleta,bytes);
+				usuario.setFoto(foto.getOriginalFilename());
+				String passwordEncriptada = usuario.getPassword();
+				usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
+				usuario.setIdUsuario(usuario.getIdUsuario());
+				service.editarUsuario(usuario);
+
+
+				Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+				if(usuari!=null) {
+					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
+					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+					SimpleMailMessage message = new SimpleMailMessage();
+					message.setTo(usuari.getEmail());
+					message.setSubject(
+							"El usuario ha sido editado correctamente,  aqui te dejamos los datos de tu registro:");
+					message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+							+ usuari.getEmail());
+					mailSender.send(message);
+				}
+				model.addAttribute("usuario", usuari);
+				sesion.setAttribute("usuario", usuari);
+
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}else {
+			//				byte[]bytes="sinFoto.jpg".getBytes();
+			//				Path rutaCompleta=Paths.get(rootPath+"//"+"sinFoto.jpg");
+			//				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+			//				Files.write(rutaCompleta,bytes);
+			usuario.setFoto("sinFoto.jpg");
+			String passwordEncriptada = usuario.getPassword();
+			usuario.setIdUsuario(usuario.getIdUsuario());
+			usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
+			service.editarUsuario(usuario);
+
+
+			Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+			if(usuari!=null) {
+				logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
+				logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(usuari.getEmail());
+				message.setSubject(
+						"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllon,  aqui te dejamos los datos de tu registro:");
+				message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+						+ usuari.getEmail());
+				mailSender.send(message);
+			}
+			model.addAttribute("usuario", usuari);
+			sesion.setAttribute("usuario", usuari);
+
+
+		}
+		return "usuario";
+	}
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="bodyUsuario">
+
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+    <div class="container py-4" id="registro" style="margin-left: 30%;
+    margin-top: 5%;
+    background-color: #d8852e99;
+    border-radius: 10px;
+    width: 40%;">
+
+        <form th:action="@{/salvarFoto}" th:object="${usuario}"  class="text-dark" style="width: 150%;
+        padding: 30px;" method="post" enctype="multipart/form-data">
+            
+            <div class="row col-sm-4">
+                <label form="file" class="col-form-label col-sm-2" th:text="${foto}"></label>
+            </div>
+            <div class="row col-sm-4">
+                <input type="file" id="foto" name="file" class="form-control" autocomplete="off">
+                <!-- <div th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="alert alert-danger"> -->
+                <!-- </div> -->
+            </div>
+            
+            <div class="row col-sm-4">
+                <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control" >
+                <!-- <div th:if="${#fields.hasErrors('idUsuario')}" th:errors="*{idUsuario}" class="alert alert-danger"> -->
+                <!-- </div> -->
+            </div></br></br>
+            <div class="row col-sm-2">
+                <input type="submit" id="enviarAlta" value="ENVIAR" class="btn " style="color: #eeeeee;background-color: #463232a3;">
+                
+            </div></br></br>
+            <div class="row col-sm-2">
+               
+                <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn " style="color: #eeeeee;background-color: #463232a3;">Volver</a>
+            </div>
+
+        </form>
+        
+    </div>
+
+   
+
+    
+
+    </body>
+
+</html>

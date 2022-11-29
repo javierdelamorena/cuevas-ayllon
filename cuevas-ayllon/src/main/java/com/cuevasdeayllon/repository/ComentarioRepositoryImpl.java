@@ -34,7 +34,7 @@ public class ComentarioRepositoryImpl implements ComentarioRepository{
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<Comentarios> findAll(int idPropuesta) {
+	public List<Comentarios> findAllByIdPropuesta(int idPropuesta) {
 		
 		return repository.findByIdPropuesta(idPropuesta);
 	}
@@ -53,6 +53,14 @@ public class ComentarioRepositoryImpl implements ComentarioRepository{
 	public void deleteByComentario(String comentario) {
 		repository.deleteByComentario(comentario);
 		
+	}
+
+
+
+	@Override
+	public List<Comentarios> findAllComentarios() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
 	}
 
 }
