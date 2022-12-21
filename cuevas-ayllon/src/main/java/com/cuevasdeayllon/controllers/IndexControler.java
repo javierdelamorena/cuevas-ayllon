@@ -99,6 +99,15 @@ public class IndexControler {
 		return "rutas";
 
 	}
+	@GetMapping("/enlacesDeInteres")
+	public String enlacesDeInteres(Model model) {
+
+
+		logger.info("Entramos en metodo /enlacesDeInteres");
+
+		return "enlacesDeInteres";
+
+	}
 	@GetMapping("/subirFotos")
 	public String subirFoto(Model model,HttpSession sesion) {
 
@@ -114,6 +123,23 @@ public class IndexControler {
 		}
 		return "login";
 	}
+	@GetMapping("/anuncios")
+	public String subirAnuncio(Model model,HttpSession sesion) {
+
+		Usuario usuario=new Usuario();
+		if(sesion.getAttribute("usuario")!=null) {
+			usuario=(Usuario) sesion.getAttribute("usuario");
+			model.addAttribute("titulo", "Titulo");
+			model.addAttribute("anuncio", "Anuncio");
+			model.addAttribute("foto", "Documento");
+			logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
+
+			logger.info("Entramos en metodo index subirFoto");
+
+			return "subirAnuncio";
+		}
+		return "login";
+	}
 	@GetMapping("/toUsuario")
 	public String usuario(Model model,HttpSession sesion) {
 
@@ -124,5 +150,24 @@ public class IndexControler {
 		return "usuario";
 
 	}
+	@GetMapping("/preguntas")
+	public String preguntas(Model model,HttpSession sesion) {
+
+		
+		logger.info("Entramos en metodo /preguntas");
+
+		return "preguntas";
+
+	}
+	@GetMapping("/contacto")
+	public String contacto(Model model,HttpSession sesion) {
+
+		
+		logger.info("Entramos en metodo /contacto");
+
+		return "contacto";
+
+	}
+	
 
 }

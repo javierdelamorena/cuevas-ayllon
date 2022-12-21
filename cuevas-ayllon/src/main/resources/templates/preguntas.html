@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/fragmentoprincipal :: head">
+
+</head>
+
+<body class="bodyContacto">
+
+  <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+
+  <div style="margin-top:13%;">
+    <!-- <div class="container" th:object="${unUsuario}">
+                <legend>Informacion Usuario</legend> -->
+    <ul class="lista" style="border: solid;">
+      <li style="background-color:rgb(194 169 73 / 66%);
+      padding: 3px;
+      margin: 10px;
+      border: solid;
+      text-align: left;
+      font-size: x-large;
+      border-radius: 10px;">
+        <p>Desde aqui intentamos dar respuesta a las dudas de funcionamiento que puedan surgir, si no encuentras la
+          respuesta a tu pregunta, siempre puedes escribirnos desde el apartado de contacto.</p>
+
+      </li>
+      <!-- Pregunta 1 -->
+      <li class="pregunta" data-resp_id="resp_1">
+        <span>Para que sirve el espaco vecinal ?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_1">
+        <span id="sp_resp_1">El espacio vecinal es un espacio que hemos creado para que todos los vecinos del pueblo
+          puedan proponer ideas, votar las de otros vecinos y dar tu opinion poniendo comentarios. Con esta iniciativa
+          lo
+          que estamos intentado es conectar a toda la gente que tiene casa en el pueblo, y que entre todos y todas
+          podamos decidir que se hace, en que se gasta el dinero o al menos poder dar nuestra opinion y expresar nuestra
+          voluntad como pueblo.
+          La mayoria de los vecinos no viven aqui, pero si pagan impuestos aqui,
+          pasan largas o cortas estancia de tiempo y sobre todo tienen mucho cariño al pueblo.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_0">
+        <span>Cuando hago el login, tengo que ingresar usuario y contraseña dos veces?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_0">
+        <span id="sp_resp_0">Si, sabemos que es un poco molesto pero por seguridad y arquitectura de la aplicacion es
+          necesario, sentimos las molestias.</span>
+      </li>
+
+      <!-- Pregunta 2 -->
+      <li class="pregunta" data-resp_id="resp_2">
+        <span>Puedo subir fotos a la galeria?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+
+      <li class="respuesta" id="resp_2">
+        <span id="sp_resp_2" style="height: fit-content;"> Si, si puedes, solo tienes que que entrar despues de haberte
+          registrado y clickar en la
+          pestaña de subir foto a galeria. Ten en cuenta que es una pagina para relanzar el pueblo y si la foto no es
+          adecuada, los administradores te la podran borrar. </span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_3">
+        <span>Puedo subir anuncios?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_3">
+        <span id="sp_resp_3"> No, no puedes, los anuncios solo pueden subirlos los administradores de la pagina, a los
+          que
+          puedes escribir al email que indica en contacto. </span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_4">
+        <span>Cuando me registro recibo un mail con mis datos de registro?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_4">
+        <span id="sp_resp_4">Si, cuando te registras automaticamente recibes un mail con tus datos de registro, ten en
+          cuenta que si se te olvida la contraseña nosotros no la sabremos ya que esta encriptada y tu seras la unica
+          persona que la sepa.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_5">
+        <span>Mi votacion es anonima?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_5">
+        <span id="sp_resp_5">Si, lo unico que podran ver los administradores es el total de puntos de cada propuesta, ya
+          que la votacion tambien la encriptamos.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_6">
+        <span>Puedo proponer cambios en la web?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_6">
+        <span id="sp_resp_6">Si, puedes proponer cambios, esta web esta echa por gente del pueblo para dar vida al
+          pueblo, todos los cambios que se propongan y sean factibles se recibiran con satisfaccion.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_7">
+        <span>Que es el Campus Orfeo?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_7">
+        <span id="sp_resp_7">Es una iniciativa que ha tenido un vecino del pueblo para combatir la españa vaciada, Lo
+          hemos puesto porque es muy interesante, recomendamos su lectura.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_8">
+        <span>Podria anunciar una casa, terreno o pajar en venta?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_8">
+        <span id="sp_resp_8">Es una opcion que nos hemos planteado, probablemente en el futuro añadamos mas
+          funcionalidades a la web y esa es una que tenemos en mente, pero por el momento ha sido muy trabajoso y
+          queremos ver como funciona.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_9">
+        <span>Quienes son los administradores de la pagina?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_9">
+        <span id="sp_resp_9">Los administradores de la pagina seran mas o menos los mismas personas que estas llevando
+          la peña, el alquiler del hosting aunque es poco dinero lo va a abonar la peña y tiene todo el sentido del
+          mundo que sean ellos quien lo administren.</span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div th:replace="layouts/fragmentoprincipal :: footer"></div>
+</body>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .fondo {
+    /* Gradiente del fondo */
+    background: rgba(12, 176, 255, 1);
+    background: -moz-linear-gradient(-45deg, rgba(12, 176, 255, 1) 0%, rgba(104, 205, 253, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(12, 176, 255, 1)), color-stop(100%, rgba(104, 205, 253, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(12, 176, 255, 1) 0%, rgba(104, 205, 253, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(12, 176, 255, 1) 0%, rgba(104, 205, 253, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(12, 176, 255, 1) 0%, rgba(104, 205, 253, 1) 100%);
+    background: linear-gradient(135deg, rgba(12, 176, 255, 1) 0%, rgba(104, 205, 253, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0cb0ff', endColorstr='#68cdfd', GradientType=1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .lista {
+    background: white;
+    max-width: 50%;
+    margin: auto;
+    border-radius: 10px;
+    list-style: none;
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .pregunta {
+    padding: 9px;
+    border-bottom: 1px solid lightgrey;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+  }
+
+  .pregunta i {
+    font-size: 21px;
+    transition: .3s;
+  }
+
+  .pregunta span {
+    transition: .3s;
+  }
+
+  .pregunta:hover span {
+    margin-left: 15px;
+  }
+
+  .pregunta:last-child {
+    border: none;
+  }
+
+  .respuesta {
+    text-align: justify;
+    background: #f3f3f3;
+    height: 0;
+    overflow: hidden;
+    transition: .5s;
+    padding: 0 14px;
+  }
+
+  /* Estilos para una pregunta seleccionada */
+  .resp_act {
+    padding-top: 2px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  /* .ico_resp_act{
+  transform: rotate(180deg);
+} */
+</style>
+<script>
+  $('.pregunta').on('click', function () {
+    // Si la pregunta en la que se hizo click NO está abierta.
+    if (!$('#' + $(this).data('resp_id')).hasClass('resp_act')) {
+      // Cierro la que esté abierta, si es que hay alguna
+      $('.ico_resp').removeClass('ico_resp_act');
+      $('.resp_act').css('height', 0);
+      $('.resp_act').removeClass('resp_act');
+      // Abro la pregunta en la que se hizo click
+      $('#' + $(this).data('resp_id')).css('height', $('#sp_' + $(this).data('resp_id')).height() + '0px');
+      $('#' + $(this).data('resp_id')).addClass('resp_act');
+      $('i', this).addClass('ico_resp_act');
+      // Si no, si la pregunta ya está abierla
+    } else {
+      // La cierro
+      $('.ico_resp').removeClass('ico_resp_act');
+      $('.resp_act').css('height', 0);
+      $('.resp_act').removeClass('resp_act');
+    }
+  });
+</script>
+
+</html>

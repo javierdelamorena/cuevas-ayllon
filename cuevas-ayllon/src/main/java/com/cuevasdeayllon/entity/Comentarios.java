@@ -27,6 +27,8 @@ public class Comentarios implements Serializable{
 	@Column(name="id")
 	private int id;
 	private String comentario;
+	
+	private String editable;
 		
 	@ManyToOne
 	@JoinColumn(name="id_propuesta",referencedColumnName ="id_propuesta")
@@ -40,6 +42,23 @@ public class Comentarios implements Serializable{
 	public Comentarios() {
 		
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEditable() {
+		return editable;
+	}
+
+	public void setEditable(String editable) {
+		this.editable = editable;
+	}
+
 	public String getComentario() {
 		return comentario;
 	}

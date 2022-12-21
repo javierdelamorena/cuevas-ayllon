@@ -25,13 +25,7 @@ public class PropuestaRepositoryImpl implements PropuestaRepository {
 		return repository.findAll();
 	}
 
-	@Override
-	@Transactional
-	public void deleteById(Propuestas propuesta,int id) {
-		repository.deleteById(propuesta.getUsuario().getIdUsuario());
-		
-	}
-
+	
 	@Override
 	@Transactional
 	public Propuestas findByIdPropuesta(int idPropuesta) {
@@ -44,6 +38,21 @@ public class PropuestaRepositoryImpl implements PropuestaRepository {
 		// TODO Auto-generated method stub
 		return repository.findByTitulo(titulo);
 	}
+
+	@Override
+	@Transactional
+	public void deleteById(int id) {
+		repository.deleteById(id);
+		
+	}
+
+	@Override
+	public List<Propuestas> findById_Usuario(int id_usuario) {
+		
+		return repository.findById_Uusuario(id_usuario);
+	}
+	
+
 	
 	
 }

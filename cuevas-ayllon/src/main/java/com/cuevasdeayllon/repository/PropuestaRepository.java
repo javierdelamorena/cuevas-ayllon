@@ -9,11 +9,13 @@ public interface PropuestaRepository {
 	void save(Propuestas porpuesta);
 	List<Propuestas> findAll();
 	
-	void deleteById(Propuestas propuesta,int id);
+	void deleteById(int id);
 	
 	Propuestas findByIdPropuesta(int idPropuesta);
 	
 	Propuestas findBtNombre(String nombre);
+	
+	List<Propuestas> findById_Usuario(int id_usuario);
 	
 
 

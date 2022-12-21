@@ -212,6 +212,21 @@ public class UsuarioController {
 
 
 	}
+	@PostMapping( path="/doBorrarDesdeUsuario")
+	public String borrarUsuarioDesdeUsuario(@RequestParam("idUsuario") int  idUsuario,HttpServletRequest request,Model model) {
+
+		Usuario usuario=service.usuarioPorId(idUsuario);
+		if(usuario!=null) {
+
+			service.borrarUsuario(usuario);
+		}
+
+		model.addAttribute("usuarioBorrado", "El suario se ha borrado con exito");
+
+		return "home";
+
+
+	}
 	/**
 	 * 
 	 * @param request
@@ -384,4 +399,29 @@ public class UsuarioController {
 		}
 		return "usuario";
 	}
+	// Controlador que se encarga de mandar un mail desde contacto al email de la
+		// empresa
+		@PostMapping("/doContacto")
+		public String contacto(@RequestParam("nombre") String nombre, @RequestParam("email") String email,
+				@RequestParam("mensaje") String mensaje, HttpSession sesion,Model model) throws Exception {
+
+			logger.info("estamos en contacto recibimos nombre: "+nombre+" email: "+ email+" mensaje: "+ mensaje);
+
+			if(nombre!=""&&email!=""&&mensaje!="") {
+				logger.info("estamos en contacto no hay ningun campo vacio");
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo("ayuntamientodecuevas@cuevas-de-ayllon.com");
+			message.setSubject("Mesaje de usuario: " +nombre );
+			message.setText("Usuario: " +nombre +" con email de registro: "
+					+ email + "  mensaje del cliente:" + mensaje);
+			mailSender.send(message);
+			}else {
+				logger.info("estamos en contacto  hay campos vacio");
+				model.addAttribute("camposVacios","Se tienen que rellenar todos los campos, para poder responderte y saber quien nos esta escribiendo.");
+			}
+			
+			return "contacto";
+
+		}
+
 }

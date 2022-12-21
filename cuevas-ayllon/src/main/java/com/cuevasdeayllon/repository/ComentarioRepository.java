@@ -17,5 +17,7 @@ public interface ComentarioRepository {
 	void deleteByComentario(String comentario);
 	
 	List<Comentarios> findAllComentarios();
+	
+	Comentarios findByid(int id);
 
 }

@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layouts/fragmentoprincipal :: head">
 
 </head>
-<body class="body">
 
-   <nav th:replace="layouts/fragmentoprincipal :: nav">
+<body class="bodyAnuncios">
 
-  </nav>
+  <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+<div>
+  <div class="container" style="
+    width: 100%;
+    border-radius: 8px;    
+    background-color: rgb(191 154 43 / 68%);  
+    box-shadow: 0px 0px 10px 5px rgb(0 0 0 / 70%);
+    margin-bottom: 5%;">
+    <!-- <div class="container" th:object="${unUsuario}">
+                <legend>Informacion Usuario</legend> -->
+    <table style="width: 100%;" id="g-table">
+      <thead>
 
+      </thead>
+      <tbody th:if="${listaAnuncios}" th:each="anuncio : ${listaAnuncios}">
+        <tr >
+          <td th:if="${anuncio.titulo_anuncio}" th:text="${anuncio.titulo_anuncio}" style="width: 100%;
+          margin: 10px;
+          font-size: 30px;
+          
+          resize: none;
+          color: white;
+          padding-left: 1%;">
+          </td>
+          <td th:if="${anuncio.fecha}" th:text="${anuncio.fecha}" style="margin-bottom:10px;color: white;
+          padding-right: 1%;"></td>
+        </tr>
+        <tr>
+          <td th:if="${anuncio.anuncio}" style="width: 100%;">
+            <textarea disabled th:text="${anuncio.anuncio}" style="width: 100%;
+            font-size: 20px;
+            margin: 10px;
+            overflow: hidden;
+            resize: vertical;
+            height:250px;
+            background-color: white;
+            border-radius: 7px;
+            padding: 10px"></textarea>
+          </td>
 
+        <tr>
+          <td th:if="${anuncio.foto_anuncio}"><img th:if="${anuncio.foto_anuncio}" class="img-thumbnail  "
+              style=" margin: 10px; border-radius: 8px;" th:src="@{'/uploadsAnuncios/'+${anuncio.foto_anuncio}}"
+              th:alt="${anuncio.foto_anuncio}" />
+          </td>
 
-  
-  
+        </tr>
+        <tr style="height: 90px;">
+          <td style="border-color: antiquewhite;"></td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </div>
+</div>
+
+  <div th:replace="layouts/fragmentoprincipal :: footer"></div> 
 
 </body>
+<style>
+  #g-table tbody tr > td{
+                    
+                    height: 30px;
+                    padding-left: 3px;
+                }
+                #g-table{
+                    padding-left: 40px;
+                    margin-top: 20px;
+
+                }
+                .espacio{
+					height:10px;
+				}
+</style>
+
 </html>

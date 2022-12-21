@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="bodyUsuario">
+
+  <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+
+  <div class="container">
+
+    <table class="table table-bordered">
+
+      <thead class="thead-dark">
+        <tr style="background-color: #5ca0d3bf;">
+          <th scope="col">idPropuesta</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Borrar</th>
+
+
+
+
+        </tr>
+      </thead>
+      <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+            th:text="${usuarioBorrado}"></div> -->
+      <tr th:each="propuesta:${misPropuestas}">
+
+        <td class="bg-info" th:if="${propuesta.idPropuesta}" th:text="${propuesta.idPropuesta}"></td>
+
+        <td class="bg-info" th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
+
+
+
+
+        <form th:action="@{/borrarMiPropuesta}" method="post">
+
+          <input type="hidden" name="idPropuesta" th:value="${propuesta.idPropuesta}">
+          <input type="hidden" name="idUsuario" th:value="${propuesta.usuario.idUsuario}">
+          <td class="bg-info"><input type="submit" value="Borrar Propuesta"></td>
+        </form>
+
+
+
+
+      </tr>
+
+
+    </table>
+    <div class="row col-sm-2">
+
+      <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
+        style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</html>

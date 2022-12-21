@@ -17,4 +17,5 @@ public interface PuntuacionJpaRepository extends JpaRepository<Puntuacion, Integ
 	
 	List<Puntuacion> listaDePuntos(String propuesta);
 
+	void deleteById(int id);
 }

@@ -48,6 +48,9 @@ public class Propuestas implements Serializable{
 
 	
 	
+	
+
+
 	public String getPropuesta() {
 		return propuesta;
 	}

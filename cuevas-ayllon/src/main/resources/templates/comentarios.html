@@ -10,7 +10,7 @@
   <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
 
   <div class="container" data-bs-spy="scroll" style="
-    background-color: rgb(117 159 61 / 68%);
+    background-color:rgb(108 142 63 / 86%);
     border-radius: 25px;
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
     overflow: hidden;
@@ -20,15 +20,15 @@
     height: 80%;
     
   ">
-    <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}" style="color: white;padding: 1%;float: left;"></h5>
+    <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}+'.'" style="color: white;padding: 1%;float: left; font-size: 30px;font-family: ui-sans-serif;"></h5>
     <!-- <input type="hidden" name="nombre" value="propuestas.usuario.nombre" id="nombre"> -->
     <div>
-      <div id="puntuacionTotal" style="color: white;padding: 1%;float: left;"></div>
+      <div id="puntuacionTotal" style="color: white;padding: 1%;float: left;font-family: ui-sans-serif;"></div>
 
-      <form th:action="@{/puntuacionMas}" method="get" style="margin-left: 82%;
-      width: 10%;">
+      <form th:action="@{/puntuacionMas}" id="puntuacionMass" method="get" style="margin-left: 82%;
+      width: 10%;font-size: 20px;">
         <input type="hidden" name="mas" value="mas">
-        <input type="submit" id="puntuacionMass" class="btn btn-dark" value="  Voto a favor  " style="margin-top: 10px;">
+        <input type="submit" class="btn btn-dark" value="  Voto a favor  " style="margin-top: 10px;">
 
       </form>
       <form th:action="@{/puntuacionMenos}" method="get" style="margin-left: 82%;
@@ -40,10 +40,10 @@
       </form>
 
     </div>
-    <h5 id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" style="color: white;padding: 1%;float: left;"></h5>
+    <h5 id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" style="color: white;padding: 1%;float: left;font-size: 30px;font-family: ui-sans-serif;"></h5>
 
     <textarea disabled th:text="${propuestas.propuesta}"
-      style="border-style: solid;padding: 10px;border-radius: 30px; background-color: rgb(251, 251, 251);font-weight: bold;border-width: thin; width: 100%;height: 150px;"></textarea>
+      style="border-style: solid;padding: 10px;border-radius: 30px;font-size: 25px; background-color: rgb(251, 251, 251);font-weight: 700;border-width: thin; width: 100%;height: 150px;"></textarea>
 
     <table class="table-responsive table-striped" style="max-height: 60%;width: 100%;display: block; overflow-y: auto;">
       <thead style="display: block;">
@@ -60,27 +60,77 @@
         <tr>
           <td style=" border-style: solid;font-weight: bold;color: white;"
             th:text="${comentario.usuario.nombre.toUpperCase()}"></td>
+
+        </tr>
+
+        <tr>
+
         </tr>
         <tr>
           <td>
             <p style="
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 50px;
-            box-shadow: 0px 10px 3px 0px rgba(0,0,0,0.5);
+            /* box-shadow: 0px 10px 3px 0px rgba(0,0,0,0.5); */
             position: relative;
-            margin-bottom: 30px;padding: 5px;
+           padding: 5px;
+           font-weight: 600;
+           font-size: 20px;
+           font-family: sans-serif;
           " th:text="'Ha dicho:  '+${comentario.comentario}" disabled></p>
+
+            <div class="modal fade gh" th:id="staticBackdrop1+${comentario.id}" data-bs-backdrop="static"
+              data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Comentario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form th:action="@{/editarComentario}" method="get">
+                      <textarea th:id="${comentario.id}" name="comentario" th:value="${comentario.comentario}"
+                        th:text="${comentario.comentario}" rows="4" cols="50"
+                        style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255">
+                </textarea>
+                      <input type="hidden" name="idComentario" th:value="${comentario.id}">
+                      <input type="submit" id="enviarPropuesta" value="enviar">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </td>
         </tr>
+        <td th:if="${comentario.editable != null}">
+          <button type="submit" class="btn btn-dark" data-bs-toggle="modal" value="Editar"
+            th:attr="data-bs-target='#staticBackdrop1'+${comentario.id}" style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;
+            float: left;" th:id="${comentario.id}">
+            Editar
+          </button>
+          <form th:action="@{/borrarComentario}" method="post">
+
+            <input type="hidden" name="idComentario" th:value="${comentario.id}">
+            <input type="hidden" name="idPropuesta" th:value="${comentario.propuesta.idPropuesta}">
+
+            <input type="submit" class="btn" value="Borrar"
+              style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;">
+          </form>
+
+
+        </td>
+
       </tbody>
       <tbody id="todosLosComentarios"></tbody>
 
     </table>
 
   </div>
-  <div class="container"
-  style="
-   background-color: rgb(117 159 61 / 68%);
+  <div class="container" style="
+   background-color:rgb(108 142 63 / 86%);
   border-radius: 25px;
   box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
   overflow: hidden;
@@ -94,6 +144,9 @@
     <a type="button" th:href="@{/usuario}" class="btn btn-dark" style="float:right;" id="cerrarComentario">Cerrar</a>
 
   </div>
+
+  <!-- </div>
+  </div> -->
 
 
 
@@ -116,17 +169,25 @@
     $.ajax({
 
       type: 'GET',
-      url: "puntuacionTotal",
+       url: "puntuacionTotal",
+      //url: "https://cuevas-de-ayllon.com/puntuacionTotal",
     }).done(function (data) {
 
 
       console.log("Hecho Correcto!");
       console.log('el numero de graficos es:  ', data);
       var html2 = '';
-      html2 += '<h5>Esta propuesta tiene: ' + data + ' votos</h5>';
+      html2 += '<h5 id="recuperacion" style="font-size:31px;">Esta propuesta tiene: ' + data + ' votos</h5>';
 
       $('#puntuacionTotal').append(html2);
+      $.ajax({
 
+        type: 'GET',
+         url: "guardarTotal",
+        //url: "https://cuevas-de-ayllon.com/guardarTotal",
+        data: { 'total': data }
+
+      });
 
 
     }).fail(function () {
@@ -139,5 +200,57 @@
 
 </script>
 
+<script>
+  // $(document).ready(function script() {
+  // $('#puntuacionMass').on('submit', function () {
+  //   var texto = $('#recuperacion').text();
+  //   console.log('Esta es la propuesta que recuperamos', texto);
+
+    // $.ajax({
+
+    //   type: 'GET',
+    //   url: "guardarTotal",
+    // }).done(function (data) {
+
+
+    //   console.log("Hecho Correcto!");
+    //   console.log('Esta propuesta tiene:  ', data, ' puntos');
+
+
+
+
+
+
+    // }).fail(function () {
+    //   console.log("Fallo!");
+    // })
+    //   .always(function () {
+    //     console.log("Completo!");
+    //});
+
+    //   $.ajax({
+
+    //     type: 'GET',
+    //     url: "puntuacionTotal",
+    //   }).done(function (data) {
+
+
+    //     console.log("Hecho Correcto!");
+
+    //   }).fail(function () {
+    //     console.log("Fallo!");
+    //   })
+    //     .always(function () {
+    //       console.log("Completo!");
+    //     });
+  // });
+
+
+    // lo que queramos hacer
+
+
+
+
+</script>
 
 </html>

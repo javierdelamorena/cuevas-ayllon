@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="body">
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+    <div class="container">
+
+        <table class="table table-bordered">
+
+            <thead class="thead-dark">
+                <tr class="bg-primary">
+                    <th scope="col">Propuesta</th>
+                    <th scope="col">Puntuacion Total</th>
+                    <th scope="col">Borrar Puntuacion Total</th>
+                    
+
+
+                </tr>
+            </thead>
+            <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+                th:text="${usuarioBorrado}"></div> -->
+            <tr th:if="${listaPuntuaciones}" th:each="propuesta:${listaPuntuaciones}">
+
+                
+                
+                <td class="bg-info" th:if="${propuesta.propuesta}" th:text="${propuesta.propuesta}"></td>
+
+                <td class="bg-info" th:if="${propuesta.puntuacion}" th:text="${propuesta.puntuacion}"></td>
+                <form th:action="@{/borrarPuntuacion}" method="post">
+
+                    <input type="hidden" name="idPuntuacion" th:value="${propuesta.id_total}">
+
+
+
+                    <td class="bg-info"><input type="submit" value="Borrar Puntuacion total"></td>
+                </form>
+
+
+            </tr>
+
+        </table>
+
+        <div class="row col-sm-2">
+               
+            <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

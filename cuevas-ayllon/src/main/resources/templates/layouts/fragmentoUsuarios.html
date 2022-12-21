@@ -21,26 +21,45 @@
         <div class="container-fluid">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: 90%">
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: 90%;border: solid;
+                border-block-width: 8px;background-color:white;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
                 <ul class="navbar-nav">
 
                     <li class="nav-item" style="margin-left:5px;">
-                        <a class="btn btn-dark" th:href="@{/logout}">CUEVAS DE AYLLON</a>
+                        <a class="btn btn-dark" th:href="@{/logout}" style="background-color: #2c2a2a9c;">Inicio</a>
                     </li>
-                    <li class="nav-item" style="margin-left:5px;">
-                        <a type="submit" class="btn btn-dark" th:href="@{/logout}">Salir</a>
-                    </li>
-                    <li class="nav-item" style="margin-left:5px;">
-                        <a type="submit" class="btn btn-dark" th:href="@{/subirFotos}">Subir Foto a Galeria</a>
-                    </li>
-                    <li class="nav-item" style="margin-left:5px;">
+                    
+                    <!-- <li class="nav-item" style="margin-left:5px;">
+                        <a type="submit" class="btn btn-dark" th:href="@{/subirFotos}" style="background-color: #2c2a2a9c;">Subir Foto a Galeria</a>
+                    </li> -->
+                    
+                    <!-- <li class="nav-item" style="margin-left:5px;">
                         <a class="btn btn-dark" th:href="@{/todosUsuarios}">Lista de Usuarios</a>
                     </li>
                     <li class="nav-item" style="margin-left:5px;">
                         <a class="btn btn-dark" th:href="@{/fotosGaleriaLista}">Lista de Fotos</a>
+                    </li> -->
+                    <div class="dropdown" style="margin-left:5px;">
+                        <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #2c2a2a9c;">
+                            Espacio Administradores de Pagina
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/anuncios}">Subir Anuncio </a></li>
+                            <li><a class="dropdown-item" th:href="@{/todosUsuarios}">Lista de Usuarios</a></li>
+                            <li><a class="dropdown-item" th:href="@{/fotosGaleriaLista}">Lista de Fotos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/listaPropuestas}">Lista de Propuestas</a></li>
+                            <li><a class="dropdown-item" th:href="@{/listaAnunciosAdmin}">Lista de Anuncios</a></li>
+                            <li><a class="dropdown-item" th:href="@{/votacionPropuestas}">Resultado de Propuestas</a></li>
+
+
+                        </ul>
+                    </div>
+                    <li class="nav-item" style="margin-left:5px;">
+                        <a type="submit" class="btn btn-dark" th:href="@{/logout}" style="background-color: #2c2a2a9c;">Salir</a>
                     </li>
                     <!-- <li class="nav-item" style="margin-left:5px;">
                         <a class="btn btn-primary" th:href="@{/tablonAnuncios}">Tablon de anuncios</a>

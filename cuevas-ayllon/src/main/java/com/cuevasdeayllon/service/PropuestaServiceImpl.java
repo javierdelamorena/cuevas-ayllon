@@ -25,9 +25,9 @@ public class PropuestaServiceImpl implements PropuestaService {
 	}
 
 	@Override
-	public void deleteById(Propuestas propuesta) {
+	public void deleteById(int id) {
 		
-		service.deleteById(propuesta, 0);
+		service.deleteById(id);
 		
 	}
 
@@ -41,6 +41,27 @@ public class PropuestaServiceImpl implements PropuestaService {
 	public Propuestas findBtNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return service.findBtNombre(nombre);
+	}
+
+	@Override
+	public List<Propuestas> findById_Usuario(int id_usuario) {
+		
+		return service.findById_Usuario(id_usuario);
+	}
+
+	@Override
+	public Propuestas editarPropuesta(Propuestas propuestas) {
+		
+		Propuestas miPropuesta=new Propuestas();
+		
+		miPropuesta.setIdPropuesta(propuestas.getIdPropuesta());
+		miPropuesta.setPropuesta(propuestas.getPropuesta());
+		miPropuesta.setTitulo(propuestas.getTitulo());
+		miPropuesta.setComentario(propuestas.getComentario());
+		miPropuesta.setUsuario(propuestas.getUsuario());
+		service.save(miPropuesta);
+		
+		return null;
 	}
 
 }

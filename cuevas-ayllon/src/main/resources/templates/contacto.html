@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/fragmentoprincipal :: head">
+
+</head>
+
+<body class="bodyContacto">
+
+    <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+
+    <div class="container" style="
+    margin-top: 12%;
+    /* border: solid; */
+    padding: 30px;
+    font-weight: 700;
+    border-radius: 12px;
+    font-size: 20px;
+    background-color: #b68e45b0;
+    font-style: oblique;">
+        <div class="form-group row">
+            <h3 th:if="${camposVacios}" th:text="${camposVacios}" style="background-color: crimson;"></h3>
+        </div>
+        <div class="form-group row">
+
+            <div class="row col-sm-4" style="width: 70%;">
+                <h3> Desde aqui puedes ponerte en contacto con nosotros, preguntarnos sobre el funcionamiento, proponer
+                    mejoras o lo que veas. </h3>
+                <h3> Te contestaremos al email que nos has indicado.</h3>
+            </div>
+
+        </div></br></br>
+
+        <form action="doContacto" method="POST">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="nombre">Nombre</label>
+                <div class="row col-sm-4" style="width: 70%;">
+                    <input name="nombre" type="text" class="form-control" id="nombre" />
+                </div>
+
+            </div></br></br>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="email">Email</label>
+                <div class="row col-sm-4" style="width: 70%;">
+                    <input name="email" type="text" class="form-control" id="email" />
+                </div>
+
+            </div></br></br>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="mensaje">Mensaje</label>
+
+                <div class="row col-sm-4" style="width: 70%;">
+                    <textarea name="mensaje" rows="7" class="form-control" id="mensaje"></textarea>
+
+                </div>
+            </div></br></br>
+
+            <div class="form-group row" style="margin-left: 16%;">
+                <div class="row col-sm-2" style="width: 30%;">
+                    <input type="submit" value="Enviar mensaje" class="btn btn-dark" />
+                </div>
+            </div></br></br>
+
+        </form>
+    </div>
+
+    <div th:replace="layouts/fragmentoprincipal :: footer"></div>
+</body>

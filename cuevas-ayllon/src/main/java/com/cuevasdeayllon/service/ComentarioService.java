@@ -20,5 +20,10 @@ public interface ComentarioService {
 	
 	
 	List<Comentarios> findAll();
+	
+	Comentarios findByid(int id);
+	
+	void editarComentaio(Comentarios comentario);
+	
 
 }

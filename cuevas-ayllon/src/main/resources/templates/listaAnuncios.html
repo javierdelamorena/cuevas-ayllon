@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layouts/fragmentoUsuarios :: head"></head>
+
+<body class="body">
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+    <div class="container">
+
+        <table class="table table-bordered">
+
+            <thead class="thead-dark">
+                <tr class="bg-primary">
+                    <th scope="col">idAnuncio</th>
+                    <th scope="col">Titulo Anuncio</th>
+                    <th scope="col">Fecha de Publicacion</th>
+                    
+                    <th scope="col">Borrar</th>
+
+
+                </tr>
+            </thead>
+            <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+                th:text="${usuarioBorrado}"></div> -->
+            <tr th:each="anuncio:${listaAnuncios}">
+
+                <td class="bg-info" th:if="${anuncio.idAnuncios}" th:text="${anuncio.idAnuncios}"></td>
+
+                <td class="bg-info" th:if="${anuncio.titulo_anuncio}" th:text="${anuncio.titulo_anuncio}"></td>
+
+                <td class="bg-info" th:if="${anuncio.fecha}" th:text="${anuncio.fecha}"></td>
+
+                
+
+                <form th:action="@{/borrarAnuncio}" method="post">
+
+                    <input type="hidden" name="idAnuncio" th:value="${anuncio.idAnuncios}">
+
+
+
+                    <td class="bg-info"><input type="submit" value="Borrar Anuncio"></td>
+                </form>
+
+
+            </tr>
+
+        </table>
+
+        <div class="row col-sm-2">
+
+            <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

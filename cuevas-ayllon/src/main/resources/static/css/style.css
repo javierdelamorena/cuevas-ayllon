@@ -1,54 +1,90 @@
-
-
-.bodyGaleria{
+.bodyGaleria {
 	background-image: url("19.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
 }
-.bodyRegistro{
+
+.bodyAnuncios {
+	background-image: url("26.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+.bodyContacto {
+	background-image: url("28.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+.bodyPreguntas {
+	background-image: url("29.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyEnlacesInteres {
+	background-image: url("27.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyRegistro {
 	background-image: url("25.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
 }
-.bodyUsuario{
+
+.bodyUsuario {
 	background-image: url("22.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
 }
-.bodyLogin{
+
+.bodyLogin {
 	background-image: url("24.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
 }
-.bodyComentarios{
+
+.bodyComentarios {
 	background-image: url("23.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
 }
-.bodyRutas{
+
+.bodyRutas {
 	background-image: url("20.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0;
 	height: 100vh;
 }
-.bodyHistoria{
+
+.bodyHistoria {
 	background-image: url("18.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
+
 }
+
 .body {
 	background-image: url("2.jpg");
 	background-size: cover;
@@ -56,49 +92,88 @@
 	margin: 0;
 	height: 100vh;
 
+
 }
+
 .bodyChat {
 	background-color: #5570b1;
 	margin: 0;
 	height: 100vh;
 
 }
-.bodyOrfeo{
+
+.bodyOrfeo {
 	background-image: url("21.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
-	
+
 }
+
 /* body{
 	display: flex;
 	flex-direction: column;
 	height:100vh;
 	margin :0;
   } */
-
+  body{
+	display: flex;
+	height: 100vh;
+	flex-direction: column;
+  }
 .footer {
 	position: fixed;
-	/* left: 0; */
-	bottom: 0;
-	font-weight: bold;
-	height: 40px;
+    left: 0;
+    bottom: 0;
+    /* width: 100%; */
+    background-color:#2c2a2a80;
+    height: 4%;
+    color: white;
+    /* text-align: center; */
+    padding-left: 37%;
+	padding-top: 3px;
+	margin-top: auto;
 	width: 100%;
-	border-radius: 8px;
+}
+
+.foot {
 	
-	border-color: #080808;
-	line-height: 1.5;
+	font-size: medium;
+}
+
+.cuevas {
+
+	border-left: 2px solid;
+	padding-top: 10px;
 
 }
-#div2{
+.preguntas{
+	border-left: 2px solid;
+	border-right: 2px solid;
+	padding-top: 15px;
+}
+.contacto{
+	border-left: 2px solid;
+	border-right: 2px solid;
+	padding-top: 15px;
+}
+
+.comollegar {
+	border-left: 2px solid;
+	border-right: 2px solid;
+	padding-top: 15px;
+}
+
+#div2 {
 	flex: 1;
-	
-	
-  }
+
+
+}
+
 .navbar {
 	top: 0;
-	
+
 	border-radius: 8px;
 	border-color: #080808;
 	font-weight: bold;
@@ -109,31 +184,47 @@
 
 
 }
-.caja { 
-	font-family: sans-serif;
-    color: #0b0b0b;
-    font-size: 24px;
-    font-weight: 400;
-    /* font-weight: bolder; */
-    text-align: left;
-    background: #ce835e;
-    margin: 40px;
-    overflow: hidden;
-    padding: 20px;
-    border-radius: 35px 0px 35px 0px;
-    -moz-border-radius: 35px 0px 35px 0px;
-    -webkit-border-radius: 35px 0px 35px 0px;
-    border: 2px solid #040404;
-    width: 70%;
-    margin-left: 14%;}
-#historia{
-	font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    margin-left: 15%;
-    padding: 10px;
 
-	
+.caja {
+	font-family: sans-serif;
+	color: #0b0b0b;
+	font-size: 24px;
+	font-weight: 400;
+	/* font-weight: bolder; */
+	text-align: left;
+	background: #ce835e;
+	margin: 40px;
+	/* overflow: hidden; */
+	padding: 20px;
+	border-radius: 35px 0px 35px 0px;
+	-moz-border-radius: 35px 0px 35px 0px;
+	-webkit-border-radius: 35px 0px 35px 0px;
+	border: 2px solid #040404;
+	width: 70%;
+	margin-left: 14%;
+	margin-bottom: 5%;
 }
+
+#historia {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	margin-left: 15%;
+	padding: 10px;
+
+
+}
+
+/* .footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #2c2a2ad9;
+	height: 4%;
+	color: white;
+	text-align: center;
+} */
+
 /* #imgInicio {
 
 	height: 1200px;
@@ -145,17 +236,20 @@
 	margin-bottom: 5px;
 
 }
-#formularioRegistro{
+
+#formularioRegistro {
 	font-size: 25px;
 }
+
 #galeriaImg {
-	padding:10px;
+	padding: 10px;
 	height: 500px;
 	width: 900px;
 
 }
-#botonesRutas{
+
+#botonesRutas {
 	margin: 10px;
-    background-color: #99cd52;
-    height: 100px;
+	background-color: #99cd52;
+	height: 100px;
 }

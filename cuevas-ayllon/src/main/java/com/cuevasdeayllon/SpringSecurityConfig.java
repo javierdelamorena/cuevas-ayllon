@@ -55,6 +55,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/editarUsuario").hasAnyAuthority(AuthoritiesConstants.USER,AuthoritiesConstants.ADMIN)
 		.antMatchers("/todosUsuarios").hasAnyAuthority(AuthoritiesConstants.ADMIN)
 		.antMatchers("/fotosGaleriaLista").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+		.antMatchers("/listaPropuestas").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+		.antMatchers("/anuncios").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+		.antMatchers("/listaAnunciosAdmin").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+		.antMatchers("/votacionPropuestas").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+		
 		
 		.and()
 		.exceptionHandling().accessDeniedPage("/error_403")

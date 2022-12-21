@@ -57,4 +57,21 @@ public class ComentarioServiceImpl implements ComentarioService{
 		return service.findAllComentarios();
 	}
 
+	@Override
+	public Comentarios findByid(int id) {
+		
+		return service.findByid(id);
+	}
+
+	@Override
+	public void editarComentaio(Comentarios comentario) {
+		Comentarios coment=new Comentarios();
+		coment.setComentario(comentario.getComentario());
+		coment.setId(comentario.getId());
+		coment.setPropuesta(comentario.getPropuesta());
+		coment.setUsuario(comentario.getUsuario());
+		service.save(coment);
+		
+	}
+
 }

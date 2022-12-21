@@ -13,8 +13,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer{
-	
-	
+
+
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/").setViewName("home");
@@ -31,29 +31,38 @@ public class MvcConfig implements WebMvcConfigurer{
 		LocaleChangeInterceptor  localeChangeInterceptor =new LocaleChangeInterceptor ();
 		localeChangeInterceptor.setParamName("lang");
 		return localeChangeInterceptor;
-		
+
 	}
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		
+
 		registry.addInterceptor(localeChangeInterceptor());
 	}
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// TODO Auto-generated method stub
 		WebMvcConfigurer.super.addResourceHandlers(registry);
-		
-		
+
+
 		registry.addResourceHandler("/uploads/**")
-				.addResourceLocations("file:/C:/TEMP/uploads/");
+		.addResourceLocations("file:/C:/TEMP/uploads/");
 //		registry.addResourceHandler("/uploads/**")
 //		.addResourceLocations("file:/uploads/");
 		registry.addResourceHandler("/uploadsGaleria/**")
 		.addResourceLocations("file:/C:/TEMP/uploadsGaleria/");
-//registry.addResourceHandler("/uploads/**")
-//.addResourceLocations("file:/uploads/");
+//		registry.addResourceHandler("/uploadsGaleria/**")
+//		.addResourceLocations("file:/uploadsGaleria/");
+		registry.addResourceHandler("/uploadsAnuncios/**")
+		.addResourceLocations("file:/C:/TEMP/uploadsAnuncios/");
+//		registry.addResourceHandler("/uploadsAnuncios/**")
+//		.addResourceLocations("file:/uploadsAnuncios/");
+		registry.addResourceHandler("/imagenesRutas/**")		
+		.addResourceLocations("file:/C:/TEMP/imagenesRutas/");
+//		registry.addResourceHandler("/imagenesRutas/**")
+//		.addResourceLocations("file:/imagenesRutas/");
+		
 	}
-	
-	
-	
+
+
+
 }

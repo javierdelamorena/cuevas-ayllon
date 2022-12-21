@@ -18,6 +18,9 @@ public interface ComentarioJpaRepository extends JpaRepository<Comentarios, Inte
 	@Query("select e from Comentarios e where e.comentario=?1 ")
 
 	Comentarios findByComentario(String comentario);
+	@Query("select e from Comentarios e where e.id=?1 ")
+
+	Comentarios findByid(int id);
 	@Modifying
 	@Query("delete from Comentarios e where e.comentario=?1")
 

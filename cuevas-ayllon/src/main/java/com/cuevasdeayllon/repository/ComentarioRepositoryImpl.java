@@ -63,4 +63,12 @@ public class ComentarioRepositoryImpl implements ComentarioRepository{
 		return repository.findAll();
 	}
 
+
+
+	@Override
+	public Comentarios findByid(int id) {
+		// TODO Auto-generated method stub
+		return repository.findByid(id);
+	}
+
 }

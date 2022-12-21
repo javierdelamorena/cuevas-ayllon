@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Fotos;
+import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.repository.FotosRepositoryImpl;
+import com.cuevasdeayllon.service.UsuarioService;
 
 @Controller
 public class FotosController {
@@ -32,12 +34,14 @@ public class FotosController {
 
 	@Autowired
 	FotosRepositoryImpl service;
+	@Autowired
+	UsuarioService usuarioservice;
 
 	@GetMapping( value = ("/fotosGaleria"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Fotos> todasFotos(Model model,HttpSession sesion) {
 
 		List<Fotos>fotos=service.todasLasFotos();
-		
+
 		fotos.forEach(f->logger.info("Esta es la lista de fotos: "+f.getFotos()+" y el usuario"+ f.getId_usuario()));
 
 		return fotos;
@@ -47,7 +51,7 @@ public class FotosController {
 	public String todasFotosLista(Model model,HttpSession sesion) {
 
 		List<Fotos>fotos=service.todasLasFotos();
-		
+
 		fotos.forEach(f->logger.info("Esta es la lista de fotos: "+f.getFotos()+" y el usuario"+ f.getId_usuario()));
 		model.addAttribute("fotosLista", fotos);
 		return "listaFotos";
@@ -60,13 +64,13 @@ public class FotosController {
 	public String registrarUsuario(@RequestParam("idUsuario") int id_usuario,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo salvarFoto");
 		logger.info("El usuario que recogemos es: "+id_usuario+" con la foto  "+ foto);
-
+		Usuario usuario=usuarioservice.usuarioPorId(id_usuario);
 		Fotos fotos=new Fotos();
-		
+
 		//String rootPath="/uploadsGaleria/";
 		String rootPath="C://TEMP//uploadsGaleria";
 
-		if(!foto.isEmpty()&id_usuario>0) {
+		if(!foto.isEmpty()&&id_usuario>0) {
 
 
 			try {
@@ -79,8 +83,9 @@ public class FotosController {
 				fotos.setId_usuario(id_usuario);
 
 				service.salvarFoto(fotos);
-				
-				return "login";
+				model.addAttribute("fotoSubida", "La foto se ha añadido con exito, la podras ver en la galeria");
+				model.addAttribute("usuario", usuario);
+				return "subirFoto";
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -90,24 +95,26 @@ public class FotosController {
 
 
 		}
-		return "galeriafoto";
+		model.addAttribute("fotoSubida", "La foto no se ha añadido con exito, probablemente no escogio una foto, vuelva a intentarlo");
+		model.addAttribute("usuario", usuario);
+		return "subirFoto";
 	}
-	
+
 	@PostMapping("/borrarFoto")	
 	public String borrarFoto(@RequestParam("fotos")String foto,@RequestParam("id_usuario")int id_usuario,@RequestParam("idFotos")int idFotos,Model model) {
 		Fotos fotos=new Fotos();
-		
+
 		if(foto!=null) {
 			fotos.setFotos(foto)	;
 			fotos.setId_usuario(id_usuario);
 			fotos.setIdFotos(idFotos);
-			
-		service.deleteFoto(fotos);
-		model.addAttribute("fotoBorrada", "La foto se ha borrado con exito.");
+
+			service.deleteFoto(fotos);
+			model.addAttribute("fotoBorrada", "La foto se ha borrado con exito.");
 		}
 		List<Fotos>fotosLista=service.todasLasFotos();
 		model.addAttribute("fotosLista", fotosLista);
 		return "listaFotos";
 	}
-	
+
 }
