@@ -30,7 +30,7 @@ $("#salvarComentario").on("click", function () {
         html2 += '<tr>';
         console.log("Hecho Correcto estamos dentro del for!" + objetos.comentarios[0].comentario);
         console.log("Hecho Correcto estamos dentro del for!" + objetos.propuestas.idPropuesta);
-        html2 += '<td><p   style="background-color: rgba(255, 255, 255, 0.9);border-radius: 50px;box-shadow: 0px 10px 3px 0px rgba(0,0,0,0.5);position: relative;margin-bottom: 30px;padding: 5px;font-weight: bold;font-size: 20px;font-family: inherit;">Ha dicho:  ' + objetos.comentarios[0].comentario + '</p></td>';
+        html2 += '<td><p   style="background-color: rgba(255, 255, 255, 0.9);border-radius: 50px;box-shadow: 0px 10px 3px 0px rgba(0,0,0,0.5);position: relative;margin-bottom: 30px;padding: 5px;font-weight: bold;font-size: 20px;font-family: inherit;display: -webkit-inline-box">Ha dicho:  ' + objetos.comentarios[0].comentario + '</p></td>';
         html2 += '</tr>';
         if (objetos.comentarios[0].editable != null) {
             console.log("Hecho Correcto estamos dentro del if de editable!" + objetos.comentarios[0].editable);

@@ -10,14 +10,18 @@
 
 
 
-  <div class="container">
+  <div class="container" style="margin-top: 5%;">
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="background-color: #d8852ebd;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;">
 
       <thead class="thead-dark">
-        <tr style="background-color: #5ca0d3bf;">
+        <tr>
           <th scope="col">idPropuesta</th>
           <th scope="col">Titulo</th>
+          <th scope="col">Editar tu propuesta</th>
           <th scope="col">Borrar</th>
 
 
@@ -29,18 +33,54 @@
             th:text="${usuarioBorrado}"></div> -->
       <tr th:each="propuesta:${misPropuestas}">
 
-        <td class="bg-info" th:if="${propuesta.idPropuesta}" th:text="${propuesta.idPropuesta}"></td>
+        <td th:if="${propuesta.idPropuesta}" th:text="${propuesta.idPropuesta}"></td>
 
-        <td class="bg-info" th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
+        <td th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
+
+        <td> <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+            th:attr="data-bs-target='#staticBackdrop'+${propuesta.idPropuesta}" style="margin: 10px;color: #eeeeee;">
+            Editar Propuesta
+          </button></td>
+
+        <div class="modal fade" th:attr="id=staticBackdrop+${propuesta.idPropuesta}" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <div>
+                  <h3 class="text-start">Editar propuesta</h3>
+                </div>
 
 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form th:action="@{/editarPropuesta}" method="post">
+                  <label form="titulo" class="col-form-label col-sm-2" maxlength="50">Titulo</label>
+                  <input type="text" id="titulo" th:value="${propuesta.titulo}" name="titulo" class="form-control"th:placeholder="${propuesta.titulo}">
+                  <input type="hidden" id="idPropuesta" th:value="${propuesta.idPropuesta}" name="idPropuesta" class="form-control">
+                  <textarea id="propuesta" name="propuesta" th:value="${propuesta.propuesta}" rows="4" cols="50"style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255"th:text="${propuesta.propuesta}"></textarea>
+                  <input type="submit"  class="btn btn-dark"  value="Editar propuesta">
+                </form>
+              </div>
+              <!-- <h2 id="propuestaRelizada"></h2>
+        <h2 id="propuestaExistente"></h2> -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
 
 
         <form th:action="@{/borrarMiPropuesta}" method="post">
 
           <input type="hidden" name="idPropuesta" th:value="${propuesta.idPropuesta}">
           <input type="hidden" name="idUsuario" th:value="${propuesta.usuario.idUsuario}">
-          <td class="bg-info"><input type="submit" value="Borrar Propuesta"></td>
+          <td><input type="submit" class="btn btn-dark" value="Borrar Propuesta"></td>
         </form>
 
 
@@ -52,9 +92,12 @@
     </table>
     <div class="row col-sm-2">
 
-      <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
+      <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
         style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
     </div>
+
+
+
 
 
   </div>
@@ -65,6 +108,6 @@
 
 
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 
 </html>

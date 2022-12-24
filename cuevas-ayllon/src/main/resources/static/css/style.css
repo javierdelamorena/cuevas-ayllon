@@ -5,7 +5,14 @@
 	margin: 0;
 	height: 100vh;
 }
-
+.bodyAdministradores {
+	background-image: url("30.jpg"); 
+	
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
 .bodyAnuncios {
 	background-image: url("26.jpg");
 	background-size: cover;

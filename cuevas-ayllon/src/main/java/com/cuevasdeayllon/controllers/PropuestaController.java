@@ -1,6 +1,7 @@
 package com.cuevasdeayllon.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,15 @@ public class PropuestaController {
 	private PuntuacionTotalRepository puntuacionTotalservice; 
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	/**
+	 * Metodo que se utiliza para salvar una propuesta
+	 * @param titulo
+	 * @param propuesta
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
 
 	@PostMapping( value = ("/propuesta"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Propuestas propuesta(@RequestParam("titulo")String titulo,@RequestParam("propuesta")String propuesta,Model model,HttpSession sesion) {
@@ -60,14 +70,13 @@ public class PropuestaController {
 		if(titulo!=null) {
 
 			propuestaComprobar=propuestaService.findBtNombre(titulo);
-			
-			
 
 		}
 
 		if(propuestaComprobar==null) {
 
 			Propuestas propuestas=new Propuestas();	
+			propuestas.setFecha(new Date());
 			propuestas.setPropuesta(propuesta);
 			propuestas.setTitulo(titulo);
 			logger.info("Entramos en metodo propuesta");
@@ -76,19 +85,19 @@ public class PropuestaController {
 			propuestas.setUsuario(usuario);
 			propuestaService.save(propuestas);
 			List<Usuario> usuari=usuarioservice.todosLosUsuarios();
-			
-//				for(Usuario us:usuari) {
-//				
-//				logger.info("mandamos emails masivos:");
-//				SimpleMailMessage message = new SimpleMailMessage();
-//				message.setTo(us.getEmail());
-//				message.setSubject("Se ha realizado una propuesta en el espacio vecinal de  Cuevas de Ayllón.");
-//				message.setText("Hola vecino de Cuevas de Ayllón, algun vecino ha realizado una propuesta con el titulo: "+propuestas.getTitulo()+", te escribimos este mensaje para dejartelo saber, ya sabes que puedes entrar en tu usuario ,comentar la propuesta y votarla si te apetece, un saludo, seguimos haciendo pueblo.");
-//				mailSender.send(message);
-//				}
-				logger.info("propuestaRelizada", "La propuesta a sido realizada ncon exito");
-				return propuestaService.findBtNombre(titulo);
-						
+
+			//				for(Usuario us:usuari) {
+			//				
+			//				logger.info("mandamos emails masivos:");
+			//				SimpleMailMessage message = new SimpleMailMessage();
+			//				message.setTo(us.getEmail());
+			//				message.setSubject("Se ha realizado una propuesta en el espacio vecinal de  Cuevas de Ayllón.");
+			//				message.setText("Hola vecino de Cuevas de Ayllón, algun vecino ha realizado una propuesta con el titulo: "+propuestas.getTitulo()+", te escribimos este mensaje para dejartelo saber, ya sabes que puedes entrar en tu usuario ,comentar la propuesta y votarla si te apetece, un saludo, seguimos haciendo pueblo.");
+			//				mailSender.send(message);
+			//				}
+			logger.info("propuestaRelizada", "La propuesta a sido realizada ncon exito");
+			return propuestaService.findBtNombre(titulo);
+
 		}else {
 			logger.info("Esta es la propuesta propuestaComprobar :" +propuestaComprobar.getTitulo());
 			Propuestas propuestas=new Propuestas();	
@@ -105,15 +114,62 @@ public class PropuestaController {
 
 
 
-		
+
+
+	}
+	/**
+	 * Metodo que se utiliza para que los usuarios editen sus propias propuestas
+	 * @param idPropuesta
+	 * @param titulo
+	 * @param propuesta
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
+	@PostMapping( value = ("/editarPropuesta"), produces = MediaType.APPLICATION_JSON_VALUE)
+	public String editarPropuesta(@RequestParam("idPropuesta")int idPropuesta,@RequestParam("titulo")String titulo,@RequestParam("propuesta")String propuesta,Model model,HttpSession sesion) {
+		logger.info("Entramos en metodo editar propuesta");
+		Propuestas propuestaComprobar = new Propuestas();
+
+		if(idPropuesta>0) {
+
+			propuestaComprobar=propuestaService.findByIdPropuesta(idPropuesta);
+
+		}
+
+		if(propuestaComprobar!=null) {
+
+			Propuestas propuestas=new Propuestas();	
+			propuestas.setIdPropuesta(propuestaComprobar.getIdPropuesta());
+			propuestas.setFecha(propuestaComprobar.getFecha());
+			propuestas.setPropuesta(propuesta);
+			propuestas.setTitulo(titulo);			
+			propuestas.setUsuario(propuestaComprobar.getUsuario());
+			propuestaService.save(propuestas);
+
+			logger.info("propuestaRelizada", "La propuesta a sido editada con exito");
+			List<Propuestas>misPropuestas=propuestaService.findById_Usuario(propuestaComprobar.getUsuario().getIdUsuario());
+
+			misPropuestas.forEach(f->logger.info("Estas son mis propuestas: "+f.getIdPropuesta()));
+
+			model.addAttribute("misPropuestas", misPropuestas);
+			model.addAttribute("propuestaEditada", "La propuesta a sido editada con exito");
+			return "misPropuestas";
+
+		}
+
+
+		return "misPropuestas";
 
 	}
 	@GetMapping( value = ("/propuesta"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Propuestas> todasPropuesta(Model model,HttpSession sesion) {
 
+		List<Propuestas>todas=propuestaService.findAll();
 
 
-		return propuestaService.findAll();
+
+		return todas;
 
 	}
 
@@ -195,13 +251,21 @@ public class PropuestaController {
 		return "comentarios";
 
 	}
+	/**
+	 * Metodo que utilizamos para borrar los comentarios
+	 * @param idcomentario
+	 * @param idpropuesta
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
 	@PostMapping("/borrarComentario")
 	public String borrarComentarios(@RequestParam("idComentario") int idcomentario,@RequestParam("idPropuesta") int idpropuesta,Model model,HttpSession sesion){
 
 		logger.info("Entramos en metodo borrarcomentarios esta es la idcomentario"+idcomentario);
 		Comentarios comentario=new Comentarios();
 		Propuestas propuesta =new Propuestas();
-		
+
 		if(idcomentario>0) {
 			comentario=comentarioService.findByid(idcomentario);
 		}
@@ -239,6 +303,13 @@ public class PropuestaController {
 		return "comentarios";
 
 	}
+	/**
+	 * Metodo que utilizamos para salvar los comentarios
+	 * @param comentario
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
 	@GetMapping( value = ("salvarcomentario"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Objetos comentario(@RequestParam("comentario")String comentario,Model model,HttpSession sesion) {
 		Objetos objetos=new Objetos();
@@ -278,28 +349,40 @@ public class PropuestaController {
 		return objetos;
 
 	}
+	/**
+	 * Este metodo devuelve los comentarios 
+	 * @param sesion
+	 * @return
+	 */
 	@GetMapping( value = ("todosComentarios"),produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public   List<Comentarios> todosComentario(HttpSession sesion) {
-		List<String> comentariosUsuarios=new ArrayList<>();
 
-		logger.info("Entramos en metodo todosComentario y este es el comentario)");
+	public @ResponseBody  List<Comentarios> todosComentario(HttpSession sesion) {
+		//		List<String> comentariosUsuarios=new ArrayList<>();
+		List<Comentarios>comentarios=new ArrayList<>();
+		Propuestas propuesta=new Propuestas();
+		logger.info("Entramos en metodo todosComentario");
 
-		Propuestas propuesta=(Propuestas) sesion.getAttribute("propuestas");
+		if(sesion.getAttribute("propuestas")!=null) {
 
-		List<Comentarios>comentarios=comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
-		for(Comentarios e:comentarios) {
-			comentariosUsuarios.add(e.getUsuario().getFoto().toString());
-			comentariosUsuarios.add(e.getUsuario().getNombre().toString());		
-			comentariosUsuarios.add(e.getComentario().toString());
-
-			logger.info("Entramos en metodo todosComentario foto: "+e.getUsuario().getFoto().toString());
-
-			logger.info("Entramos en metodo todosComentario nombre usuario: "+e.getUsuario().getNombre());
-
-			logger.info("Entramos en metodo todosComentario comentario: "+e.getComentario());
+			propuesta=(Propuestas) sesion.getAttribute("propuestas");
 
 
+			comentarios=comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
+
+			for(Comentarios e:comentarios) {
+				//				comentariosUsuarios.add(e.getUsuario().getFoto().toString());
+				//				comentariosUsuarios.add(e.getUsuario().getNombre().toString());		
+				//				comentariosUsuarios.add(e.getComentario().toString());
+
+				logger.info("Entramos en metodo todosComentario foto: "+e.getUsuario().getFoto().toString());
+
+				logger.info("Entramos en metodo todosComentario nombre usuario: "+e.getUsuario().getNombre());
+
+				logger.info("Entramos en metodo todosComentario comentario: "+e.getComentario());
+
+
+			}
+			return comentarios;
 		}
 
 		return comentarios;
@@ -313,7 +396,13 @@ public class PropuestaController {
 
 		return lista;
 	}
-	//@GetMapping(value = ("/puntuacionMas"))
+	/**
+	 * Metodo que añade un punto a la propuesta que recupera por sesion
+	 * @param mas
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
 	@GetMapping("/puntuacionMas")
 	public String puntuacionMasUno(@RequestParam(required=false)String mas,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas="+ mas);
@@ -357,7 +446,13 @@ public class PropuestaController {
 
 
 	}
-	//@GetMapping(value = ("/puntuacionMenos"))
+	/**
+	 * Metodo que resta un punto a la propuesta que recupera por sesion
+	 * @param menos
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
 	@GetMapping("/puntuacionMenos")
 	public String puntuacionMenosUno(@RequestParam(required=false)String menos,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas="+ menos);
@@ -397,7 +492,11 @@ public class PropuestaController {
 		//model.addAttribute("puntuacion",totalPuntos);
 		return "comentarios";
 	}
-
+	/**
+	 * Este emtodo devuelve la suma de los puntos que tiene una propuesta que recibimos por sesion
+	 * @param sesion
+	 * @return
+	 */
 	@GetMapping(value = "puntuacionTotal",produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int  listaPuntosTotales(HttpSession sesion){
 		logger.info("Entramos en metodo /puntuacionTotal ");
@@ -414,20 +513,30 @@ public class PropuestaController {
 
 		return totalPuntos;
 	}
+	/**
+	 * Este metodo devuelve todas la propuesta, se usa para los administradores
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/listaPropuestas")
 	public String todasLasPropuestas(Model model){
 		logger.info("Entramos en metodo /listaPropuestas");
 		List<Propuestas>todas=propuestaService.findAll();
 
-		
-			model.addAttribute("listaPropuestas", todas);
-			return "listaPropuestas";
-		
+
+		model.addAttribute("listaPropuestas", todas);
+		return "listaPropuestas";
+
 
 
 
 	}
-
+	/**
+	 * Metodo que se utiliza pa borrar una propuesta pr los administradores
+	 * @param idPropuesta
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/borrarPropuesta")
 	public String borrarPropuesta(@RequestParam("idPropuesta")int idPropuesta,Model model) {
 		logger.info("Entramos en metodo /borrarPropuesta");
@@ -442,7 +551,12 @@ public class PropuestaController {
 		return "listaPropuestas";
 
 	}
-
+	/**
+	 * Este metodo guarda el total de una propuesta que recupera de la sesion
+	 * @param total
+	 * @param sesion
+	 * @return
+	 */
 	@GetMapping(value ="/guardarTotal",produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int guardarTotalPuntos(@RequestParam("total")int total,HttpSession sesion) {
 		logger.info("Entramos en metodo /guardarTotal");
@@ -491,6 +605,12 @@ public class PropuestaController {
 		return "misPropuestas";
 
 	}
+	/**
+	 * Este metodo borra el total de una puntuacion que recupera por parametro
+	 * @param idPuntuacion
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/borrarPuntuacion")
 	public String borrarPuntuacion(@RequestParam("idPuntuacion")int idPuntuacion,Model model) {
 		logger.info("Entramos en metodo /borrarPropuesta");
@@ -505,7 +625,7 @@ public class PropuestaController {
 
 		return"puntuacionPropuestas";
 
-		
+
 
 	}
 

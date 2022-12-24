@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layouts/fragmentoprincipal :: head">
+
+<head >
+  <title>Cuevas de Ayllón preguntas frecuentes</title>
+  <meta charset="UTF-8">
+  <script th:src="@{/js/jquery.min.js}"></script>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </head>
 
@@ -65,9 +76,8 @@
         <i class="ico_resp fas fa-angle-down"></i>
       </li>
       <li class="respuesta" id="resp_3">
-        <span id="sp_resp_3"> No, no puedes, los anuncios solo pueden subirlos los administradores de la pagina, a los
-          que
-          puedes escribir al email que indica en contacto. </span>
+        <span id="sp_resp_3"> No, no puedes, los anuncios solo pueden subirlos los administradores de la pagina, si
+          quieres subir algo muy relevante puedes escribir un mensaje en el apartado contacto. </span>
       </li>
       <li class="pregunta" data-resp_id="resp_4">
         <span>Cuando me registro recibo un mail con mis datos de registro?</span>
@@ -92,7 +102,7 @@
       </li>
       <li class="respuesta" id="resp_6">
         <span id="sp_resp_6">Si, puedes proponer cambios, esta web esta echa por gente del pueblo para dar vida al
-          pueblo, todos los cambios que se propongan y sean factibles se recibiran con satisfaccion.</span>
+          pueblo, todos los cambios que se propongan y sean factibles seran bien recibidos.</span>
       </li>
       <li class="pregunta" data-resp_id="resp_7">
         <span>Que es el Campus Orfeo?</span>
@@ -110,6 +120,25 @@
         <span id="sp_resp_8">Es una opcion que nos hemos planteado, probablemente en el futuro añadamos mas
           funcionalidades a la web y esa es una que tenemos en mente, pero por el momento ha sido muy trabajoso y
           queremos ver como funciona.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_10">
+        <span>Para que sirven los administradores de pagina?</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_10">
+        <span id="sp_resp_10">Los administradores de la pagina se encargaran de borrar las propuestas que lleven mucho
+          tiempo y no tengan votacion ni apoyo de los vecinos(eso se vera en los comentarios) al igual que dejaran las
+          que tengan mucha relevancia, borraran fotos que no
+          sean adecuadas para la pagina(recordamos que es un sitio publico y lo que se intenta es relanzar el
+          pueblo), borraran anuncios que lleven mucho tiempo y subiran anuncios, responderan a los mails que se manden
+          en el apartado contacto.</span>
+      </li>
+      <li class="pregunta" data-resp_id="resp_11">
+        <span>Cuando intento entrar en el apartado de administradores me sale un mensaje en rojo</span>
+        <i class="ico_resp fas fa-angle-down"></i>
+      </li>
+      <li class="respuesta" id="resp_11">
+        <span id="sp_resp_11">Si, este mensaje significa que no eres administrador y no tienes permisos.</span>
       </li>
       <li class="pregunta" data-resp_id="resp_9">
         <span>Quienes son los administradores de la pagina?</span>

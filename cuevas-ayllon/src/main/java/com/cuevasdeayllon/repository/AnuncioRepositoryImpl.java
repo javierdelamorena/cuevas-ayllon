@@ -36,6 +36,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 				byte[]bytes=foto.getBytes();
 				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
 				Files.write(rutaCompleta,bytes);
+				
 				anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -54,7 +55,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 
 		}
-		
+
 
 	}
 

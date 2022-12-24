@@ -4,17 +4,20 @@
 
 <head th:replace="layouts/fragmentoUsuarios :: head"></head>
 
-<body class="body">
+<body class="bodyAdministradores">
     <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
 
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 1%;">
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="background-color: #d8852ef0;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;">
 
             <thead class="thead-dark">
-                <tr class="bg-primary">
+                <tr >
                     <th scope="col">idFoto</th>
                     <th scope="col">foto</th>
                     <th scope="col">Usuario</th>
@@ -27,12 +30,12 @@
                 th:text="${usuarioBorrado}"></div> -->
             <tr th:each="foto:${fotosLista}">
 
-                <td class="bg-info" th:if="${foto.idFotos}" th:text="${foto.idFotos}"></td>
+                <td  th:if="${foto.idFotos}" th:text="${foto.idFotos}"></td>
                 
-                <td class="bg-info" th:if="${foto.fotos}"><img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid"
-                        style="border-radius:30px;padding:10px; height: 300px;width: 300px;" alt="Responsive image"></td>
+                <td  th:if="${foto.fotos}"><img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid"
+                        style="border-radius:30px;padding:10px; height: 250px;width: 250px;" alt="Responsive image"></td>
 
-                <td class="bg-info" th:if="${foto.id_usuario}" th:text="${foto.id_usuario}"></td>
+                <td  th:if="${foto.id_usuario}" th:text="${foto.id_usuario}"></td>
 
 
                 <form th:action="@{/borrarFoto}" method="post">
@@ -42,7 +45,7 @@
                     <input type="hidden" name="id_usuario" th:value="${foto.id_usuario}">
 
 
-                    <td class="bg-info"><input type="submit" value="Borrar"></td>
+                    <td ><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Borrar Foto"></td>
                 </form>
 
 
@@ -52,7 +55,7 @@
 
         <div class="row col-sm-2">
                
-            <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+            <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn btn-dark" style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
         </div>
 
     </div>

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="head">
+   
     <meta charset="UTF-8">
     <script th:src="@{/js/jquery.min.js}"></script>
     <link href="css/style.css" rel="stylesheet">
@@ -10,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </head>
 
@@ -97,12 +98,12 @@
                 target="_blank" alt="Como llegar" title="como  llegar" style="color: white; padding: 30px;text-decoration: none;">Como llegar</a><br>
         </div>
         <div class="foot preguntas">
-            <a href="preguntas"
-                target="_blank" alt="Como llegar" title="como  llegar" style="color: white; padding: 30px;text-decoration: none;">Preguntas Frecuentes</a><br>
+            <a th:href="@{/preguntas}"
+                target="_blank" alt="Preguntas frecuentes" title="Preguntas frecuentes" style="color: white; padding: 30px;text-decoration: none;">Preguntas Frecuentes</a><br>
         </div>
         <div class="foot contacto">
-            <a href="contacto"
-                target="_blank" alt="Como llegar" title="como  llegar" style="color: white; padding: 30px;text-decoration: none;">Contacto</a><br>
+            <a th:href="@{/contacto}"
+                target="_blank" alt="Contacto" title="Contacto" style="color: white; padding: 30px;text-decoration: none;">Contacto</a><br>
         </div>
 
     </div>

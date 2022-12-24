@@ -4,18 +4,22 @@
 
 <head th:replace="layouts/fragmentoUsuarios :: head"></head>
 
-<body class="body">
+<body class="bodyAdministradores">
     <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
 
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 10%;">
 
-        <table class="table table-bordered">
+        <table class="table table-bordered"  style="background-color: #b48823f0;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;">
 
             <thead class="thead-dark">
-                <tr class="bg-primary">
+                <tr >
                     <th scope="col">idPropuesta</th>
+                    <th scope="col">Fecha </th>
                     <th scope="col">Titulo</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Borrar</th>
@@ -27,20 +31,22 @@
                 th:text="${usuarioBorrado}"></div> -->
             <tr th:each="propuesta:${listaPropuestas}">
 
-                <td class="bg-info" th:if="${propuesta.idPropuesta}" th:text="${propuesta.idPropuesta}"></td>
+                <td th:if="${propuesta.idPropuesta}" th:text="${propuesta.idPropuesta}"></td>
+                <td th:if="${propuesta.fecha}" th:text="${propuesta.fecha}"></td>
+                
+                <td th:if="${propuesta.fecha == null}" th:text="'sin fecha'"></td>
+                <td  th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
 
-                <td class="bg-info" th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
-
-                <td class="bg-info" th:if="${propuesta.usuario.nombre}" th:text="${propuesta.usuario.nombre}"></td>
+                <td  th:if="${propuesta.usuario.nombre}" th:text="${propuesta.usuario.nombre}"></td>
 
 
                 <form th:action="@{/borrarPropuesta}" method="post">
 
-                    <input type="hidden" name="idPropuesta" th:value="${propuesta.idPropuesta}">
+                    <input type="hidden"  name="idPropuesta" th:value="${propuesta.idPropuesta}">
 
 
 
-                    <td class="bg-info"><input type="submit" value="Borrar Propuesta"></td>
+                    <td ><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Borrar Propuesta"></td>
                 </form>
 
 

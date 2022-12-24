@@ -27,6 +27,7 @@ public class IndexControler {
 	@GetMapping("/registrarse")
 	public String registro(Model model) {
 
+		logger.info("Entramos en metodo index/registrarse");
 		Usuario usuario=new Usuario();
 
 		model.addAttribute("nombre","Nombre");
@@ -39,17 +40,18 @@ public class IndexControler {
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("AltaUsuario", "Alta de Usuario");
 
-		logger.info("Entramos en metodo index registro");
+		
 
 		return "registro";
 
 	}
 	@GetMapping("/toLoging")
 	public String irALoging(Model model) {
+		
 		model.addAttribute("nombre","Nombre");
 		model.addAttribute("Password","Password");
 
-		logger.info("Entramos en metodo index");
+		logger.info("Entramos en metodo index/toLoging");
 
 		return "login";
 
@@ -112,62 +114,87 @@ public class IndexControler {
 	public String subirFoto(Model model,HttpSession sesion) {
 
 		Usuario usuario=new Usuario();
-		if(sesion.getAttribute("usuario")!=null) {
-			usuario=(Usuario) sesion.getAttribute("usuario");
-			model.addAttribute("usuario", usuario);
-			logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
+		try {
+			if(sesion.getAttribute("usuario")!=null) {
+				usuario=(Usuario) sesion.getAttribute("usuario");
+				model.addAttribute("usuario", usuario);
+				logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
 
-			logger.info("Entramos en metodo index subirFoto");
+				logger.info("Entramos en metodo index subirFoto");
 
-			return "subirFoto";
+				return "subirFoto";
+			}
+		}catch(Exception e) {
+
+			logger.info("El error que da en index//subirFotos es: "+e.getMessage());
+
+
 		}
 		return "login";
 	}
 	@GetMapping("/anuncios")
 	public String subirAnuncio(Model model,HttpSession sesion) {
-
+		logger.info("Entramos en metodo index subirFoto");
 		Usuario usuario=new Usuario();
-		if(sesion.getAttribute("usuario")!=null) {
-			usuario=(Usuario) sesion.getAttribute("usuario");
-			model.addAttribute("titulo", "Titulo");
-			model.addAttribute("anuncio", "Anuncio");
-			model.addAttribute("foto", "Documento");
-			logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
+		try {
+			if(sesion.getAttribute("usuario")!=null) {
+				usuario=(Usuario) sesion.getAttribute("usuario");
+				model.addAttribute("titulo", "Titulo");
+				model.addAttribute("anuncio", "Anuncio");
+				model.addAttribute("foto", "Documento");
+				logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
+				return "subirAnuncio";
+			}
+			else {
+				logger.info("La sesion en /toUsuario esta vacia");
+			}
 
-			logger.info("Entramos en metodo index subirFoto");
+		}catch(Exception e) {
 
-			return "subirAnuncio";
+			logger.info("El error que da en index/anuncios es: "+e.getMessage());
+
 		}
 		return "login";
 	}
 	@GetMapping("/toUsuario")
 	public String usuario(Model model,HttpSession sesion) {
-
-		Usuario usuario=(Usuario) sesion.getAttribute("usuario");
-		model.addAttribute("usuario", usuario);
+		
 		logger.info("Entramos en metodo /toUsuario");
 
+		try {
+			if(sesion.getAttribute("usuario")!=null) {
+				Usuario usuario=(Usuario) sesion.getAttribute("usuario");
+				model.addAttribute("usuario", usuario);		
+				return "usuario";
+			}else {
+				logger.info("La sesion en /toUsuario esta vacia");
+				
+				return "login";
+			}
+		}catch(Exception e) {
+			logger.info("El error que da en index/toUsuario es: "+e.getMessage());
+		}
 		return "usuario";
 
 	}
 	@GetMapping("/preguntas")
 	public String preguntas(Model model,HttpSession sesion) {
 
-		
+
 		logger.info("Entramos en metodo /preguntas");
 
-		return "preguntas";
+		return "preguntasFrecuentes";
 
 	}
 	@GetMapping("/contacto")
 	public String contacto(Model model,HttpSession sesion) {
 
-		
+
 		logger.info("Entramos en metodo /contacto");
 
-		return "contacto";
+		return "contactoMensaje";
 
 	}
-	
+
 
 }

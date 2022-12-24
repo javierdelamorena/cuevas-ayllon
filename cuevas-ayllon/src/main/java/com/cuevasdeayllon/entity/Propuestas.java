@@ -1,6 +1,7 @@
 package com.cuevasdeayllon.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,6 +32,7 @@ public class Propuestas implements Serializable{
 	
 	private String propuesta;
 	private String titulo;
+	private Date fecha;
 	
 
 	@ManyToOne
@@ -47,9 +49,14 @@ public class Propuestas implements Serializable{
 	}
 
 	
-	
-	
+	public Date getFecha() {
+		return fecha;
+	}
 
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 
 	public String getPropuesta() {
 		return propuesta;

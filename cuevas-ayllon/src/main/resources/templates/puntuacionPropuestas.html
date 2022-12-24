@@ -4,17 +4,20 @@
 
 <head th:replace="layouts/fragmentoUsuarios :: head"></head>
 
-<body class="body">
+<body class="bodyAdministradores">
     <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
 
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 10%;">
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="background-color: #b48823f0;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;">
 
             <thead class="thead-dark">
-                <tr class="bg-primary">
+                <tr >
                     <th scope="col">Propuesta</th>
                     <th scope="col">Puntuacion Total</th>
                     <th scope="col">Borrar Puntuacion Total</th>
@@ -29,16 +32,17 @@
 
                 
                 
-                <td class="bg-info" th:if="${propuesta.propuesta}" th:text="${propuesta.propuesta}"></td>
+                <td  th:if="${propuesta.propuesta}" th:text="${propuesta.propuesta}"></td>
 
-                <td class="bg-info" th:if="${propuesta.puntuacion}" th:text="${propuesta.puntuacion}"></td>
+                <td  th:if="${propuesta.puntuacion}" th:text="${propuesta.puntuacion}"></td>
+                <td  th:if="${propuesta.puntuacion}==0" th:text="'0'"></td>
                 <form th:action="@{/borrarPuntuacion}" method="post">
 
                     <input type="hidden" name="idPuntuacion" th:value="${propuesta.id_total}">
 
 
 
-                    <td class="bg-info"><input type="submit" value="Borrar Puntuacion total"></td>
+                    <td ><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Borrar Puntuacion total"></td>
                 </form>
 
 
@@ -48,7 +52,7 @@
 
         <div class="row col-sm-2">
                
-            <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+            <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn btn-dark" style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
         </div>
 
     </div>

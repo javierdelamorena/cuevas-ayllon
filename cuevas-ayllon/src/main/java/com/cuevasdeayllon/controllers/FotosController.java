@@ -51,6 +51,8 @@ public class FotosController {
 	public String todasFotosLista(Model model,HttpSession sesion) {
 
 		List<Fotos>fotos=service.todasLasFotos();
+		
+		
 
 		fotos.forEach(f->logger.info("Esta es la lista de fotos: "+f.getFotos()+" y el usuario"+ f.getId_usuario()));
 		model.addAttribute("fotosLista", fotos);
@@ -71,6 +73,15 @@ public class FotosController {
 		String rootPath="C://TEMP//uploadsGaleria";
 
 		if(!foto.isEmpty()&&id_usuario>0) {
+			int oraLen = foto.getOriginalFilename().length();
+			logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+
+			for (int i = 0; i <  oraLen; i++) {
+				if (foto.getOriginalFilename().charAt(i) == ' ') {
+					model.addAttribute("fotoSubida", "El nombre de la foto no puede tener espacios en blanco.");
+					return "subirFoto";
+				}
+			}
 
 
 			try {

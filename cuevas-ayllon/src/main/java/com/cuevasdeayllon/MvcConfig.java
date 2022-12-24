@@ -19,6 +19,7 @@ public class MvcConfig implements WebMvcConfigurer{
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/").setViewName("home");
 		registry.addViewController("/error_403").setViewName("error_403");	
+		
 	}
 	@Bean
 	public LocaleResolver localeResolver() {

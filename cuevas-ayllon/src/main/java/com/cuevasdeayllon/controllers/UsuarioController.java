@@ -79,6 +79,17 @@ public class UsuarioController {
 		String rootPath="C://TEMP//uploads";
 
 		if(!foto.isEmpty()&&usuario!=null) {
+			
+			int oraLen = foto.getOriginalFilename().length();
+			logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+
+			for (int i = 0; i <  oraLen; i++) {
+				if (foto.getOriginalFilename().charAt(i) == ' ') {
+					model.addAttribute("usuarioExiste", "El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+					return "registro";
+
+				}
+			}
 
 
 			try {
@@ -114,10 +125,7 @@ public class UsuarioController {
 			}
 
 		}else {
-			//				byte[]bytes="sinFoto.jpg".getBytes();
-			//				Path rutaCompleta=Paths.get(rootPath+"//"+"sinFoto.jpg");
-			//				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
-			//				Files.write(rutaCompleta,bytes);
+			
 			usuario.setFoto("sinFoto.jpg");
 			String passwordEncriptada = usuario.getPassword();
 			usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
@@ -305,33 +313,26 @@ public class UsuarioController {
 
 	@PostMapping(path="/editarUsuario")
 	public String editarUsuario(@Valid Usuario usuario,BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
-		logger.info("Entramos en metodo registrar");
+		logger.info("Entramos en metodo editar");
 
 		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword()+" con idUsuario: "+usuario.getIdUsuario());
 		//Usuario usuariocomprobacion=(Usuario) sesion.getAttribute("usuario");
 
 		String passwordSinEncriptar=usuario.getPassword();
-		//		if(foto==null||foto.isEmpty()||foto.equals(null)) {
-		//			logger.info("Es necesario ingresar una foto para registrarse");
-		//			model.addAttribute("fotoVacia", "Es necesario ingresar una foto para registrarse");
-		//
-		//
-		//		}
-		//		if( usuario!=null) {
-		//			logger.info("El usuario es distinto de null");
-		//			usuariocomprobacion=service.usuarioPorNombre(usuario.getNombre());
-		//		}
-		//		if(usuariocomprobacion!=null ) {
-		//
-		//			model.addAttribute("usuarioExiste", "El nombre ya existe registrese con otro nombre, añada una letra al final o si es compuesto pruebe solo con uno");
-		//
-		//			logger.info("Entramos en metodo registrar Usuario");
-		//
-		//			
-		//
-		//		}
-
+		
 		if(!foto.isEmpty()&&usuario!=null) {
+			Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+			int oraLen = foto.getOriginalFilename().length();
+			logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+
+			for (int i = 0; i <  oraLen; i++) {
+				if (foto.getOriginalFilename().charAt(i) == ' ') {
+					model.addAttribute("usuario", usuari);
+					model.addAttribute("fotoConHuecos", "Lo sentimos, el nombre de la foto no puede tener espacios en blanco, cambie el nombre de la foto y añadala de nuevo, gracias.");
+					return "usuario";
+
+				}
+			}
 
 			//String rootPath="/uploads/";
 			String rootPath="C://TEMP//uploads";
@@ -347,7 +348,7 @@ public class UsuarioController {
 				service.editarUsuario(usuario);
 
 
-				Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+				usuari=service.usuarioPorNombre(usuario.getNombre());
 				if(usuari!=null) {
 					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
 					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
