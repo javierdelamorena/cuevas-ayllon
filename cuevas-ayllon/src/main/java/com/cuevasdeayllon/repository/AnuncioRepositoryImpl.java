@@ -21,8 +21,8 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 	@Override
 	public void insertarAnucio(Anuncios anuncio,MultipartFile foto)  {
-		String rootPath="C://TEMP//uploadsAnuncios";
-		//String rootPath="/uploadsAnuncios/";
+		//String rootPath="C://TEMP//uploadsAnuncios";
+		String rootPath="/uploadsAnuncios/";
 		Anuncios anuncioeditable=new Anuncios();
 		anuncioeditable.setIdAnuncios(0);
 		anuncioeditable.setAnuncio(anuncio.getAnuncio());

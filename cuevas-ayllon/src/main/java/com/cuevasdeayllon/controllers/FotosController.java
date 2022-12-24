@@ -69,8 +69,8 @@ public class FotosController {
 		Usuario usuario=usuarioservice.usuarioPorId(id_usuario);
 		Fotos fotos=new Fotos();
 
-		//String rootPath="/uploadsGaleria/";
-		String rootPath="C://TEMP//uploadsGaleria";
+		String rootPath="/uploadsGaleria/";
+		//String rootPath="C://TEMP//uploadsGaleria";
 
 		if(!foto.isEmpty()&&id_usuario>0) {
 			int oraLen = foto.getOriginalFilename().length();

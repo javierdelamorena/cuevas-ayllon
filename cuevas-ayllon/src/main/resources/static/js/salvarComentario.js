@@ -4,8 +4,8 @@ $("#salvarComentario").on("click", function () {
 
     $.ajax({
         type: 'GET',
-        url: "salvarcomentario",
-        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        //url: "salvarcomentario",
+        url: "https://cuevas-de-ayllon.com/salvarcomentario",
         data: { 'comentario': $('#comentario').val() }
 
     }).done(function (objetos) {
@@ -37,8 +37,8 @@ $("#salvarComentario").on("click", function () {
             html2 += '<tr>';
             html2 += "<td>";
             html2 += "<button type='submit' class='btn btn-dark' data-bs-toggle='modal' value='Editar' data-bs-target='#staticBackdrop1" + objetos.comentarios[0].id + "' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;float: left;' id=" + objetos.comentarios[0].id + ">Editar</button>";
-            html2 += " <form action='/spring-boot-cuevas-ayllon/borrarComentario' method='post'>";
-            //html2 += " <form action='https://cuevas-de-ayllon.com/borrarComentario' method='post'>";
+            //html2 += " <form action='/spring-boot-cuevas-ayllon/borrarComentario' method='post'>";
+            html2 += " <form action='https://cuevas-de-ayllon.com/borrarComentario' method='post'>";
 
             html2 += "<input type='hidden' name='idComentario' value=" + objetos.comentarios[0].id + " >";
             html2 += "<input type='hidden' name='idPropuesta'  value=" + objetos.propuestas.idPropuesta + " >";
@@ -53,8 +53,8 @@ $("#salvarComentario").on("click", function () {
             html2 += '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
             html2 += '</div>';
             html2 += '<div class="modal-body">';
-            html2 += '<form action="/spring-boot-cuevas-ayllon/editarComentario" method="get">';
-            //html2 += '<form action="https://cuevas-de-ayllon.com/editarComentario" method="get">';
+            //html2 += '<form action="/spring-boot-cuevas-ayllon/editarComentario" method="get">';
+            html2 += '<form action="https://cuevas-de-ayllon.com/editarComentario" method="get">';
             html2 += '<textarea id="objetos.comentarios.id" name="comentario" value="objetos.comentarios.comentario"  rows="4"cols="50" style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255">';
             html2 += '' + objetos.comentarios[0].comentario + '';
             html2 += '</textarea>';

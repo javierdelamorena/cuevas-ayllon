@@ -475,7 +475,9 @@
     $.ajax({
 
       type: 'GET',
-      url: "fotosGaleria",
+      //url: "fotosGaleria",
+      url: "https://cuevas-de-ayllon.com/fotosGaleria",
+
 
 
 
@@ -487,8 +489,8 @@
         console.log(' estas son las fotos que recogemos' + data[i].fotos)
         html += '   <div class="col-lg-4 ">';
         html += '     <a href="#" data-bs-toggle="modal" data-bs-target="#modal' + [28+i] + '">';
-        html += '       <img src="uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
-        //html += '       <img src="https://cuevas-de-ayllon.com/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+        //html += '       <img src="uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+        html += '       <img src="https://cuevas-de-ayllon.com/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
         html += '       height: 500px;';
         html += '       width: 900px;" id="galeriaImg' + data[i].fotos + '" alt="Responsive image" role="button">';
         html += '     </a>';
@@ -505,8 +507,8 @@
         html1 += '   <div tabindex="-1" aria-labelledby="modal" aria-hidden="true" class="modal fade" id="modal' + [28+i] + '">';
         html1 += '     <div class="modal-dialog modal-lg modal-dialog-centered">';
         html1 += '       <div class="modal.content">';
-        html1 += '         <img src="uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
-        //html1 += '         <img src="https://cuevas-de-ayllon.com/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+        //html1 += '         <img src="uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+        html1 += '         <img src="https://cuevas-de-ayllon.com/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
         html1 += '           height: 700px;';
         html1 += '           width:  1024px;" id="galeriaImg' + data[i].fotos + '" alt="Responsive image" role="button">';
         html1 += '       </div>';

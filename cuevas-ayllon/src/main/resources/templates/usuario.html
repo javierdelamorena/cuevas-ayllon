@@ -289,15 +289,15 @@
 
 
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <script>
 
   $(document).ready(function () {
     $.ajax({
 
       type: 'get',
-      //url: "https://cuevas-de-ayllon.com/propuesta",
-      url: "propuesta",
+      url: "https://cuevas-de-ayllon.com/propuesta",
+      //url: "propuesta",
 
 
 
@@ -345,8 +345,8 @@
 
     $.ajax({
       type: 'POST',
-      url: "propuesta",
-      //url: "https://cuevas-de-ayllon.com/propuesta",
+      //url: "propuesta",
+      url: "https://cuevas-de-ayllon.com/propuesta",
       data: { 'propuesta': $('#texto').val(), 'titulo': $('#titulo').val() },
       timeout: 5000,
 
