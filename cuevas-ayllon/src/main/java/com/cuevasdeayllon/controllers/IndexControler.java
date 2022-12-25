@@ -118,6 +118,7 @@ public class IndexControler {
 			if(sesion.getAttribute("usuario")!=null) {
 				usuario=(Usuario) sesion.getAttribute("usuario");
 				model.addAttribute("usuario", usuario);
+				
 				logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
 
 				logger.info("Entramos en metodo index subirFoto");
@@ -164,6 +165,7 @@ public class IndexControler {
 		try {
 			if(sesion.getAttribute("usuario")!=null) {
 				Usuario usuario=(Usuario) sesion.getAttribute("usuario");
+				logger.info("Este es el password:"+usuario.getPassword());
 				model.addAttribute("usuario", usuario);		
 				return "usuario";
 			}else {
@@ -195,6 +197,17 @@ public class IndexControler {
 		return "contactoMensaje";
 
 	}
+	@GetMapping("/recuperar")
+	public String recuperar(Model model,HttpSession sesion) {
+
+
+		logger.info("Entramos en metodo index/recuperar");
+
+		return "recuperar";
+
+	}
+	
+	
 
 
 }

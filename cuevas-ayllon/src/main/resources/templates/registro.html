@@ -24,8 +24,10 @@
     background-color: #d8852e99;
     border-radius: 10px;
     width: 40%;">
+    <h5 id="formularioRegistro" style="color: white;">Registrate en el espacio vecinal de Cuevas de Ayllón </h5>
 <div th:if="${usuarioExiste}" th:text="${usuarioExiste}" style="font-size: 20px;"></div>
 <div th:if="${fotoVacia}" th:text="${fotoVacia}" style="font-size: 20px;"></div>
+
         <form th:action="@{/registrar}" th:object="${usuario}" id="formularioRegistro" class="text-dark" style="width: 150%;
         padding: 30px;" method="post" enctype="multipart/form-data">
             <div class="row col-sm-4">
