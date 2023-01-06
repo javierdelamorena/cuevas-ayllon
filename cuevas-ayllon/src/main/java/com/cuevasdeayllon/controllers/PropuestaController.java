@@ -1,8 +1,10 @@
 package com.cuevasdeayllon.controllers;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cuevasdeayllon.dto.Objetos;
+import com.cuevasdeayllon.entity.Anuncios;
 import com.cuevasdeayllon.entity.Comentarios;
 import com.cuevasdeayllon.entity.Propuestas;
 import com.cuevasdeayllon.entity.Puntuacion;
@@ -167,7 +170,8 @@ public class PropuestaController {
 
 		List<Propuestas>todas=propuestaService.findAll();
 
-
+		todas=todas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta)
+				.reversed()).collect(Collectors.toList());
 
 		return todas;
 
@@ -523,7 +527,8 @@ public class PropuestaController {
 		logger.info("Entramos en metodo /listaPropuestas");
 		List<Propuestas>todas=propuestaService.findAll();
 
-
+		todas=todas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta)
+				.reversed()).collect(Collectors.toList());
 		model.addAttribute("listaPropuestas", todas);
 		return "listaPropuestas";
 

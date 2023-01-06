@@ -98,6 +98,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarios.setPassword(usuario.getPassword());
 		usuarios.setCreateAt(new Date());
 		usuarios.setFoto(usuario.getFoto());
+		usuarios.setNotificacion(usuario.getNotificacion());
 		usuarios.setEnabled(true);
 		usuarios.setDireccion(usuario.getDireccion());
 		usuarios.setRoles("USER");
@@ -105,6 +106,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarioService.salvarUsuario(usuarios);
 
 		
+	}
+
+	@Override
+	public Usuario usuarioPorEmail(String email) {
+		// TODO Auto-generated method stub
+		return usuarioService.usuarioPormail(email);
 	}
 
 }

@@ -12,6 +12,7 @@ public interface UsuarioService {
 	void salvarUsuario(Usuario usuario);
 	List<Usuario> todosLosUsuarios();
 	Usuario usuarioPorNombre(String nombre);
+	Usuario usuarioPorEmail(String email);
 	void borrarUsuario(Usuario usuario);
 	void editarUsuario(Usuario usuario);
 

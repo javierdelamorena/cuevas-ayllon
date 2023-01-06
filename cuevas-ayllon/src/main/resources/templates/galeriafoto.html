@@ -3,6 +3,7 @@
 
 <head >
   <title> Cuevas de Ayllón Galeria de fotos</title>
+ 
   <meta charset="UTF-8">
   <script th:src="@{/js/jquery.min.js}"></script>
   <link href="css/style.css" rel="stylesheet">
@@ -23,6 +24,16 @@
 
 
   <div id="div2" style="margin-top: 2%; margin-left: 9%; width: 80%;">
+    <h3 style="text-align: center;
+    color: #000000;
+    font-family: cursive;
+    width: 25%;
+    background-color: #ba7d6387;
+    margin-left: 37%;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    /* margin: 3%; */
+    margin-top: 1%;">Galeria fotografica de Cuevas de Ayllón</h3>
     <div class="row ">
       <div class="col-lg-4 ">
         <a href="#" data-bs-toggle="modal" data-bs-target="#modal13">
@@ -475,15 +486,14 @@
     $.ajax({
 
       type: 'GET',
-      //url: "fotosGaleria",
-      url: "https://cuevas-de-ayllon.com/fotosGaleria",
-
+      url: "fotosGaleria",
+      //url: "https://cuevas-de-ayllon.com/fotosGaleria",
 
 
 
     }).done(function (data) {
       var html = '';
-      html += ' <div id="div2" style="mlengthargin-top: 2%; margin-left: 9%; width: 80%;">';
+      html += ' <div id="div2" style="margin-top: 2%; margin-left: 9%; width: 80%;">';
       html += ' <div class="row "  style="margin-bottom: 4%;">';
       for (var i = 0; i < data.length; i++) {
         console.log(' estas son las fotos que recogemos' + data[i].fotos)

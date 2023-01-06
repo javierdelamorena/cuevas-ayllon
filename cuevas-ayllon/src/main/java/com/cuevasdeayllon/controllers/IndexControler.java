@@ -36,7 +36,7 @@ public class IndexControler {
 		model.addAttribute("email","Email");
 		model.addAttribute("Password","Password");
 		model.addAttribute("foto", "Foto");
-		model.addAttribute("direccion", "Direccion en el pueblo");
+		model.addAttribute("direccion", "Direccion en Cuevas de Ayllón");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("AltaUsuario", "Alta de Usuario");
 

@@ -19,7 +19,7 @@ public class MvcConfig implements WebMvcConfigurer{
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/").setViewName("home");
 		registry.addViewController("/error_403").setViewName("error_403");	
-
+		
 	}
 	@Bean
 	public LocaleResolver localeResolver() {
@@ -45,23 +45,23 @@ public class MvcConfig implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 
 
-		//			registry.addResourceHandler("/uploads/**")
-		//			.addResourceLocations("file:/C:/TEMP/uploads/");
 		registry.addResourceHandler("/uploads/**")
-		.addResourceLocations("file:/uploads/");
-		//		registry.addResourceHandler("/uploadsGaleria/**")
-		//		.addResourceLocations("file:/C:/TEMP/uploadsGaleria/");
+		.addResourceLocations("file:/C:/TEMP/uploads/");
+//		registry.addResourceHandler("/uploads/**")
+//		.addResourceLocations("file:/uploads/");
 		registry.addResourceHandler("/uploadsGaleria/**")
-		.addResourceLocations("file:/uploadsGaleria/");
-		//		registry.addResourceHandler("/uploadsAnuncios/**")
-		//		.addResourceLocations("file:/C:/TEMP/uploadsAnuncios/");
+		.addResourceLocations("file:/C:/TEMP/uploadsGaleria/");
+//		registry.addResourceHandler("/uploadsGaleria/**")
+//		.addResourceLocations("file:/uploadsGaleria/");
 		registry.addResourceHandler("/uploadsAnuncios/**")
-		.addResourceLocations("file:/uploadsAnuncios/");
-		//		registry.addResourceHandler("/imagenesRutas/**")		
-		//		.addResourceLocations("file:/C:/TEMP/imagenesRutas/");
-		registry.addResourceHandler("/imagenesRutas/**")
-		.addResourceLocations("file:/imagenesRutas/");
-
+		.addResourceLocations("file:/C:/TEMP/uploadsAnuncios/");
+//		registry.addResourceHandler("/uploadsAnuncios/**")
+//		.addResourceLocations("file:/uploadsAnuncios/");
+		registry.addResourceHandler("/imagenesRutas/**")		
+		.addResourceLocations("file:/C:/TEMP/imagenesRutas/");
+//		registry.addResourceHandler("/imagenesRutas/**")
+//		.addResourceLocations("file:/imagenesRutas/");
+		
 	}
 
 

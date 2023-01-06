@@ -37,10 +37,10 @@ public class RecuperarPasswordController {
 	private BCryptPasswordEncoder token;
 
 	@Autowired
-	UsuarioService service;
+	private UsuarioService service;
 
 	@Autowired
-	RecuperarRepository serviceRecuperar;
+	private RecuperarRepository serviceRecuperar;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -85,7 +85,7 @@ public class RecuperarPasswordController {
 				mailMessage.setTo(e.getEmail());
 				mailMessage.setSubject("Completa la actualizacion de contraseña!");
 				mailMessage.setText("Para completar el proceso de actualizacion de contraseña, porfavor pulsa sobre este link: "
-						+ "https://cuevas-de-ayllon.com/confirm-reset?token="+e.getToken());
+						+ "http://localhost:8080/spring-boot-cuevas-ayllon/confirm-reset?token="+e.getToken());
 				mailSender.send(mailMessage);
 				logger.info("mandamos el mail");
 				

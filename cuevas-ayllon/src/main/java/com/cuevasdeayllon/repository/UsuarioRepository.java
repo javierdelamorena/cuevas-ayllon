@@ -15,4 +15,6 @@ public interface UsuarioRepository {
 	
 	Usuario usuarioPorNombre(String nombre);
 	void borrarUsuarioi(Usuario usuario);
+	
+	Usuario usuarioPormail(String email);
 }

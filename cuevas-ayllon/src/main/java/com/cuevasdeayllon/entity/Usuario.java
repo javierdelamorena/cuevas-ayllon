@@ -43,7 +43,7 @@ public class Usuario implements Serializable{
 	private String email;
 	@NotEmpty
 	private String password;
-	
+	private String notificacion;
 	private String foto;
 	private String roles;
 	@NotEmpty
@@ -148,6 +148,13 @@ public class Usuario implements Serializable{
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	
+	public String getNotificacion() {
+		return notificacion;
+	}
+	public void setNotificacion(String notificacion) {
+		this.notificacion = notificacion;
 	}
 	private static final long serialVersionUID = 1L;
 }

@@ -48,4 +48,10 @@ public class UsuarioiRepositoryImpl implements UsuarioRepository {
 		
 	}
 
+	@Override
+	public Usuario usuarioPormail(String email) {
+		// TODO Auto-generated method stub
+		return usuarioRepository.findByEmail(email);
+	}
+
 }
