@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title> Cuevas de Ayllón Enlaces de interes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=500, user-scalable=no" />
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script th:src="@{/js/fecha.js}"></script>
+    <script th:src="@{/js/clima.js}"></script>
+
+</head>
+
+<body>
+    <div class="row">
+        <header class="bodyEnlacesInteres" style="text-align: center;
+      color: #ffffff;
+      font-family: cursive;
+      border-radius: 10px;
+      height: 100%;">
+            <div class="col-lg-2 fecha" id="fecha" ></div>
+
+            <div class="col-lg-5" style="padding-top: 8%;
+          padding-bottom: 8%;">
+                <div id="cartelEnlaces">Enlaces de interés de Cuevas de Ayllón</div>
+            </div>
+        </header>
+    </div>
+    <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+    <!-- <div class="row" style="margin-left: 10%;"> -->
+    <div class="container-fluid">
+        <div class="col-lg-3 col-sm-10"
+            style=" margin-right: 4%;margin-top: 4%;font-size: 20px;font-family: serif;float: right;">
+            <hr>
+            <p>
+                En este apartado te dejamos enlaces a varios vecinos de nuestro pueblo que nos muestran sus trabajos
+                dentro del mundo del arte, la literatura, la poesía, etc., así como otros enlaces de interés a la hora
+                de visitar Cuevas de Ayllón.
+
+
+            </p>
+
+
+            <p>
+                Esperamos que te sean útiles.
+            </p>
+            <hr>
+        </div>
+
+        <div class="container col-lg-5 col-sm-6" style="margin-top: 3%; float: right; margin-top: 4%;">
+            <div>
+                <div class="list-group col-lg-8 col-sm-8" style="  
+  
+    text-align: center;
+    margin-bottom: 4%;
+    font-size: 17px;">
+                    <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #d9b5349e;
+            color: black;
+            font-weight: 800;
+            font-size: 20px;">Vecinos de Cuevas de Ayllón</a>
+                    <a href="https://catedramdelibes.com/autor/andres-de-la-morena-silvano/"
+                        class="list-group-item list-group-item-action">Silvano Andrés de la Morena: Poeta, escritor e
+                        investigador.</a>
+                    <a href="https://ninacosart.wixsite.com/ninacosart"
+                        class="list-group-item list-group-item-action">Ñiñacos, Ignacio Benéitez: Escultor</a>
+                    <a href="http://www.carmemunoz.com/" class="list-group-item list-group-item-action">Carme Muñoz:
+                        Fotógrafa y grabadora</a>
+                    <a href="https://www.escritores.org/libros/index.php/item/luis-de-la-rasilla-sanchez-arjona"
+                        class="list-group-item list-group-item-action">Luis de la Rasilla: Profesor, politólogo y
+                        escritor.</a>
+                    <a href="https://www.instagram.com/teresapereletegui/?hl=es"
+                        class="list-group-item list-group-item-action">Teresa Perelétegui: Pintura e ilustración</a>
+                    <a href="https://www.instagram.com/tonybeneitez/"
+                        class="list-group-item list-group-item-action">Toñi Benéitez: Tejedora y grabadora.</a>
+                    <a href="https://instagram.com/covachosss?igshid=YmMyMTA2M2Y="
+                        class="list-group-item list-group-item-action">Covachoss</a>
+
+                </div>
+            </div>
+            <div>
+                <div class="list-group  col-lg-8 col-sm-8" style="  
+    
+    text-align: center;
+    margin-bottom: 4%;
+    font-size: 17px;">
+                    <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #d9b5349e;
+                color: black;
+                font-weight: 800;
+                font-size: 20px;">Turismo de la zona</a>
+                    <a href="https://www.airbnb.es/cuevas-de-ayllon-spain/stays"
+                        class="list-group-item list-group-item-action ">Dónde dormir</a>
+                    <a href="https://www.escapadarural.com/que-hacer/cuevas-de-ayllon/donde-comer"
+                        class="list-group-item list-group-item-action ">Dónde comer</a>
+                    <a href="https://www.sorianitelaimaginas.com/" class="list-group-item list-group-item-action ">Soria
+                        ni te la imaginas</a>
+                    <a href="https://www.facebook.com/SoriaNiTeLaimaginas/"
+                        class="list-group-item list-group-item-action ">Soria ni te la imaginas Facebook</a>
+                    <a href="https://www.instagram.com/sorianitelaimaginas/?hl=es"
+                        class="list-group-item list-group-item-action ">Soria ni te la imaginas instagram</a>
+
+
+                </div>
+
+            </div>
+            <div>
+                <div class="list-group  col-lg-8 col-sm-8" style="  
+    
+    text-align: center;
+    margin-bottom: 10%;
+    font-size: 17px;">
+                    <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #d9b5349e;
+                color: black;
+                font-weight: 800;
+                font-size: 20px;">Diputación y Ayuntamiento</a>
+                    <a href="https://www.dipsoria.es/" class="list-group-item list-group-item-action ">Diputación de
+                        Soria</a>
+
+                    <a href="http://www.montejodetiermes.es/"
+                        class="list-group-item list-group-item-action ">Ayuntamiento de Montejo de Tiermes</a>
+                    <a href="https://www.jcyl.es/web/jcyl/Portada/es/Home/1246890364336/_/_/_"
+                        class="list-group-item list-group-item-action ">Junta de Castilla y León</a>
+                </div>
+            </div>
+
+        </div>
+
+        <aside class="col-lg-2 col-sm-10" style="text-decoration: none;margin-top: 5%;margin-left: 6%;">
+            <a href="" style="text-decoration: none;
+            font-size: 17px;
+            font-family: sans-serif;
+            color: #2f3235c7;">Cuevas de Ayllón</a>
+            <hr>
+            <a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html" style="text-decoration: none;
+            font-size: 17px;
+            font-family: sans-serif;
+            color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
+                   PUESTO DE SAN ESTEBAN DE GORMAZ
+                   Localidad: SAN ESTEBAN DE GORMAZ
+                   Provincia: SORIA
+                   Dirección postal: AVDA. DEL GENERALISIMO, 10
+                   Código postal: 42330
+                   Teléfono: 975350046">Seguridad ciudadana</a>
+            <hr>
+            <a th:href="@{/contacto}" style="text-decoration: none;
+            font-size: 17px;
+            font-family: sans-serif;
+            color: #2f3235c7;">Contacto</a>
+            <hr>
+            <a th:href="@{/preguntas}" style="text-decoration: none;
+            font-size: 17px;
+            font-family: sans-serif;
+            color: #2f3235c7;">Preguntas frecuentes</a>
+            <hr>
+            <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
+                style="text-decoration: none;
+            font-size: 17px;
+            font-family: sans-serif;
+            color: #2f3235c7;">Como llegar</a>
+            <hr>
+
+        </aside>
+    </div>
+
+</body>
+
+
+</html>

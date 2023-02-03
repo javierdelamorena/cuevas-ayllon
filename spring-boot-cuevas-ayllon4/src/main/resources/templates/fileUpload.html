@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Cuevas de Ayllón subir documento</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=500, user-scalable=no" />
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<link href="css/style.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+
+<body class="bodyUsuario">
+
+	<nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+	<div class="container col-lg-5" id="registro" style="
+    margin-top: 5%;
+    background-color: #d8852e99;
+    border-radius: 10px;
+	padding: 1%;">
+
+
+		<div th:if="${message}">
+			<h2 th:text="${message}" />
+		</div>
+
+
+		<form method="POST" enctype="multipart/form-data" th:action="@{/subirDocumento}" class="text-dark" style="
+        padding: 30px;">
+
+			<div class="col-sm-6">
+				<label form="file" class="col-form-label col-sm-6" style="font-family: sans-serif;
+	font-style: oblique;
+	font-weight: bold;
+	font-size: larger;">Titulo</label>
+			</div>
+			<div class="col-sm-4">
+				<input type="text" id="titulo" name="titulo" class="form-control" />
+			</div></br></br>
+
+			<div class="col-sm-4">
+				<label form="file" class="col-form-label " style="font-family: sans-serif;
+				font-style: oblique;
+				font-weight: bold;
+				font-size: larger;">Subir documento</label>
+			</div>
+
+			<div class="col-sm-4">
+				<input type="file" id="file" name="file" class="form-control" />
+			</div></br></br>
+			<div class=" col-sm-2">
+				<input type="submit" value="Upload" class="btn " style="color: #eeeeee;background-color: #463232a3;" />
+			</div></br></br>
+			<div class=" col-sm-2">
+
+				<a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
+					style="color: #eeeeee;background-color: #463232a3;">Volver</a>
+			</div>
+
+		</form>
+
+
+
+	</div>
+</body>
+
+</html>

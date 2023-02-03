@@ -1,0 +1,558 @@
+.bodyGaleria {
+	background-image: url("19.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyAdministradores {
+	background-image: url("30.jpg");
+
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyAnuncios {
+	background-image: url("26.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyMercadilloSubir {
+	background-image: url("31.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyContacto {
+	background-image: url("28.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyPreguntas {
+	background-image: url("29.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyEnlacesInteres {
+	background-image: url("27.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyRegistro {
+	background-image: url("25.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyUsuario {
+	background-image: url("22.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyLogin {
+	background-image: url("24.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyComentarios {
+	background-image: url("23.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyRutas {
+	background-image: url("20.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 0;
+	height: 100vh;
+}
+
+.bodyHistoria {
+	background-image: url("18.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+
+}
+
+.body {
+	background-image: url("2.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 0;
+	height: 100vh;
+
+
+}
+
+.bodyChat {
+	background-color: #5570b1;
+	margin: 0;
+	height: 100vh;
+
+}
+
+.bodyOrfeo {
+	background-image: url("21.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	margin: 0;
+	height: 100vh;
+
+}
+
+/* body{
+	display: flex;
+	flex-direction: column;
+	height:100vh;
+	margin :0;
+  } */
+body {
+	display: flex;
+	height: 100vh;
+	flex-direction: column;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	/* width: 100%; */
+	background-color: #2c2a2a80;
+	height: 4%;
+	color: white;
+	/* text-align: center; */
+	padding-left: 37%;
+	padding-top: 3px;
+	margin-top: auto;
+	width: 100%;
+}
+
+.foot {
+
+	font-size: medium;
+}
+
+.cuevas {
+
+	border-left: 2px solid;
+	padding-top: 10px;
+
+}
+
+.preguntas {
+	border-left: 2px solid;
+	border-right: 2px solid;
+	padding-top: 5px;
+}
+
+.contacto {
+	border-left: 2px solid;
+	border-right: 2px solid;
+	padding-top: 5px;
+}
+
+.comollegar {
+	border-left: 2px solid;
+	border-right: 2px solid;
+	padding-top: 5px;
+}
+
+#div2 {
+	flex: 1;
+
+
+}
+
+.navbar {
+	top: 0;
+
+	border-radius: 8px;
+	border-color: #080808;
+	font-weight: bold;
+	width: 100%;
+	height: 60px;
+	line-height: 1.5;
+
+
+
+}
+
+.caja {
+	font-family: sans-serif;
+	color: #0b0b0b;
+	font-size: 17px;
+	font-weight: 400;
+	/* font-weight: bolder; */
+	text-align: left;
+	background: #d99482a3;
+	margin: 40px;
+	/* overflow: hidden; */
+	padding: 20px;
+	border-radius: 35px 0px 35px 0px;
+	-moz-border-radius: 35px 0px 35px 0px;
+	-webkit-border-radius: 35px 0px 35px 0px;
+	border: 2px solid #040404;
+
+	box-shadow: 5px 0px 19px 4px;
+	margin-bottom: 5%;
+}
+
+#historia {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	margin-left: 15%;
+	padding: 10px;
+
+
+}
+
+/* .footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #2c2a2ad9;
+	height: 4%;
+	color: white;
+	text-align: center;
+} */
+
+/* #imgInicio {
+
+	height: 1200px;
+	width: 20100px;
+} */
+
+#divImgInicio {
+	margin-top: 7%;
+	margin-bottom: 5px;
+
+}
+
+#formularioRegistro {
+	font-size: 20px;
+}
+
+#galeriaImg {
+	padding: 10px;
+	height: 500px;
+	width: 900px;
+
+}
+
+#botonesRutas {
+	color: black;
+}
+
+@media (max-width: 576px) {
+
+	#fotosMercadillo {
+		margin-top: 5%;
+		margin-left: 8%;
+		margin-bottom: 3%;
+	}
+}
+
+@media (max-width: ≥576px) {
+
+	#fotosMercadillo {
+		width: 54%;
+		margin-top: 5%;
+		margin-left: 8%;
+		margin-bottom: 3%;
+	}
+}
+
+@media (max-width: 576px) {
+
+	#fotosModel {
+		border-radius: 4px;
+		padding: 10px;
+		height: 500px;
+		width: 500px;
+	}
+}
+
+@media (max-width: ≥576px) {
+
+	#fotosModel {
+		border-radius: 4px;
+		padding: 10px;
+		height: 1024px;
+		width: 1024px;
+	}
+}
+
+
+.fecha {
+	float: right;
+	color: white;
+	font-size: 17px;
+	margin-top: 1%;
+
+	border-radius: 13px;
+	/* font-weight: 600; */
+	padding: auto;
+}
+
+@media (max-width : 576px) {
+
+
+	.fecha {
+
+		float: right;
+		color: white;
+		font-size: 17px;
+		margin-top: 1%;
+		background-color: #ffffff00;
+		border-radius: 13px;
+		/* font-weight: 600; */
+
+
+
+
+	}
+}
+
+#cartelHome {
+	padding: 4%;
+	font-size: 37px;
+	/* width: 100%; */
+	margin-right: 10%;
+
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelHome {
+		padding: 1%;
+
+		margin-right: 38%;
+		margin-top: 8%;
+
+	}
+}
+
+#cartelHistoria {
+	padding: 4%;
+	font-size: 35px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #5e6fdfa1;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelHistoria {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #5e6fdfa1;
+
+	}
+}
+
+#cartelRutas {
+	padding: 4%;
+	font-size: 35px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #deb887c7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelRutas {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #deb887c7;
+
+	}
+}
+
+#cartelTablon {
+	padding: 4%;
+	font-size: 30px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #deb887c7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelTablon {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #deb887c7;
+
+	}
+}
+
+
+
+#cartelEnlaces {
+	padding: 4%;
+	font-size: 35px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #dcdf5ea1;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelEnlaces {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #dcdf5ea1;
+
+	}
+}
+
+
+#cartelRegistro {
+	padding: 4%;
+	font-size: 30px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #deb887c7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelRegistro {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #deb887c7;
+
+	}
+}
+
+#cartelLogin {
+	padding: 4%;
+	font-size: 30px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #5d7e3fc7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelLogin {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #5d7e3fc7;
+
+	}
+}
+
+
+#cartelGaleria {
+	padding: 4%;
+	font-size: 34px;
+	/* width: 100%; */
+	margin-right: 10%;
+	background-color: #8788dec7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelGaleria {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #8788dec7;
+	}
+
+}
+
+#cartelOrfeo {
+	padding: 3%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 20%;
+	background-color: #4f52c8c7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelOrfeo {
+		padding: 2%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 35%;
+		background-color: #4f52c8c7;
+	}
+
+}
+
+#cartelServicios {
+	padding: 4%;
+	font-size: 35px;
+
+	margin-right: 10%;
+	background-color: #deb887c7;
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelServicios {
+		padding: 4%;
+		font-size: 35px;
+		/* width: 100%; */
+		margin-right: 38%;
+		background-color: #deb887c7;
+	}
+
+}

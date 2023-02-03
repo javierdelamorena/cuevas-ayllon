@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head >
+  <title> Cuevas de Ayllón Mis propuestas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=500, user-scalable=no" />
+  <script th:src="@{/js/jquery.min.js}"></script>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <div class="row">
+    <header class="bodyUsuario" style="text-align: center;
+  color: #ffffff;
+  font-family: cursive;
+  border-radius: 10px;
+  height: 100%;">
+      
+
+      <div class="col-lg-4" style="padding-top: 8%;
+      padding-bottom: 8%;">
+        <h3 style="padding: 5%;
+            font-size: 33px;           
+            margin-right: 10%;
+            background-color: #deb887c7;">Tus propuesta</h3>
+      </div>
+    </header>
+  </div>
+
+  <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+  <div class="container">
+    <div class="col-lg-10 col-sm-8" style="margin-top: 5%; margin-bottom: 5%; ">
+
+      <table class="table table-bordered" style="background-color: #d8852ebd;
+    
+    text-align: center;
+    font-weight: bold;">
+
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col">Titulo</th>
+            <th scope="col">Edita tu propuesta</th>
+            <th scope="col">Borra tu propuesta</th>
+
+
+
+
+          </tr>
+        </thead>
+        <div th:if="${misPropuestas.isEmpty()}" class="alert alert-info my-4"
+          th:text="'No hay propuestas que mostrar, no has realizado ninguna propuesta'"></div>
+        <div th:if="${propuestaBorrada}" class="alert alert-info my-4"
+          th:text="${propuestaBorrada}"></div>
+
+        <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+            th:text="${usuarioBorrado}"></div> -->
+        <tr th:each="propuesta:${misPropuestas}">
+
+          
+
+          <td th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
+
+          <td> <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+              th:attr="data-bs-target='#staticBackdrop'+${propuesta.idPropuesta}" style="margin: 10px;color: #eeeeee;">
+              Editar
+            </button></td>
+
+          <div class="modal fade" th:attr="id=staticBackdrop+${propuesta.idPropuesta}" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+
+                  <div>
+                    <h3 class="text-start">Editar propuesta</h3>
+                  </div>
+
+
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form th:action="@{/editarPropuesta}" method="post">
+                    <label form="titulo" class="col-form-label col-sm-2" maxlength="50">Titulo</label>
+                    <input type="text" id="titulo" th:value="${propuesta.titulo}" name="titulo" class="form-control"
+                      th:placeholder="${propuesta.titulo}">
+                    <input type="hidden" id="idPropuesta" th:value="${propuesta.idPropuesta}" name="idPropuesta"
+                      class="form-control">
+                    <textarea id="propuesta" name="propuesta" th:value="${propuesta.propuesta}" rows="4" cols="50"
+                      style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255"
+                      th:text="${propuesta.propuesta}"></textarea>
+                    <input type="submit" class="btn btn-dark" value="Editar propuesta">
+                  </form>
+                </div>
+                <!-- <h2 id="propuestaRelizada"></h2>
+        <h2 id="propuestaExistente"></h2> -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <td>
+          <form th:action="@{/borrarMiPropuesta}" method="post">
+
+            <input type="hidden" name="idPropuesta" th:value="${propuesta.idPropuesta}">
+            <input type="hidden" name="idUsuario" th:value="${propuesta.usuario.idUsuario}">
+            <input type="submit" class="btn btn-dark" value="Borrar " style="margin-top: 4%;">
+          </form>
+        </td>
+
+
+
+        </tr>
+
+
+      </table>
+      <div class="col-sm-3">
+
+        <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
+          style="color: #eeeeee;background-color: #463232a3;">Volver</a>
+      </div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+</body>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+
+</html>

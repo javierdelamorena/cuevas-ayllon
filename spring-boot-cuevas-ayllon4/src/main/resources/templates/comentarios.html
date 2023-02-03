@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Cuevas de Ayllón Comentarios</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=500, user-scalable=no" />
+  <script th:src="@{/js/jquery.min.js}"></script>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <div class="row" >
+    <header class="bodyComentarios" style="text-align: center;
+      color: #ffffff;
+      font-family: cursive;
+      border-radius: 10px;
+      height: 100%;">
+      <!-- <div class="col-lg-1" style="padding: 3%;
+      font-size: 33px;
+      float: right;
+      /* margin-right: 28%; */" id="fecha"></div> -->
+
+      <div class="col-lg-5" style="padding-top: 8%;
+      padding-bottom: 8%;">
+        <h3 style="padding: 5%;
+        font-size: 33px;
+        /* width: 100%; */
+        margin-right: 10%;
+        background-color: rgb(47 122 161 / 56%);">Espacio vecinal votaciones y comentarios</h3>
+      </div>
+    </header>
+  </div>
+
+  <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+  <!-- <div class="row" style="margin-top: 3%;margin-bottom: 5%;"> -->
+    <div class="container" style="margin-top: 3%;margin-bottom: 5%;">
+    <div class="row">
+      <div class="col-lg-10" data-bs-spy="scroll" style="background-color: rgb(26 52 123 / 43%);
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      overflow: overlay;
+      padding: 15px;
+      position: relative;
+      
+      height: 1000px;">
+      <a type="button" th:href="@{/usuario}"class="btn" 
+      style="color: #eeeeee;background-color: #463232a3;float: right;"
+      aria-label="Close">Cerrar</a>
+        <div class="row" style="padding: 1%;">
+          
+          
+          <div class="row">
+            <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}+'.'" style="font-size: 20px;
+              "></h5>
+          </div>
+          <!-- <input type="hidden" name="nombre" value="propuestas.usuario.nombre" id="nombre"> -->
+          <div class="row"  style="padding: 1%;">
+            <div class="col-lg-6">
+              <div id="puntuacionTotal" style="margin-bottom: 5%;"></div>
+            </div>
+            <div class="col-lg-2" style="margin-bottom: 3%;">
+              <form th:action="@{/puntuacionMas}" id="puntuacionMass" method="get">
+                <input type="hidden" name="mas" value="mas">
+                <input type="submit" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;" value=" Voto a favor " >
+              </form>
+            </div>
+
+            <div class="col-lg-2" >
+              <form th:action="@{/puntuacionMenos}" method="get">
+                <input type="hidden" name="menos" value="menos">
+                <input type="submit" class="btn" style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;" value="Quitar tu voto" >
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row"  style="padding: 1%;">
+          <h5 id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" style="font-size: 23px;"></h5>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div disabled th:text="${propuestas.propuesta}"
+              style="padding: 10px;
+              border-radius: 30px;
+              font-size: 25px;
+              background-color: rgb(251, 251, 251);
+              font-weight: 700;
+              border-width: thin;
+              /* width: 98%; */
+              height: 200px;
+              /* box-shadow: 21px 19px 19px 0px; */
+              box-shadow: 3px 3px 7px 0px;
+              overflow: auto;"></div>
+          </div>
+        </div>
+        <div class="row">
+
+          <table class="table-responsive table-striped "
+            style="max-height: 48%;
+            width: 91%;
+            display: block;
+            /* border: solid; */
+            overflow-y: auto;
+            margin: 4%;
+            background-color: #fffffffa;
+            box-shadow: 3px 3px 7px 0px;">
+            <thead style="display: block;">
+              <!-- <th></th>
+        <th></th>
+        <th></th> -->
+
+            </thead>
+            <tbody th:if="comentarios" th:each="comentario:${comentarios}">
+              <tr>
+                <td><img class="logo  float-left" style="width: 50px ;float: left; border-radius: 90px;"
+                    th:src="@{'/uploads/'+${comentario.usuario.foto}}"></td>
+              </tr>
+              <tr>
+                <td style=" border-style: solid;font-weight: bold;"
+                  th:text="${comentario.usuario.nombre.toUpperCase()}"></td>
+
+              </tr>
+
+              <tr>
+
+              </tr>
+              <tr>
+                <div>
+                  <td>
+                    <div>
+                      <p style="background-color: rgba(255, 255, 255, 0.9);
+                      border-radius: 50px;
+                      box-shadow: 5px 0px 23px 2px rgb(0 0 0 / 50%);
+                      position: relative;
+                      padding: 20px;
+                      font-weight: 600;
+                      font-size: 20px;
+                      font-family: sans-serif;
+                      display: -webkit-inline-box;
+          " th:text="'Ha dicho:  '+${comentario.comentario}" disabled></p>
+                    </div>
+                  </td>
+                </div>
+              </tr>
+
+              <tr>
+                <td th:if="${comentario.editable != null}">
+                  <div style="display: flex;">
+                    <button type="submit" class="btn btn-dark" data-bs-toggle="modal" value="Editar"
+                      th:attr="data-bs-target='#staticBackdrop1'+${comentario.id}" style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;
+            float: left;" th:id="${comentario.id}">
+                      Editar
+                    </button>
+                    <form th:action="@{/borrarComentario}" method="post">
+
+                      <input type="hidden" name="idComentario" th:value="${comentario.id}">
+                      <input type="hidden" name="idPropuesta" th:value="${comentario.propuesta.idPropuesta}">
+
+                      <input type="submit" class="btn" value="Borrar"
+                        style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;">
+                    </form>
+
+                  </div>
+                </td>
+              </tr>
+              <div class="modal fade gh" th:id="staticBackdrop1+${comentario.id}" data-bs-backdrop="static"
+                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Comentario</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form th:action="@{/editarComentario}" method="get">
+                        <textarea th:id="${comentario.id}" name="comentario" th:value="${comentario.comentario}"
+                          th:text="${comentario.comentario}" rows="4" cols="50"
+                          style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255">
+        </textarea>
+                        <input type="hidden" name="idComentario" th:value="${comentario.id}">
+                        <input type="submit" id="enviarPropuesta" value="enviar">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </tbody>
+            <tbody id="todosLosComentarios"></tbody>
+
+          </table>
+        </div>
+
+
+
+        <div class="row">
+
+
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 5%;">
+      <div class="col-lg-10" style="
+  
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    
+    border-bottom-right-radius:25px ;
+    border-bottom-left-radius:25px;
+    background-color: rgb(26 52 123 / 43%);
+    ">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required></textarea>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 2%;">
+          <div class="col-lg-12">
+            <button class="btn " style="color: #eeeeee;background-color: #463232a3;" id="salvarComentario">Agregar Comentario</button>
+          <!-- </div>
+          <div class="col-3" style="margin-left: 23%;"> -->
+            <a type="button" th:href="@{/usuario}" class="btn btn-dark" style="color: #eeeeee;background-color: #463232a3;float: right;"
+              id="cerrarComentario">Cerrar</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- <script src="js/todosComentarios.js"></script> -->
+  <script src="js/salvarComentario.js"></script>
+
+</body>
+
+
+
+<script>
+
+
+  // $('#puntuacionMass').on('click', function(){ 
+  // alert('Prevenido');
+
+  // setTimeout(() => {
+  $(document).ready(function script() {
+    $.ajax({
+
+      type: 'GET',
+      //url: "puntuacionTotal",
+      url: "https://cuevas-de-ayllon.com/puntuacionTotal",
+    }).done(function (data) {
+
+
+      console.log("Hecho Correcto!");
+      console.log('el numero de graficos es:  ', data);
+      var html2 = '';
+      html2 += '<h5 id="recuperacion" style="font-size: 20px;">Esta propuesta tiene: ' + data + ' votos</h5>';
+
+      $('#puntuacionTotal').append(html2);
+      $.ajax({
+
+        type: 'GET',
+        //url: "guardarTotal",
+        url: "https://cuevas-de-ayllon.com/guardarTotal",
+        data: { 'total': data }
+
+      });
+
+
+    }).fail(function () {
+      console.log("Fallo!");
+    })
+      .always(function () {
+        console.log("Completo!");
+      });
+  });
+
+</script>
+
+<script>
+  // $(document).ready(function script() {
+  // $('#puntuacionMass').on('submit', function () {
+  //   var texto = $('#recuperacion').text();
+  //   console.log('Esta es la propuesta que recuperamos', texto);
+
+    // $.ajax({
+
+    //   type: 'GET',
+    //   url: "guardarTotal",
+    // }).done(function (data) {
+
+
+    //   console.log("Hecho Correcto!");
+    //   console.log('Esta propuesta tiene:  ', data, ' puntos');
+
+
+
+
+
+
+    // }).fail(function () {
+    //   console.log("Fallo!");
+    // })
+    //   .always(function () {
+    //     console.log("Completo!");
+    //});
+
+    //   $.ajax({
+ 
+    //     type: 'GET',
+    //     url: "puntuacionTotal",
+    //   }).done(function (data) {
+
+
+    //     console.log("Hecho Correcto!");
+
+    //   }).fail(function () {
+    //     console.log("Fallo!");
+    //   })
+    //     .always(function () {
+    //       console.log("Completo!");
+    //     });
+  // });
+
+
+    // lo que queramos hacer
+
+
+
+
+</script>
+
+</html>

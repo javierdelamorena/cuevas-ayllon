@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<nav th:fragment="paginator">
+
+    <ul class="pagination" style="
+    margin-top: 5%;">
+        <li class="page-item" th:class="${page.first? 'page-item disable': 'page-item'}">
+            <span class="page-link" th:if="${page.first}" style="color: black;">primera</span>
+            <a class="page-link" th:if="${not page.first}" th:href="@{/fotosGaleria(page=${0})}" style="color: black;">primera</a>
+        </li>
+        <li class="page-item" th:class="${not page.hasPrevious? 'page-item disable' : 'page-item'}">
+            <span class="page-link" th:if="${not page.hasPrevious}" style="color: black;">Anterior</span>
+            <a class="page-link" th:if="${page.hasPrevious}"
+                th:href="@{/fotosGaleria(page=${page.paginaActual-2})}" style="color: black;">Anterior</a>
+        </li>
+        <li class="page-item" th:each="item : ${page.paginas}" th:class="${item.actual? 'page-item active' : 'page-item'}" >
+            <span class="page-link" th:if="${item.actual}" th:text="${item.numero}" style="color: black;">Anterior</span>
+            <a class="page-link" th:if="${not item.actual}" th:href="@{/fotosGaleria(page=${item.numero-1})}"
+                th:text="${item.numero}" style="color: black;">Anterior</a>
+        </li>
+        <li class="page-item" th:class="${not page.hasNext? 'page-item disable' : 'page-item'}">
+            <span class="page-link" th:if="${not page.hasNext}" style="color: black;">Siguiente</span>
+            <a class="page-link" th:if="${page.hasNext}" th:href="@{/fotosGaleria(page=${page.paginaActual})}" style="color: black;">Siguiente</a>
+
+        </li>
+
+        <li class="page-item" th:class="${page.last? 'page-item disable' : 'page-item'}">
+            <span class="page-link" th:if="${page.last}" style="color: black;">ultima</span>
+            <a class="page-link" th:if="${not page.last}" th:href="@{/fotosGaleria(page=${page.totalPaginas-1})}"style="color: black;">ultimo</a>
+        </li>      
+    </ul>   
+</nav>

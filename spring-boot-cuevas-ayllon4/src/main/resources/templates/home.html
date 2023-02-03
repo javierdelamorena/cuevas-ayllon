@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cuevas de Ayllón</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=500, user-scalable=no" />
+  
+  <script th:src="@{/js/jquery.min.js}"></script>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script th:src="@{/js/fecha.js}"></script>
+  <script th:src="@{/js/clima.js}"></script>
+
+</head>
+
+<body>
+
+  <div class="row">
+    <header class="body" style="text-align: center;
+  color: #ffffff;
+  font-family: cursive;
+  border-radius: 10px;
+  height: 100%;">
+      <div class="col-lg-2 fecha"  id="fecha" ></div>
+      
+      <div class="col-lg-5 " style="padding-top: 8%;
+      padding-bottom: 12%;">
+        <div id="cartelHome" style="
+        background-color: #dcdf5ea1;">Bienvenid@s a Cuevas de Ayllón</div>
+        <!-- <h3 class="tituloHeaderHome">Bienvenid@s a Cuevas de Ayllón</h3> -->
+      </div>
+
+  </div>
+  </header>
+  </div>
+  <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+
+
+  <!-- <div class="row" style="margin-left: 10%;"> -->
+  <div class="container-fluid">
+    <div class="col-lg-2 col-sm-8" style="margin-top: 2%;
+    margin-left: 11%;
+    font-size: 20px;
+    /* font-family: sans-serif; */
+    font-family: cursive;float: right;
+    margin-right: 7%;">
+      <img src="" alt="">
+      <img src="https://cuevas-de-ayllon.com/imagenesRutas/escudoCuevasCOLOR.jpg" alt="" style="width: 100%;">
+      <!-- <p>Cuevas de Ayllón es una localidad del municipio de Montejo de Tiermes en la
+        provincia de Soria, partido judicial de El Burgo de Osma, Comunidad
+        Autónoma de Castilla y León. Hasta 1833, perteneció a la Comunidad de Villa
+        y Tierra de Ayllón, sexmo de Valdeliceras, y a la diócesis de Sigüenza, hasta
+        1957. Actualmente forma parte de la Diócesis de Osma-Soria, que, a su vez,
+        pertenece a la Archidiócesis de Burgos.</p> -->
+    </div>
+
+    <div class="col-lg-4 col-sm-10" style="margin-top: 6%;float: right;
+    margin-left: 11%;
+    font-size: 20px;
+    /* font-family: sans-serif; */
+    font-family: serif;
+    margin-bottom: 6%;">
+      <p>Cuevas de Ayllón es una localidad del municipio de Montejo de Tiermes, situada en el suroeste de la provincia
+        de Soria, que ofrece al visitante un atractivo paisaje lleno de caminos rústicos y llenos de naturaleza, en los
+        que adentrarse y encontrar una gran cantidad de fauna salvaje (corzos, jabalíes, zorros, buitres, etc), así como
+        muy distintos tipos de vegetación o de árboles (encinas, robles, chopos, álamos, nogales, etc).
+
+        Caracterizada por el color rojizo de su tierra y asentada sobre una roca arenisca, se halla junto a la ribera
+        del río Pedro, cuyo cañón, ubicado en el paraje de El Hoyo, se extiende hasta la cercana localidad de Ligos. A
+        lo largo de su recorrido encontraremos una gran colonia de buitres que habita en sus riscos e, incluso, unas
+        pinturas rupestres.
+
+
+      </p></br>
+      <p>
+        ¡Estáis invitados y esperamos que os guste y disfrutéis de la visita a nuestra pequeña localidad!
+
+
+      </p>
+    </div>
+
+    <aside class="col-lg-2 col-sm-10" style="text-decoration: none;
+    margin-top: 7%;
+    
+    margin-left: 8%;">
+      <a href="" style="text-decoration: none;
+      font-size: 17px;
+      font-family: sans-serif;
+      color: #2f3235c7;">Cuevas de Ayllón</a>
+      <hr>
+      <a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html" style="text-decoration: none;
+      font-size: 17px;
+      font-family: sans-serif;
+      color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
+             PUESTO DE SAN ESTEBAN DE GORMAZ
+             Localidad: SAN ESTEBAN DE GORMAZ
+             Provincia: SORIA
+             Dirección postal: AVDA. DEL GENERALISIMO, 10
+             Código postal: 42330
+             Teléfono: 975350046">Seguridad ciudadana</a>
+      <hr>
+      <a th:href="@{/contacto}" style="text-decoration: none;
+      font-size: 17px;
+      font-family: sans-serif;
+      color: #2f3235c7;">Contacto</a>
+      <hr>
+      <a th:href="@{/preguntas}" style="text-decoration: none;
+      font-size: 17px;
+      font-family: sans-serif;
+      color: #2f3235c7;">Preguntas frecuentes</a>
+      <hr>
+      <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
+        style="text-decoration: none;
+      font-size: 17px;
+      font-family: sans-serif;
+      color: #2f3235c7;">Como llegar</a>
+      <hr>
+
+    </aside>
+
+  </div>
+
+
+  <!-- <img class="img-thumbnail  float-left" style="position:absolute;margin-left: 40%;
+    margin-left: 45%;
+    margin-top: 3%;
+    height: 20%; 
+    width: 10%;
+    z-index: 1;" src="imagenes/cuevas-de-ayllon.jpg" id="cuevas" /> -->
+  <!-- <p class="lead" style="background-color: #ffffff00;
+  margin-left: 35%;
+  margin-top: 3%;
+  width: 30%;
+  font-size: 53px;
+  font-weight: 500;
+  font-family: cursive;" id="cuevas">Bienvenidos a Cuevas de Ayllón</p> -->
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+<style>
+  #cuevas {
+
+    animation-name: example;
+    animation-duration: 2s;
+  }
+
+  @keyframes example {
+    0% {
+      width: 1px;
+      font-size: 1px;
+      transform: rotate(0deg);
+
+    }
+
+    25% {
+      /* transform: rotate(45deg); */
+    }
+
+    50% {
+      /* transform: rotate(90deg); */
+    }
+
+    75% {
+      /* transform: rotate(180deg); */
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .borrar {
+    display: none;
+  }
+</style>
+<script>
+  const img = $('#cuevas').val();
+
+  var modWidth = '30%';
+  if ($(this).width(modWidth).addClass("borrar")) {
+
+
+
+
+
+
+
+  }
+</script>
+
+
+
+
+</html>

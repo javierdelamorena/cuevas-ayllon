@@ -1,0 +1,218 @@
+<html>
+
+<head>
+    <title> Cuevas de Ayllón Mi Compra Venta</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=500, user-scalable=no" />
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="extensions/mobile/bootstrap-table-mobile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="row">
+        <header class="bodyUsuario" style="text-align: center;
+  color: #ffffff;
+  font-family: cursive;
+  border-radius: 10px;
+  height: 100%;">
+
+
+            <div class="col-lg-4" style="padding-top: 8%;
+      padding-bottom: 8%;">
+                <h3 style="padding: 5%;
+            font-size: 33px;
+           
+            margin-right: 10%;
+            background-color: #deb887c7;">Tu Compra Venta y Servicios </h3>
+            </div>
+        </header>
+    </div>
+
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+    <div class="container">
+        <div class="col-lg-10 col-sm-8" style="margin-top: 5%; margin-bottom: 5%; ">
+
+            <table class="table table-bordered data-min-width" style="background-color: #d8852ebd;
+    
+    text-align: center;
+    font-weight: bold;">
+                <div th:if="${miMercadillo.isEmpty()}" class="alert alert-info my-4"
+                    th:text="'No hay ofertas que mostrar'"></div>
+                <div th:if="${mercadilloBorrado}" th:text="${mercadilloBorrado}" class="alert alert-info"></div>
+                <thead class="thead-dark">
+                    <tr>
+
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tipo de servicio</th>
+                        <th scope="col">Nombre del servicio</th>
+                        
+                        <th scope="col">Editar tu oferta</th>
+                        <th scope="col">Borrar tu oferta</th>
+
+
+
+
+
+                    </tr>
+                </thead>
+                <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+            th:text="${usuarioBorrado}"></div> -->
+                <tr th:each="mercadillo:${miMercadillo}">
+                    <td th:if="${mercadillo.nombre}" th:text="${mercadillo.nombre}"></td>
+                    <td th:if="${mercadillo.nombre == null}" th:text="' '"></td>
+                    <td th:if="${mercadillo.tipo_servicio}" th:text="${mercadillo.tipo_servicio}"></td>
+                    <td th:if="${mercadillo.tipo_servicio == null}" th:text="' '"></td>
+                    <td th:if="${mercadillo.nombre_servicio}" th:text="${mercadillo.nombre_servicio}"></td>
+                    <td th:if="${mercadillo.nombre_servicio == null}" th:text="' '"></td>
+                    
+
+                    <td>
+
+
+
+
+
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            th:attr="data-bs-target='#staticBackdrop'+${mercadillo.id}"
+                            style="margin: 10px;color: #eeeeee;">
+                            Editar 
+                        </button>
+
+
+                        </form>
+
+                    </td>
+
+                    <div class="modal fade" th:attr="id=staticBackdrop+${mercadillo.id}" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h3 class="text-start">Editar Oferta</h3>
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form th:action="@{/editarMimercadillo}" method="post"
+                                        enctype="multipart/form-data">
+                                        <label form="nombre" class="col-form-label col-sm-1"
+                                            maxlength="50">Nombre</label>
+                                        <input type="text" id="nombre" th:value="${mercadillo.nombre}" name="nombre"
+                                            class="form-control" th:placeholder="${mercadillo.nombre}">
+                                        <!-- <div th:if="${#fields.hasErrors('mercadillo.nombre')}" th:errors="*{mercadillo.nombre}"
+                                    class="alert alert-danger"></div> -->
+                                        <label form="nombre_servicio" class="col-form-label col-sm-1" maxlength="50"
+                                            style="width: 100%;">Nombre del Servicio</label>
+                                        <input type="text" id="nombre_servicio" th:value="${mercadillo.nombre_servicio}"
+                                            name="nombre_servicio" class="form-control"
+                                            th:placeholder="${mercadillo.nombre_servicio}">
+                                        <!-- <div th:if="${#fields.hasErrors('mercadillo.nombre_servicio')}" th:errors="*{mercadillo.nombre_servicio}"
+                                    class="alert alert-danger"></div> -->
+                                        <label form="tipo_servicio" class="col-form-label col-sm-1"
+                                            style="width: 100%;font-family: sans-serif;">Categoría</label>
+                                        <select class="form-control" name="tipo_servicio" id="dropDownList"
+                                            th:value="${mercadillo.tipo_servicio}">
+                                            <option value=""></option>
+                                            <option th:each="tipo_servicios : ${tipo_servicio}"
+                                                th:value="${tipo_servicios}" th:text="${tipo_servicios}"></option>
+                                        </select>
+                                        <!-- <div th:if="${#fields.hasErrors('mercadillo.tipo_servicio')}" th:errors="*{mercadillo.tipo_servicio}"
+                                    class="alert alert-danger"></div> -->
+                                        <label form="telefono" class="col-form-label col-sm-1"
+                                            maxlength="50">Telefono</label>
+                                        <input type="text" id="telefono" th:value="${mercadillo.telefono}"
+                                            name="telefono" class="form-control"
+                                            th:placeholder="${mercadillo.telefono}">
+                                        <!-- <div th:if="${#fields.hasErrors('mercadillo.telefono')}" th:errors="*{mercadillo.telefono}"
+                                    class="alert alert-danger"></div> -->
+                                        <label form="titulo" class="col-form-label col-sm-1"
+                                            maxlength="50">Precio</label>
+                                        <input type="text" id="precio" th:value="${mercadillo.precio}" name="precio"
+                                            class="form-control" th:placeholder="${mercadillo.precio}">
+                                        <label form="foto1" style="width: 100%;" class="col-form-label col-sm-1">Foto 1,
+                                            si editas vuelve a subir las fotos</label>
+                                        <input type="file" id="foto1" name="file1" th:value="${mercadillo.foto1}"
+                                            class="form-control" th:placeholder="${mercadillo.foto1}">
+                                        <label form="foto2" style="width: 100%;" class="col-form-label col-sm-1">Foto 2
+                                            si editas vuelve a subir las fotos</label>
+                                        <input type="file" id="foto2" name="file2" th:value="${mercadillo.foto2}"
+                                            class="form-control" th:placeholder="${mercadillo.foto2}">
+                                        <label form="foto3" style="width: 100%;" class="col-form-label col-sm-1">Foto 3
+                                            si editas vuelve a subir las fotos</label>
+                                        <input type="file" id="foto3" name="file3" th:value="${mercadillo.foto3}"
+                                            class="form-control" th:placeholder="${mercadillo.foto3}">
+                                        <label form="texto" style="width: 100%;" class="col-form-label col-sm-1">Escribe
+                                            tu oferta</label>
+                                        <textarea id="texto" name="texto" th:value="${mercadillo.texto}" rows="4"
+                                            cols="50" style=" height: 180px; width: 98%; margin-top: 10px;"
+                                            maxlength="255" th:text="${mercadillo.texto}"></textarea>
+                                        <!-- <div th:if="${#fields.hasErrors('mercadillo.texto')}" th:errors="*{mercadillo.texto}"
+                                    class="alert alert-danger"></div> -->
+                                        <input type="hidden" id="id" th:value="${mercadillo.id}" name="id"
+                                            class="form-control">
+                                        <input type="hidden" id="id" th:value="${mercadillo.id_usuario}"
+                                            name="id_usuario" class="form-control">
+                                        <input type="submit" class="btn btn-dark" value="Editar oferta">
+                                    </form>
+                                </div>
+                                <!-- <h2 id="mercadilloRelizada"></h2>
+        <h2 id="mercadilloExistente"></h2> -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="refrescar"
+                                        data-bs-dismiss="modal">Close</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <form th:action="@{/borrarMimercadillo}" method="post">
+
+                        <input type="hidden" name="id" th:value="${mercadillo.id}">
+                        <input type="hidden" name="idUsuario" th:value="${mercadillo.id_usuario}">
+                        <td><input type="submit" class="btn btn-dark" value="Borrar" style="margin-top: 4%;"></td>
+                    </form>
+
+
+
+
+                </tr>
+
+
+            </table>
+            <div class="col-sm-3">
+
+                <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
+                    style="color: #eeeeee;background-color: #463232a3;">Volver</a>
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+</body>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+
+</html>

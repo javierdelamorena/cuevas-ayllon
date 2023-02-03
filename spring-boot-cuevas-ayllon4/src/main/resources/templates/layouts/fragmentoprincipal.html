@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+   
+    <meta charset="UTF-8">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+
+<body class="bodyRegistro" th:fragment="bodyRegistro">
+
+
+
+    <!-- <nav class="navbar navbar-expand-lg " th:fragment="nav" style="padding-left: 12%; display: flex;">
+        <div class="container-fluid">
+            
+            
+            <button class="navbar-toggler navbar-toggler-left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="border: solid;
+                border-block-width: 8px;background-color:white;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavDropdown">
+                <ul class="navbar-nav" style="margin-left: 10%;">
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" aria-current="page" 
+                            th:href="@{/}">CUEVAS DE AYLLON</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" aria-current="page" th:href="@{/galeriaFotografica}"
+                            >Galeria de
+                            imagenes</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" 
+                            th:href="@{/historiaPueblo}">Historia</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/toRutas}" >Rutas</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/todosAnuncios}" >Tablon
+                            de Anuncios</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/enlacesDeInteres}"
+                            >Enlaces de Interes</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link"  th:href="@{/orfeo}">Campus
+                            ORFEO/ORPHEUS DE LAS TIERRAS DE AYLLÓN</a>
+                    </li>
+
+                    
+
+                    <div class="dropdown" style="margin-left:5px;">
+                        <a class="nav-link dropdown-toggle"  href="#"
+                            role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Espacio Vecinal
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/registrarse}">Registrarse</a></li>
+                            <li><a class="dropdown-item" th:href="@{/toLoging}">Entrar</a></li>
+
+                        </ul>
+                    </div>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-size: 23px;z-index: 3;
+    text-shadow: aliceblue;
+    /* font-family: math; */
+    height: 100px;">
+        <div class="container-fluid" style="padding-top: 1%;
+        padding-bottom: 1%;">
+            <a class="nav-link" aria-current="page" 
+            th:href="@{/}">CUEVAS DE AYLLÓN</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            Menú <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse bg-light" id="navbarNavDropdown" >
+            <ul class="navbar-nav">
+                
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link" aria-current="page" th:href="@{/fotosGaleria}"
+                        >Galeria de
+                        imagenes</a>
+                </li>
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link" 
+                        th:href="@{/historiaPueblo}">Historia</a>
+                </li>
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link" th:href="@{/toRutas}" >Rutas</a>
+                </li>
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link" th:href="@{/todosAnuncios}" >Tablon
+                        de Anuncios</a>
+                </li>
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link" th:href="@{/enlacesDeInteres}"
+                        >Enlaces de Interes</a>
+                </li>
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link"  th:href="@{/orfeo}">Campus
+                        ORFEO</a>
+                </li>
+                <li class="nav-item " style="margin-left:5px;">
+                    <a class="nav-link"  th:href="@{/mercadilloTodos}">Compra Venta y Servicios</a>
+                </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Espacio Vecinal
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-size: 20px;">
+                    <li><a class="dropdown-item" th:href="@{/registrarse}" >Registrarse</a></li>
+                    <li><a class="dropdown-item" th:href="@{/toLoging}">Entrar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- <div class="container" th:fragment="fondo" id="divImgInicio"> -->
+    <img src="imagenes/imagenDeFondo.jpg" class="img-fluid" alt="Cinque Terre" id="imgInicio" th:fragment="fondo" />
+
+    <!-- </div> -->
+    <!-- <div class="container" th:fragment="espacio"></div> -->
+    <!-- <footer class="footer  rounded-top text-center" th:fragment="footer" style="position: fixed;
+    background-color: white;">
+     
+        <i class="bi bi-facebook"></i>
+    </footer>  -->
+    <div class="footer" th:fragment="footer" style="display:inline-flex ;height: 40px;">
+        
+        <div class="foot comollegar">
+            <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
+                target="_blank" alt="Como llegar" title="como  llegar" style="color: white; padding: 30px;text-decoration: none;">Como llegar</a><br>
+        </div>
+        <div class="foot preguntas">
+            <a th:href="@{/preguntas}"
+                target="_blank" alt="Preguntas frecuentes" title="Preguntas frecuentes" style="color: white; padding: 30px;text-decoration: none;">Preguntas Frecuentes</a><br>
+        </div>
+        <div class="foot contacto">
+            <a th:href="@{/contacto}"
+                target="_blank" alt="Contacto" title="Contacto" style="color: white; padding: 30px;text-decoration: none;">Contacto</a><br>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+
+</html>
