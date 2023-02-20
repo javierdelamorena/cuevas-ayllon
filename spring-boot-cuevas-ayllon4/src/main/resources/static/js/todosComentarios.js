@@ -3,8 +3,8 @@ $(document).ready(function script() {
 
   $.ajax({
     type: 'GET',
-    //url: "todosComentarios",
-    url: "https://cuevas-de-ayllon.com/todosComentarios",
+    url: "todosComentarios",
+    //url: "https://cuevas-de-ayllon.com/todosComentarios",
 
 
   }).done(function (data) {

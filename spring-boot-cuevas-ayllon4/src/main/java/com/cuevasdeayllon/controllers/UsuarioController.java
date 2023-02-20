@@ -130,7 +130,7 @@ public class UsuarioController {
 						mailSender.send(message);
 					}
 					model.addAttribute("usuario", usuari);
-					sesion.setAttribute("usuario", usuari);
+					
 					return "login";
 
 				} catch (IOException e) {
@@ -348,8 +348,8 @@ public class UsuarioController {
 				}
 			}
 
-			String rootPath="/uploads/";
-			//String rootPath="C://TEMP//uploads";
+			//String rootPath="/uploads/";
+			String rootPath="C://TEMP//uploads";
 			try {
 				byte[]bytes=foto.getBytes();
 				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());

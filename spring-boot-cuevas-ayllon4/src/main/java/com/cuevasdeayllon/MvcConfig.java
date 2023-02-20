@@ -45,30 +45,30 @@ public class MvcConfig implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 
 
-//	  registry.addResourceHandler("/uploads/**")
-//	  .addResourceLocations("file:/C:/TEMP/uploads/");
-  	registry.addResourceHandler("/uploads/**")
-  	.addResourceLocations("file:/uploads/");
-//	registry.addResourceHandler("/uploadsGaleria/**")
-//	.addResourceLocations("file:/C:/TEMP/uploadsGaleria/");
+	  registry.addResourceHandler("/uploads/**")
+	  .addResourceLocations("file:/C:/TEMP/uploads/");
+//	registry.addResourceHandler("/uploads/**")
+//	.addResourceLocations("file:/uploads/");
   	registry.addResourceHandler("/uploadsGaleria/**")
-  	.addResourceLocations("file:/uploadsGaleria/");
-//	registry.addResourceHandler("/uploadsAnuncios/**")
-//	.addResourceLocations("file:/C:/TEMP/uploadsAnuncios/");
+  	.addResourceLocations("file:/C:/TEMP/uploadsGaleria/");
+//	registry.addResourceHandler("/uploadsGaleria/**")
+//	.addResourceLocations("file:/uploadsGaleria/");
   	registry.addResourceHandler("/uploadsAnuncios/**")
-  	.addResourceLocations("file:/uploadsAnuncios/");
-//	registry.addResourceHandler("/imagenesRutas/**")		
-//	.addResourceLocations("file:/C:/TEMP/imagenesRutas/");
-  	registry.addResourceHandler("/imagenesRutas/**")
-  	.addResourceLocations("file:/imagenesRutas/");
-//	registry.addResourceHandler("/uploadsDocumentos/**")		
-//	.addResourceLocations("file:/C:/TEMP/uploadsDocumentos/");
-  	registry.addResourceHandler("/uploadsDocumentos/**")
-  	.addResourceLocations("file:/uploadsDocumentos/");
-//	registry.addResourceHandler("/uploadsMercadillo/**")		
-//	.addResourceLocations("file:/C:/TEMP/uploadsMercadillo/");
-		registry.addResourceHandler("/uploadsMercadillo/**")
-		.addResourceLocations("file:/uploadsMercadillo/");
+  	.addResourceLocations("file:/C:/TEMP/uploadsAnuncios/");
+//	registry.addResourceHandler("/uploadsAnuncios/**")
+//	.addResourceLocations("file:/uploadsAnuncios/");
+  	registry.addResourceHandler("/imagenesRutas/**")		
+  	.addResourceLocations("file:/C:/TEMP/imagenesRutas/");
+//	registry.addResourceHandler("/imagenesRutas/**")
+//	.addResourceLocations("file:/imagenesRutas/");
+  	registry.addResourceHandler("/uploadsDocumentos/**")		
+  	.addResourceLocations("file:/C:/TEMP/uploadsDocumentos/");
+//	registry.addResourceHandler("/uploadsDocumentos/**")
+//	.addResourceLocations("file:/uploadsDocumentos/");
+  	registry.addResourceHandler("/uploadsMercadillo/**")		
+  	.addResourceLocations("file:/C:/TEMP/uploadsMercadillo/");
+//		registry.addResourceHandler("/uploadsMercadillo/**")
+//		.addResourceLocations("file:/uploadsMercadillo/");
 
 	}
 

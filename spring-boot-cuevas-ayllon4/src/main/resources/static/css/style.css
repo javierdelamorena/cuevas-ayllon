@@ -556,3 +556,22 @@ body {
 	}
 
 }
+#navPrincipal {
+	
+	z-index: 3;
+    text-shadow: aliceblue;
+   
+    height: 100px;
+}
+
+@media (max-width : 576px) {
+
+
+	#navPrincipal {
+		font-size: 23px;z-index: 3;
+    text-shadow: aliceblue;
+    /* font-family: math; */
+    height: 100px;
+	}
+
+}

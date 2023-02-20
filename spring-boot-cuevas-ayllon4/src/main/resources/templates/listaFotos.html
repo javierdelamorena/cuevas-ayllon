@@ -2,18 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
-<head >
+<head>
     <title>Cuevas de Ayllón lista de fotos</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=500, user-scalable=no" />
-    <script th:src="@{/js/jquery.min.js}"></script>
+
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -30,7 +27,7 @@
         font-weight: bold;">
 
             <thead class="thead-dark">
-                <tr >
+                <tr>
                     <th scope="col">idFoto</th>
                     <th scope="col">foto</th>
                     <th scope="col">Usuario</th>
@@ -43,12 +40,13 @@
                 th:text="${usuarioBorrado}"></div> -->
             <tr th:each="foto:${fotosLista}">
 
-                <td  th:if="${foto.idFotos}" th:text="${foto.idFotos}"></td>
-                
-                <td  th:if="${foto.fotos}"><img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid"
-                        style="border-radius:30px;padding:10px; height: 175px;width: 250px;" alt="Responsive image"></td>
+                <td th:if="${foto.idFotos}" th:text="${foto.idFotos}"></td>
 
-                <td  th:if="${foto.id_usuario}" th:text="${foto.id_usuario}"></td>
+                <td th:if="${foto.fotos}"><img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid"
+                        style="border-radius:30px;padding:10px; height: 175px;width: 250px;" alt="Responsive image">
+                </td>
+
+                <td th:if="${foto.id_usuario}" th:text="${foto.id_usuario}"></td>
 
 
                 <form th:action="@{/borrarFoto}" method="post">
@@ -58,7 +56,8 @@
                     <input type="hidden" name="id_usuario" th:value="${foto.id_usuario}">
 
 
-                    <td ><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Borrar Foto"></td>
+                    <td><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark"
+                            value="Borrar Foto"></td>
                 </form>
 
 
@@ -67,13 +66,17 @@
         </table>
 
         <div class="col-sm-2">
-               
-            <a type="button"  value="Volver" th:href="@{/toUsuario}" class="btn btn-dark" style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+
+            <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
+                style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
         </div>
 
     </div>
-
-
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 
 </html>

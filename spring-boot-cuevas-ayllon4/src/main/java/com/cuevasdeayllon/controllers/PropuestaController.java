@@ -430,14 +430,14 @@ public class PropuestaController {
 	 * @return
 	 */
 	@GetMapping("/puntuacionMas")
-	public String puntuacionMasUno(@RequestParam(required=false)String mas,Model model,HttpSession sesion) {
+	public String puntuacionMasUno(@RequestParam(required=false)String mas,@RequestParam("titulo")String titulo,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas="+ mas);
 
 		Usuario usuario=(Usuario) sesion.getAttribute("usuario");
-		Propuestas propuesta=(Propuestas) sesion.getAttribute("propuestas");
+		Propuestas propuesta=propuestaService.findBtNombre(titulo);
 		List<Comentarios> listaComentario=comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
 		Puntuacion  puntuacion = new Puntuacion ();
-		Puntuacion puntuacioncheck=puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), propuesta.getTitulo());
+		Puntuacion puntuacioncheck=puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), titulo);
 		int contador=0 ;
 		if(puntuacioncheck==null) {
 			logger.info("puntuacioncheck= null "+ mas);
@@ -461,7 +461,15 @@ public class PropuestaController {
 
 		List<Puntuacion> lista= puntuacionservice.listaDePuntos(propuesta.getTitulo());
 		int totalPuntos=lista.stream().mapToInt(d->d.getPuntuacion()).sum();
+		for(int i =0;i<listaComentario.size();i++) {
 
+			if(listaComentario.get(i).getUsuario().getIdUsuario()!=usuario.getIdUsuario()) {
+
+
+				listaComentario.get(i).setEditable(null);
+			}
+
+		}
 		model.addAttribute("propuestas", propuesta);
 		model.addAttribute("comentarios", listaComentario);
 		model.addAttribute("usuario", usuario);
@@ -480,14 +488,14 @@ public class PropuestaController {
 	 * @return
 	 */
 	@GetMapping("/puntuacionMenos")
-	public String puntuacionMenosUno(@RequestParam(required=false)String menos,Model model,HttpSession sesion) {
+	public String puntuacionMenosUno(@RequestParam(required=false)String menos,@RequestParam("titulo")String titulo,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas="+ menos);
 
 		Usuario usuario=(Usuario) sesion.getAttribute("usuario");
-		Propuestas propuesta=(Propuestas) sesion.getAttribute("propuestas");
+		Propuestas propuesta=propuestaService.findBtNombre(titulo);
 		List<Comentarios> listaComentario=comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
 		Puntuacion  puntuacion = new Puntuacion ();
-		Puntuacion puntuacioncheck=puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), propuesta.getTitulo());
+		Puntuacion puntuacioncheck=puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), titulo);
 		int contador=0 ;
 		if(puntuacioncheck==null) {
 			logger.info("puntuacioncheck= null "+ menos);
@@ -512,6 +520,15 @@ public class PropuestaController {
 		List<Puntuacion> lista= puntuacionservice.listaDePuntos(propuesta.getTitulo());
 
 		int totalPuntos=lista.stream().mapToInt(d->d.getPuntuacion()).sum();
+		for(int i =0;i<listaComentario.size();i++) {
+
+			if(listaComentario.get(i).getUsuario().getIdUsuario()!=usuario.getIdUsuario()) {
+
+
+				listaComentario.get(i).setEditable(null);
+			}
+
+		}
 		model.addAttribute("propuestas", propuesta);
 		model.addAttribute("comentarios", listaComentario);
 		model.addAttribute("usuario", usuario);

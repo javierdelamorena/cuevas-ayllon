@@ -5,14 +5,11 @@
   <title> Cuevas de Ayllón Comentarios</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=500, user-scalable=no" />
-  <script th:src="@{/js/jquery.min.js}"></script>
+  
   <link href="css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
 
 </head>
 
@@ -69,6 +66,7 @@
             <div class="col-lg-2" style="margin-bottom: 3%;">
               <form th:action="@{/puntuacionMas}" id="puntuacionMass" method="get">
                 <input type="hidden" name="mas" value="mas">
+                <input type="hidden" name="titulo" th:value="${propuestas.titulo}" >
                 <input type="submit" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;" value=" Voto a favor " >
               </form>
             </div>
@@ -76,6 +74,7 @@
             <div class="col-lg-2" >
               <form th:action="@{/puntuacionMenos}" method="get">
                 <input type="hidden" name="menos" value="menos">
+                <input type="hidden" name="titulo" th:value="${propuestas.titulo}" >
                 <input type="submit" class="btn" style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;" value="Quitar tu voto" >
 
               </form>
@@ -244,8 +243,11 @@
   </div>
 
 
-
-
+  <script th:src="@{/js/jquery.min.js}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <!-- <script src="js/todosComentarios.js"></script> -->
   <script src="js/salvarComentario.js"></script>
 
@@ -264,8 +266,8 @@
     $.ajax({
 
       type: 'GET',
-      //url: "puntuacionTotal",
-      url: "https://cuevas-de-ayllon.com/puntuacionTotal",
+      url: "puntuacionTotal",
+      //url: "https://cuevas-de-ayllon.com/puntuacionTotal",
     }).done(function (data) {
 
 
@@ -278,8 +280,8 @@
       $.ajax({
 
         type: 'GET',
-        //url: "guardarTotal",
-        url: "https://cuevas-de-ayllon.com/guardarTotal",
+        url: "guardarTotal",
+        //url: "https://cuevas-de-ayllon.com/guardarTotal",
         data: { 'total': data }
 
       });
