@@ -1,5 +1,6 @@
 package com.cuevasdeayllon.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +42,7 @@ public class RecuperarPasswordController {
 	@PostMapping( path="/recuperarPassword")
 	public String recuperarUsuario(@RequestParam("email") String  email,HttpServletRequest request,Model model) {
 
-		
+
 		Usuario usuario=new Usuario();
 		logger.info("Este es el mail que recibimos: "+email);
 		if(email!=null) {
@@ -51,8 +52,10 @@ public class RecuperarPasswordController {
 				logger.info("El usuario es  null");
 				model.addAttribute("emailIncorrecto", "No encotramos el usuario con este mail en nuestro sistema, por favor, reviselo y vuelva a intentarlo.");
 				return "recuperar";
+			}else {
+
 			}
-			
+
 			logger.info("El mail que recibimos es distinto de null y el usuario es: "+usuario.getNombre());
 		}
 		else {
@@ -72,19 +75,19 @@ public class RecuperarPasswordController {
 			serviceRecuperar.refrecar();
 			List<Recuperar>recuperarLista=serviceRecuperar.todoeLosRecurar();
 			for(Recuperar e:recuperarLista) {    
-			if(e.getEmail().equals(email)) {
-				logger.info("El token es distinto de null: "+recupera.getToken());
-				SimpleMailMessage mailMessage = new SimpleMailMessage();
-				mailMessage.setTo(e.getEmail());
-				mailMessage.setSubject("Completa la actualizacion de contraseña!");
-				mailMessage.setText("Para completar el proceso de actualizacion de contraseña, porfavor pulsa sobre este link: "
-						//+ "http://localhost:8080/spring-boot-cuevas-ayllon/confirm-reset?token="+e.getToken());
-				        + "https://cuevas-de-ayllon.com/confirm-reset?token="+e.getToken());
-				
-				mailSender.send(mailMessage);
-				logger.info("mandamos el mail");
-				
-			}
+				if(e.getEmail().equals(email)) {
+					logger.info("El token es distinto de null: "+recupera.getToken());
+					SimpleMailMessage mailMessage = new SimpleMailMessage();
+					mailMessage.setTo(e.getEmail());
+					mailMessage.setSubject("Completa la actualizacion de contraseña!");
+					mailMessage.setText("Para completar el proceso de actualizacion de contraseña, porfavor pulsa sobre este link: "
+							//+ "http://localhost:8080/spring-boot-cuevas-ayllon4/confirm-reset?token="+e.getToken());
+					+ "https://cuevas-de-ayllon.com/confirm-reset?token="+e.getToken());
+
+					mailSender.send(mailMessage);
+					logger.info("mandamos el mail");
+
+				}
 			}
 		}
 		else {
@@ -92,16 +95,17 @@ public class RecuperarPasswordController {
 			return "recuperar";
 		}
 
-		model.addAttribute("emailIncorrecto", "Te hemos enviado un correo con un link para actualizar la contraseña.");
+		model.addAttribute("emailIncorrecto", "Te hemos enviado un correo con un link para actualizar la contraseña, si no lo ves, mira en el correo no deseado o spam.");
 		return "recuperar";
 
 	}
 	@GetMapping( path="/confirm-reset")
 	public String recuperarToken(@RequestParam("token") String  token,HttpServletRequest request,Model model) {
-
+		List<Recuperar>recuperarLista=new ArrayList<>();
 		Recuperar recupera=new Recuperar();
 		Usuario usuario=new Usuario();
 		if(token!=null) {
+			logger.info("El token es distinto de null");
 			recupera =serviceRecuperar.recuperarPorTken(token);
 		}
 		else {
@@ -110,20 +114,26 @@ public class RecuperarPasswordController {
 		}
 
 		if(recupera!=null) {
-			if(recupera.getToken().equals(token)) {
-				usuario=service.usuarioPorId(recupera.getId_usuario());
-				model.addAttribute("usuario", usuario);
-				serviceRecuperar.borrar(recupera.getId());
-				return "editarContrasenia";
+			recuperarLista=serviceRecuperar.todoeLosRecurar();
+			for(Recuperar recuperaLista:recuperarLista) {
+				if(recuperaLista.getToken().equals(token)) {
+					usuario=service.usuarioPorId(recupera.getId_usuario());
+					model.addAttribute("usuario", usuario);
+					serviceRecuperar.borrarTodosRecuperar();
+					
+					return "editarContrasenia";
+				}else {
+					
+					model.addAttribute("emailIncorrecto", "Vuelva a introducir el mail algo fue mal.");
+					serviceRecuperar.borrarTodosRecuperar();
+					return "recuperar";
+				}
 			}
-			else {
-				model.addAttribute("emailIncorrecto", "Vuelva a introducir el mail algo fue mal.");
-				return "recuperar";
-			}
-		}else {
+
+		}//else {
 			model.addAttribute("emailIncorrecto", "No encotramos este email en nuestro sistema, por favor, reviselo y vuelva a intentarlo.");
 			return "recuperar";
-		}
+		//}
 	}
 	@PostMapping(path="/editarUsuarioRecuperar")
 	public String editarUsuario(Usuario usuario,Model model,HttpSession sesion) {
@@ -134,7 +144,7 @@ public class RecuperarPasswordController {
 
 		String passwordSinEncriptar=usuario.getPassword();
 
-		
+
 		String passwordEncriptada = usuario.getPassword();
 		usu.setIdUsuario(usuario.getIdUsuario());
 		usu.setNombre(usuario.getNombre());

@@ -86,8 +86,8 @@ public class MercadilloController {
 				logger.info("El usuario es distinto de null");
 
 			}
-			//String rootPath="/uploadsMercadillo/";
-			String rootPath="C://TEMP//uploadsMercadillo";
+			String rootPath="/uploadsMercadillo/";
+			//String rootPath="C://TEMP//uploadsMercadillo";
 
 			if(!foto1.isEmpty()&&mercadillo!=null) {
 

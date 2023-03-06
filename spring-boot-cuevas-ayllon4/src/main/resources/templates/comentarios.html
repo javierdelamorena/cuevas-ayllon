@@ -54,10 +54,10 @@
         <div class="row" style="padding: 1%;">
           
           
-          <div class="row">
+          <!-- <div class="row">
             <h5 th:text="'Propuesta de: '+${propuestas.usuario.nombre}+'.'" style="font-size: 20px;
               "></h5>
-          </div>
+          </div> -->
           <!-- <input type="hidden" name="nombre" value="propuestas.usuario.nombre" id="nombre"> -->
           <div class="row"  style="padding: 1%;">
             <div class="col-lg-6">
@@ -266,8 +266,8 @@
     $.ajax({
 
       type: 'GET',
-      url: "puntuacionTotal",
-      //url: "https://cuevas-de-ayllon.com/puntuacionTotal",
+      //url: "puntuacionTotal",
+      url: "https://cuevas-de-ayllon.com/puntuacionTotal",
     }).done(function (data) {
 
 
@@ -280,8 +280,8 @@
       $.ajax({
 
         type: 'GET',
-        url: "guardarTotal",
-        //url: "https://cuevas-de-ayllon.com/guardarTotal",
+        //url: "guardarTotal",
+        url: "https://cuevas-de-ayllon.com/guardarTotal",
         data: { 'total': data }
 
       });

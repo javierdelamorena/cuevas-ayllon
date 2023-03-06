@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 	@Override
 	public void insertarAnucio(Anuncios anuncio,MultipartFile foto)  {
-		String rootPath="C://TEMP//uploadsAnuncios";
-		//String rootPath="/uploadsAnuncios/";
+		//String rootPath="C://TEMP//uploadsAnuncios";
+		String rootPath="/uploadsAnuncios/";
 		Anuncios anuncioeditable=new Anuncios();
 		anuncioeditable.setIdAnuncios(0);
 		anuncioeditable.setAnuncio(anuncio.getAnuncio());
@@ -74,12 +75,13 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 	@Override
 	public void editarAnuncio(int idAnuncio ,Anuncios anuncio) {
-
+		
 		Anuncios anuncioeditable=new Anuncios();
 		anuncioeditable.setAnuncio(anuncio.getAnuncio());
-		anuncioeditable.setFecha(new Date());
-		anuncioeditable.setIdAnuncios(idAnuncio);
+		anuncioeditable.setFecha(anuncio.getFecha());
+		anuncioeditable.setIdAnuncios(anuncio.getIdAnuncios());
 		anuncioeditable.setTitulo_anuncio(anuncio.getTitulo_anuncio());
+		anuncioeditable.setFoto_anuncio(anuncio.getFoto_anuncio());
 
 		anuncioJpaRepository.save(anuncioeditable);
 

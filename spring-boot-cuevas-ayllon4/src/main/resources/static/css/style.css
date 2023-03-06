@@ -346,9 +346,9 @@ body {
 
 #cartelHome {
 	padding: 4%;
-	font-size: 37px;
+	font-size: 29px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 30%;
 
 }
 
@@ -356,8 +356,8 @@ body {
 
 
 	#cartelHome {
-		padding: 1%;
-
+		padding: 4%;
+		font-size: 35px;
 		margin-right: 38%;
 		margin-top: 8%;
 
@@ -366,9 +366,9 @@ body {
 
 #cartelHistoria {
 	padding: 4%;
-	font-size: 35px;
+	font-size: 28px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 40%;
 	background-color: #5e6fdfa1;
 }
 
@@ -387,9 +387,9 @@ body {
 
 #cartelRutas {
 	padding: 4%;
-	font-size: 35px;
+	font-size: 29px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 20%;
 	background-color: #deb887c7;
 }
 
@@ -407,10 +407,10 @@ body {
 }
 
 #cartelTablon {
-	padding: 4%;
-	font-size: 30px;
+	padding: 5%;
+	font-size: 29px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 12%;
 	background-color: #deb887c7;
 }
 
@@ -431,9 +431,9 @@ body {
 
 #cartelEnlaces {
 	padding: 4%;
-	font-size: 35px;
+	font-size: 29px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 25%;
 	background-color: #dcdf5ea1;
 }
 
@@ -453,9 +453,9 @@ body {
 
 #cartelRegistro {
 	padding: 4%;
-	font-size: 30px;
+	font-size: 25px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 27%;
 	background-color: #deb887c7;
 }
 
@@ -474,9 +474,9 @@ body {
 
 #cartelLogin {
 	padding: 4%;
-	font-size: 30px;
+	font-size: 25px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 30%;
 	background-color: #5d7e3fc7;
 }
 
@@ -496,9 +496,9 @@ body {
 
 #cartelGaleria {
 	padding: 4%;
-	font-size: 34px;
+	font-size: 28px;
 	/* width: 100%; */
-	margin-right: 10%;
+	margin-right: 25%;
 	background-color: #8788dec7;
 }
 
@@ -509,7 +509,7 @@ body {
 		padding: 4%;
 		font-size: 35px;
 		/* width: 100%; */
-		margin-right: 38%;
+		margin-right: 32%;
 		background-color: #8788dec7;
 	}
 
@@ -517,9 +517,9 @@ body {
 
 #cartelOrfeo {
 	padding: 3%;
-	font-size: 28px;
+	font-size: 25px;
 	/* width: 100%; */
-	margin-right: 20%;
+	margin-right:35%;
 	background-color: #4f52c8c7;
 }
 
@@ -538,9 +538,9 @@ body {
 
 #cartelServicios {
 	padding: 4%;
-	font-size: 35px;
+	font-size: 28px;
 
-	margin-right: 10%;
+	margin-right: -3%;
 	background-color: #deb887c7;
 }
 
@@ -568,10 +568,33 @@ body {
 
 
 	#navPrincipal {
-		font-size: 23px;z-index: 3;
+		font-size: 24px;
+		z-index: 3;
     text-shadow: aliceblue;
     /* font-family: math; */
     height: 100px;
 	}
+	
+
+}
+#navUsuario {
+	
+	z-index: 3;
+    text-shadow: aliceblue;
+   
+    height: 100px;
+}
+
+@media (max-width : 576px) {
+
+
+	#navUsuario {
+		font-size: 24px;
+		z-index: 3;
+    text-shadow: aliceblue;
+    /* font-family: math; */
+    height: 100px;
+	}
+	
 
 }

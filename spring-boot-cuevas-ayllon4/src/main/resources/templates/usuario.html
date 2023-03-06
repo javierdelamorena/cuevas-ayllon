@@ -490,8 +490,8 @@
     $.ajax({
 
       type: 'get',
-      //url: "https://cuevas-de-ayllon.com/propuesta",
-      url: "propuesta",
+      url: "https://cuevas-de-ayllon.com/propuesta",
+      //url: "propuesta",
 
 
 
@@ -540,8 +540,8 @@
 
     $.ajax({
       type: 'POST',
-      url: "propuesta",
-      //url: "https://cuevas-de-ayllon.com/propuesta",
+      //url: "propuesta",
+      url: "https://cuevas-de-ayllon.com/propuesta",
       data: { 'propuesta': $('#texto').val(), 'titulo': $('#titulo').val() },
       timeout: 5000,
 
@@ -569,8 +569,8 @@
         $('#staticBackdrop').append(propuestaRealizada);
         $.ajax({
           type: 'GET',
-          url: "enviarNotificacion",
-          //url: "https://cuevas-de-ayllon.com/enviarNotificacion",
+          //url: "enviarNotificacion",
+          url: "https://cuevas-de-ayllon.com/enviarNotificacion",
 
           timeout: 5000,
 
@@ -621,8 +621,8 @@
 
     $.ajax({
       type: 'GET',
-      url: "mercadillo",
-      //url: "https://cuevas-de-ayllon.com/mercadillo",
+      //url: "mercadillo",
+      url: "https://cuevas-de-ayllon.com/mercadillo",
       data: { 'idUsuario': idUsuario },
       timeout: 5000,
 

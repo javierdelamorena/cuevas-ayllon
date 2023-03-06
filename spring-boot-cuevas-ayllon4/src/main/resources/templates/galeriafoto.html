@@ -41,7 +41,7 @@
 
     <div class="col-lg-9" style="float: right;margin-left: 4%;">
       <div class="row">
-        <div th:each="foto : ${parametros}" class="col-lg-3 col-sm-12" style="margin-top: 3%; float: right;">
+        <div th:each="foto : ${parametros}" class="col-lg-4 col-sm-12" style="margin-top: 3%; float: right;">
           <a href="#" data-bs-toggle="modal" th:attr="data-bs-target='#modal'+${foto.idFotos}">
             <img class="img-thumbnail  " style="border-radius:4px;padding:10px;height: 275px;width: 415px;"
               th:src="@{'/uploadsGaleria/'+${foto.fotos}}" th:alt="${foto.fotos}" />

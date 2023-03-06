@@ -2,6 +2,10 @@ package com.cuevasdeayllon.controllers;
 
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -32,7 +36,7 @@ public class AnunciosController {
 
 	@Autowired
 	private AnuncioRepositoryImpl anuncioRepositoryImpl;
-	
+
 	@Autowired
 	private DocumentosRepositoryImpl documentosRepositoryImpl;
 
@@ -110,6 +114,100 @@ public class AnunciosController {
 		return "subirAnuncio";
 
 	}
+	@PostMapping("/editarAnuncio")
+	public String editarAnuncio( @RequestParam("idAnuncio")int idAnuncio, @RequestParam("titulo")String titulo,@RequestParam("fecha")String fecha,@RequestParam("anuncio")String anuncio,@RequestParam("file")MultipartFile foto, Model model) {
+
+		String rootPath="/uploadsAnuncios/";
+		//String rootPath="C://TEMP//uploadsAnuncios";
+		logger.info("Entramos en metodo /subirAnuncio");
+		Anuncios anuncioeditable=anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
+		int oraLen = foto.getOriginalFilename().length();
+		logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+
+		for (int i = 0; i <  oraLen; i++) {
+			if (foto.getOriginalFilename().charAt(i) == ' ') {
+				model.addAttribute("faltaTitulo", "El nombre de la foto no puede tener espacios en blanco.");
+				List <Anuncios>anuncios=anuncioRepositoryImpl.listAnuncio();
+
+
+				model.addAttribute("listaAnuncios",anuncios);
+				return "listaAnuncios";
+
+			}
+		}
+		try {
+			if(titulo.isEmpty()) {
+
+				model.addAttribute("faltaTitulo", "El titulo en los anuncios es necesario, lo unico que se puede omitir es la foto.");
+				List <Anuncios>anuncios=anuncioRepositoryImpl.listAnuncio();
+
+
+				model.addAttribute("listaAnuncios",anuncios);
+				return "listaAnuncios";
+			}
+
+			else if(anuncio.isEmpty()) {
+				List <Anuncios>anuncios=anuncioRepositoryImpl.listAnuncio();
+
+
+				model.addAttribute("listaAnuncios",anuncios);
+
+				model.addAttribute("faltaAnuncio", "El texto en los anuncios es necesario, lo unico que se puede omitir es la foto.");
+				return "listaAnuncios";
+			}else {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				java.sql.Date fechaConvertida=null;
+				try {
+				    Date parsed =  dateFormat.parse(fecha);
+				    fechaConvertida = new java.sql.Date(parsed.getTime());
+				} catch(Exception e) {
+				    System.out.println("Error occurred"+ e.getMessage());
+				}
+				
+				anuncioeditable.setIdAnuncios(idAnuncio);
+				anuncioeditable.setAnuncio(anuncio);
+				anuncioeditable.setFecha( fechaConvertida);		
+				anuncioeditable.setTitulo_anuncio(titulo);
+				if(!foto.isEmpty()) {
+
+
+					try {
+						byte[]bytes=foto.getBytes();
+						Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
+						Files.write(rutaCompleta,bytes);
+
+						anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+				anuncioRepositoryImpl.editarAnuncio(anuncioeditable.getIdAnuncios(), anuncioeditable);
+				
+				List <Anuncios>anuncios=anuncioRepositoryImpl.listAnuncio();
+
+
+				model.addAttribute("listaAnuncios",anuncios);
+
+				model.addAttribute("anuncioSubido", "El anuncio se ha editado con exito.");
+
+				return "listaAnuncios";
+			}
+		}catch(Exception e) {
+
+			model.addAttribute("anuncioSubido", "El anuncio no se ha agregado.");
+
+			logger.info("El error que da en /subirAnuncio es: "+e.getMessage());
+		}
+		List <Anuncios>anuncios=anuncioRepositoryImpl.listAnuncio();
+
+
+		model.addAttribute("listaAnuncios",anuncios);
+		return "listaAnuncios";
+
+	}
 	@GetMapping("/listaAnunciosAdmin")
 	public String listaDeAnunciosAdministrador( Model model) {
 
@@ -164,8 +262,8 @@ public class AnunciosController {
 		logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
 
 
-		
-		
+
+
 
 		documentosRepositoryImpl.insertarDocumentos(titulo, foto);
 
@@ -182,11 +280,11 @@ public class AnunciosController {
 
 
 		logger.info("Entramos en metodo /Documento");
-	
+
 
 		List<Documentos> documento=new ArrayList<>();
-		
-		
+
+
 		documento=documentosRepositoryImpl.listDocumentos();
 		documento=documento.stream().sorted(Comparator.comparing(Documentos::getId)
 				.reversed()).collect(Collectors.toList());

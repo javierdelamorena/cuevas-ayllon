@@ -73,11 +73,9 @@
 
 
                     <tr>
-                        <td th:if="${documento.documentos}" style="text-align: center;"><embed
-                                th:if="${documento.documentos}" style=" margin: 10px;
-                            border-radius: 8px;
-                            height: 1000px;
-                            width: 100%;" th:src="@{'/uploadsDocumentos/'+${documento.documentos}}" />
+                        <td th:if="${documento.documentos}" style="text-align: center;"><iframe class="embed-responsive-item"
+                                th:if="${documento.documentos}" style="width: 100%;
+                                height: 750px;" th:src="'https://docs.google.com/viewer?url='+'https://cuevas-de-ayllon.com/uploadsDocumentos/'+${documento.documentos}+'&embedded=true'" type="application/pdf" frameborder="0"></iframe>
                         </td>
 
                     </tr>
