@@ -32,6 +32,9 @@
                 <li class="nav-item" style="margin-left:5px;">
                     <a class="nav-link" th:href="@{/todosDocumentos}" >Informacion Relevante</a>
                 </li>
+                <li class="nav-item" style="margin-left:5px;">
+                    <a type="submit" class="nav-link" th:href="@{/grafico}" >Total puntuaciones</a>
+                </li>
                 <!-- <li class="nav-item" style="margin-left:5px;" >
                     <a class="nav-link" th:if="${usuario.idUsuario != null}" href="@{'/mercadillo?idUsuario='+${usuario.idUsuario}}" id="enviaridUsuario" >Compra Venta y Servicios</a>
                 </li> -->
@@ -68,6 +71,7 @@
 
                     </ul>
                 </div>
+                
                 <li class="nav-item" style="margin-left:5px;">
                     <a type="submit" class="nav-link" th:href="@{/logout}" >Salir</a>
                 </li>

@@ -297,6 +297,16 @@ public class IndexControler {
 		return "miMercadillo";
 
 	}
+	@GetMapping("/grafico")
+	public String graficos(Model model) {
+
+
+		logger.info("Entramos en metodo /graficosPuntuciones");
+
+		return "graficosPuntuaciones";
+		
+
+	}
 	
 
 

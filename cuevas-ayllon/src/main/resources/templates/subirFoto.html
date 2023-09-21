@@ -12,7 +12,8 @@
     background-color: #d8852e99;
     border-radius: 10px;
     width: 40%;">
-        <h3 th:if="${fotoSubida}" th:text="${fotoSubida}"></h3>
+        <h3 th:if="${fotoSubida}" th:text="${fotoSubida}" style="font-size: 20px;
+    padding: 3%;"></h3>
         <form th:action="@{/salvarFoto}" th:object="${usuario}" class="text-dark" style="width: 150%;
         padding: 30px;" method="post" enctype="multipart/form-data">
 

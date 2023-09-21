@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cuevasdeayllon.entity.Anuncios;
 import com.cuevasdeayllon.entity.Mercadillo;
 import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.repository.MercadilloRepository;
@@ -265,7 +263,7 @@ public class MercadilloController {
 					Path rutaCompleta=Paths.get(rootPath+"//"+foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta,bytes);
-					mercado.setFoto1(foto1.getOriginalFilename());					
+					mercadillo.setFoto1(foto1.getOriginalFilename());					
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -274,10 +272,10 @@ public class MercadilloController {
 
 			}
 			if(!foto2.isEmpty()&&mercadillo!=null) {
-				int oraLen = foto1.getOriginalFilename().length();
-				logger.info("El nombre de la foto1 es: "+foto1.getOriginalFilename());
+				int oraLen = foto2.getOriginalFilename().length();
+				logger.info("El nombre de la foto1 es: "+foto2.getOriginalFilename());
 				for (int i = 0; i <  oraLen; i++) {
-					if (foto1.getOriginalFilename().charAt(i) == ' ') {
+					if (foto2.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos", "El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
 						return "miMercadillo";
 					}
@@ -288,7 +286,7 @@ public class MercadilloController {
 					Path rutaCompleta=Paths.get(rootPath+"//"+foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta,bytes);
-					mercado.setFoto2(foto2.getOriginalFilename());
+					mercadillo.setFoto2(foto2.getOriginalFilename());
 
 
 
@@ -315,7 +313,7 @@ public class MercadilloController {
 					Path rutaCompleta=Paths.get(rootPath+"//"+foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta,bytes);
-					mercado.setFoto3(foto3.getOriginalFilename());
+					mercadillo.setFoto3(foto3.getOriginalFilename());
 
 
 

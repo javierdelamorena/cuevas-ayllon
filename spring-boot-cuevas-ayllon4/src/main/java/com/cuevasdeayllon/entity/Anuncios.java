@@ -25,6 +25,10 @@ public class Anuncios {
 	
 	private String foto_anuncio;
 	
+	private String video_anuncio;
+	
+	private String audio_anuncio;
+	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
@@ -70,6 +74,22 @@ public class Anuncios {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getVideo_anuncio() {
+		return video_anuncio;
+	}
+
+	public void setVideo_anuncio(String video_anuncio) {
+		this.video_anuncio = video_anuncio;
+	}
+
+	public String getAudio_anuncio() {
+		return audio_anuncio;
+	}
+
+	public void setAudio_anuncio(String audio_anuncio) {
+		this.audio_anuncio = audio_anuncio;
 	}
 	
 	

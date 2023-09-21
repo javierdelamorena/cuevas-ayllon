@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,41 +22,15 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 	private AnuncioJpaRepository anuncioJpaRepository;
 
 	@Override
-	public void insertarAnucio(Anuncios anuncio,MultipartFile foto)  {
-		//String rootPath="C://TEMP//uploadsAnuncios";
-		String rootPath="/uploadsAnuncios/";
-		Anuncios anuncioeditable=new Anuncios();
-		anuncioeditable.setIdAnuncios(0);
-		anuncioeditable.setAnuncio(anuncio.getAnuncio());
-		anuncioeditable.setFecha(new Date());		
-		anuncioeditable.setTitulo_anuncio(anuncio.getTitulo_anuncio());
+	public void insertarAnucio(Anuncios anuncio)  {
+		
 
-		if(!foto.isEmpty()) {
+			anuncioJpaRepository.save(anuncio);
+
+		
 
 
-			try {
-				byte[]bytes=foto.getBytes();
-				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
-				Files.write(rutaCompleta,bytes);
-				
-				anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-
-			anuncioJpaRepository.save(anuncioeditable);
-
-		}
-		else {
-
-			anuncioeditable.setFoto_anuncio(null);
-			anuncioJpaRepository.save(anuncioeditable);
-
-
-
-		}
+		
 
 
 	}
@@ -74,16 +49,11 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 	}
 
 	@Override
-	public void editarAnuncio(int idAnuncio ,Anuncios anuncio) {
+	public void editarAnuncio(Anuncios anuncio) {
 		
-		Anuncios anuncioeditable=new Anuncios();
-		anuncioeditable.setAnuncio(anuncio.getAnuncio());
-		anuncioeditable.setFecha(anuncio.getFecha());
-		anuncioeditable.setIdAnuncios(anuncio.getIdAnuncios());
-		anuncioeditable.setTitulo_anuncio(anuncio.getTitulo_anuncio());
-		anuncioeditable.setFoto_anuncio(anuncio.getFoto_anuncio());
+		
 
-		anuncioJpaRepository.save(anuncioeditable);
+		anuncioJpaRepository.save(anuncio);
 
 	}
 

@@ -12,7 +12,7 @@ public interface AnunciosRepository {
 	List<Anuncios> listAnuncio();
 	
 	
-	void insertarAnucio(Anuncios anuncio,MultipartFile foto) throws IOException;
+	void insertarAnucio(Anuncios anuncio) throws IOException;
 	
 	
 	Anuncios recuperarAnuncio(int idAnuncio);
@@ -21,6 +21,6 @@ public interface AnunciosRepository {
 	void deleteAnuncio(int idAnuncio);
 	
 	
-	void editarAnuncio(int idAnuncio,Anuncios anuncio);
+	void editarAnuncio(Anuncios anuncio);
 
 }

@@ -624,6 +624,16 @@ public class PropuestaController {
 		return"puntuacionPropuestas";
 
 	}
+	@GetMapping("/votacionPropuestasAjax")
+	public @ResponseBody List<PuntuacionTotal> resultadoVotacionesAjax(Model model) {
+
+		List<PuntuacionTotal>resultadoToatales=puntuacionTotalservice.todasLasPuntuaciones();
+
+		
+
+		return resultadoToatales;
+
+	}
 	@GetMapping("/misPropuestas")
 	public String misPropuestas(@RequestParam("idUsuario")int idUsuario,Model model) {
 

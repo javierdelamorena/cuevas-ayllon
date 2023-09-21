@@ -45,8 +45,8 @@ public class MvcConfig implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 
 
- // registry.addResourceHandler("/uploads/**")
- // .addResourceLocations("file:/C:/TEMP/uploads/");
+//     registry.addResourceHandler("/uploads/**")
+//     .addResourceLocations("file:/C:/TEMP/uploads/");
   	registry.addResourceHandler("/uploads/**")
   	.addResourceLocations("file:/uploads/");
 //	registry.addResourceHandler("/uploadsGaleria/**")
