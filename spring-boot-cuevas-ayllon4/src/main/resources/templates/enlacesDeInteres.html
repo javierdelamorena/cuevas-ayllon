@@ -30,9 +30,8 @@
     </div>
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
     <!-- <div class="row" style="margin-left: 10%;"> -->
-    <div class="container-fluid">
-        <div class="col-lg-3 col-sm-10"
-            style=" margin-right: 4%;margin-top: 4%;font-size: 20px;font-family: serif;float: right;">
+    <div>
+        <div class="col-lg-2 col-sm-10" id="textoExplicacion">
             <hr>
             <p>
                 En este apartado te dejamos enlaces a varios vecinos de nuestro pueblo que nos muestran sus trabajos
@@ -49,9 +48,9 @@
             <hr>
         </div>
 
-        <div class="container col-lg-5 col-sm-6" style="margin-top: 3%; float: right; margin-top: 4%;">
+        <div class="container col-lg-5 col-sm-12" id="divMedio">
             <div>
-                <div class="list-group col-lg-8 col-sm-8" style="  
+                <div class="list-group " style="  
   
     text-align: center;
     margin-bottom: 4%;
@@ -80,7 +79,27 @@
                 </div>
             </div>
             <div>
-                <div class="list-group  col-lg-8 col-sm-8" style="  
+                <div class="list-group  " style="  
+    
+    text-align: center;
+    margin-bottom: 4%;
+    font-size: 17px;">
+                    <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #d9b5349e;
+                color: black;
+                font-weight: 800;
+                font-size: 20px;">Dónde dormir</a>
+                    <a href="https://www.airbnb.es/rooms/9708432?adults=1&children=0&enable_m3_private_room=true&infants=0&pets=0&check_in=2023-12-21&check_out=2023-12-26&source_impression_id=p3_1701952532_A6uF8eIIT0SDXuWQ&previous_page_section_name=1000&federated_search_id=bd20cbf8-bc5b-4d84-b481-db7d88d236d6"
+                        class="list-group-item list-group-item-action ">Cabaña de piedra (Taller de pintura)</a>
+                    <a href="https://www.airbnb.es/rooms/828166496735362393?adults=1&children=0&enable_m3_private_room=true&infants=0&pets=0&check_in=2023-12-11&check_out=2023-12-16&source_impression_id=p3_1701952532_wdcmSqWMLbewq%2FEf&previous_page_section_name=1000&federated_search_id=bd20cbf8-bc5b-4d84-b481-db7d88d236d6"
+                        class="list-group-item list-group-item-action ">Casa De La Era - Casa de Campo</a>
+
+
+
+                </div>
+
+            </div>
+            <div>
+                <div class="list-group  " style="  
     
     text-align: center;
     margin-bottom: 4%;
@@ -89,8 +108,7 @@
                 color: black;
                 font-weight: 800;
                 font-size: 20px;">Turismo de la zona</a>
-                    <a href="https://www.airbnb.es/cuevas-de-ayllon-spain/stays"
-                        class="list-group-item list-group-item-action ">Dónde dormir</a>
+
                     <a href="https://www.escapadarural.com/que-hacer/cuevas-de-ayllon/donde-comer"
                         class="list-group-item list-group-item-action ">Dónde comer</a>
                     <a href="https://www.sorianitelaimaginas.com/" class="list-group-item list-group-item-action ">Soria
@@ -104,8 +122,9 @@
                 </div>
 
             </div>
+
             <div>
-                <div class="list-group  col-lg-8 col-sm-8" style="  
+                <div class="list-group  " style="  
     
     text-align: center;
     margin-bottom: 10%;
@@ -126,42 +145,7 @@
 
         </div>
 
-        <aside class="col-lg-2 col-sm-10" style="text-decoration: none;margin-top: 5%;margin-left: 6%;">
-            <a href="" style="text-decoration: none;
-            font-size: 17px;
-            font-family: sans-serif;
-            color: #2f3235c7;">Cuevas de Ayllón</a>
-            <hr>
-            <a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html"
-                style="text-decoration: none;
-            font-size: 17px;
-            font-family: sans-serif;
-            color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
-                   PUESTO DE SAN ESTEBAN DE GORMAZ
-                   Localidad: SAN ESTEBAN DE GORMAZ
-                   Provincia: SORIA
-                   Dirección postal: AVDA. DEL GENERALISIMO, 10
-                   Código postal: 42330
-                   Teléfono: 975350046">Seguridad ciudadana</a>
-            <hr>
-            <a th:href="@{/contacto}" style="text-decoration: none;
-            font-size: 17px;
-            font-family: sans-serif;
-            color: #2f3235c7;">Contacto</a>
-            <hr>
-            <a th:href="@{/preguntas}" style="text-decoration: none;
-            font-size: 17px;
-            font-family: sans-serif;
-            color: #2f3235c7;">Preguntas frecuentes</a>
-            <hr>
-            <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
-                style="text-decoration: none;
-            font-size: 17px;
-            font-family: sans-serif;
-            color: #2f3235c7;">Como llegar</a>
-            <hr>
-
-        </aside>
+        <aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
     </div>
     <script th:src="@{/js/jquery.min.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

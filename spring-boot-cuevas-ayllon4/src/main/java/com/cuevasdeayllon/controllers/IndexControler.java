@@ -1,6 +1,5 @@
 package com.cuevasdeayllon.controllers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cuevasdeayllon.entity.Mercadillo;
 import com.cuevasdeayllon.entity.Usuario;
-import com.cuevasdeayllon.repository.MercadilloRepository;
+import com.cuevasdeayllon.service.MercadilloService;
 import com.cuevasdeayllon.service.UsuarioService;
 
 
@@ -29,7 +28,7 @@ public class IndexControler {
 	private UsuarioService service;
 	
 	@Autowired
-	private MercadilloRepository mercadilloservice;
+	private MercadilloService mercadilloservice;
 
 	@GetMapping({"/index","/home"})
 	public String index() {
@@ -243,7 +242,7 @@ public class IndexControler {
 	public String mercadillo(@RequestParam("idUsuario")int idUsuario,HttpSession session,Model model) {
 
 		logger.info("Entramos en metodo index/mercadillo el idusuario es: "+idUsuario);
-		List<String>tipoServicio= Arrays.asList("Compra Venta ","Servicios","Alquiler");
+		List<String>tipoServicio= Arrays.asList("Compra","Venta","Servicios","Alquiler");
 		Usuario usuario=service.usuarioPorId(idUsuario);
 		Mercadillo mercadillo=new Mercadillo();
 		mercadillo.setId_usuario(usuario.getIdUsuario());
@@ -272,7 +271,7 @@ public class IndexControler {
 	public String unMercadillo(@RequestParam("id")int id,HttpSession session,Model model) {
 
 		
-		List<String>tipoServicio= Arrays.asList("Compra Venta ","Servicios","Alquiler");
+		List<String>tipoServicio= Arrays.asList("Compra","Venta","Servicios","Alquiler");
 		
 		Mercadillo mercadillo=mercadilloservice.findById(id);
 		
@@ -295,6 +294,16 @@ public class IndexControler {
 		
 
 		return "miMercadillo";
+
+	}
+	@GetMapping("/mercadilloexterior")
+	public String mercadilloexterior(Model model) {
+
+
+		logger.info("Entramos en metodo /mercadilloexterior");
+
+		return "/mercadilloExterior";
+		
 
 	}
 	@GetMapping("/grafico")

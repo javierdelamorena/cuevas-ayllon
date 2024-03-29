@@ -42,10 +42,12 @@
 
 
     <div class="row col-lg-6 col-sm-12" th:object="${usuario}" style="
-    padding: 3%;
+     padding: 3%;
     border-radius: 8px;
-    margin-left: 5%;
+    margin-left: 3%;
     margin-bottom: 1%;
+    float: left;
+    padding-left: 5% ;
     ">
       <hr>
       <div class="row col-lg-12">
@@ -74,7 +76,7 @@
         <hr>
         <!-- Button trigger modal -->
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-2" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <a href="" id="botonesRutas" style="text-decoration: none;margin-top: 3%;font-size: 20px;"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -91,7 +93,7 @@
         </div>
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-2" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <form th:action="@{/misPropuestas}" th:object="${usuario}" class="text-dark" method="get">
               <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
@@ -109,7 +111,7 @@
         </div>
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-2" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <a th:href="@{'/mercadillo?idUsuario='+${usuario.idUsuario}}" id="botonesRutas"
               style="text-decoration: none;font-size: 20px;">
@@ -129,7 +131,7 @@
         </div>
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-2" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <a th:href="@{'/miMercadillo?idUsuario='+${usuario.idUsuario}}" id="botonesRutas"
               style="text-decoration: none;font-size: 20px;">
@@ -148,9 +150,9 @@
 
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-4" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
-            <a type="submit" id="botonesRutas" style="text-decoration: none;font-size: 20px;" th:href="@{/subirFotos}">
+            <a  id="botonesRutas" style="text-decoration: none;font-size: 20px;" th:href="@{/subirFotos}">
               Subir Foto a
               Galeria</a>
           </div>
@@ -163,7 +165,7 @@
         </div>
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-2" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <a href="" id="botonesRutas" style="text-decoration: none;font-size: 20px;" data-bs-toggle="modal"
               data-bs-target="#staticBackdrop5">
@@ -183,7 +185,7 @@
 
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-4" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <a href="" id="botonesRutas" style="text-decoration: none;margin-top: 3%;font-size: 20px;"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
@@ -199,7 +201,7 @@
 
         <hr>
         <div class="row" style="margin-top: 3%;">
-          <div class="col-lg-4" style="width: 100%;margin-bottom: 7%;
+          <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: beige;">
             <a href="" id="botonesRutas" style="text-decoration: none;margin-top: 3%;font-size: 20px;"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop2">

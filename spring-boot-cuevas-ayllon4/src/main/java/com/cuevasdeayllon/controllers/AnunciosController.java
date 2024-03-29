@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,6 +65,31 @@ public class AnunciosController {
 		return "tablonanuncios";
 
 	}
+	@GetMapping("/listaAnuncios")
+	public  @ResponseBody List<Anuncios>  listaDeAnunciosJson(Model model) {
+
+		logger.info("Entramos en metodo /todosAnuncios");
+		List<Anuncios> anuncios=null;
+
+		try {
+			 anuncios = anuncioRepositoryImpl.listAnuncio();
+
+			anuncios = anuncios.stream().sorted(Comparator.comparing(Anuncios::getIdAnuncios).reversed())
+					.collect(Collectors.toList());
+
+			model.addAttribute("listaAnuncios", anuncios);
+
+			return anuncios;
+
+		} catch (Exception e) {
+
+			logger.info("El error que da en /todosAnuncios es: " + e.getMessage());
+
+		}
+		return anuncios;
+
+	}
+	
 
 	@PostMapping("/subirAnuncio")
 	public String insertarAnuncio(@RequestParam("titulo") String titulo, @RequestParam("anuncio") String anuncio,
@@ -331,6 +357,13 @@ public class AnunciosController {
 	}
 	@GetMapping("/anuncio")
 	public @ResponseBody Anuncios unanuncio(@RequestParam("idAnuncio")int idAnuncio){
+		
+		Anuncios anuncios = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
+		return anuncios;
+		
+	}
+	@GetMapping("/anuncio/{idAnuncio}")
+	public @ResponseBody Anuncios unanuncioJson(@PathVariable("idAnuncio")int idAnuncio){
 		
 		Anuncios anuncios = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
 		return anuncios;
