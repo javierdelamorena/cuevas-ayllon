@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="textoDerecha")
+
+@Table(name="texto_derecha")
+
+
+
 public class TextoDerecha implements Serializable {
 	
 	
@@ -20,20 +24,23 @@ public class TextoDerecha implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idtextoDerecha")
-	private int idTextoDerecha;
+	@Column(name="id")
+	private int id;
 	private String pagina;
 	private String texto;
+	
 	public TextoDerecha() {
-		
-		
+		super();
 	}
-	public int getIdTextoDerecha() {
-		return idTextoDerecha;
+
+	public int getId() {
+		return id;
 	}
-	public void setIdTextoDerecha(int idTextoDerecha) {
-		this.idTextoDerecha = idTextoDerecha;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public String getPagina() {
 		return pagina;
 	}
