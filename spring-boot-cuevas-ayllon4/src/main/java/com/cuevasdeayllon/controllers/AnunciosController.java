@@ -1,7 +1,6 @@
 package com.cuevasdeayllon.controllers;
 
 import java.io.IOException;
-import org.apache.commons.io.FilenameUtils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,7 @@ import com.cuevasdeayllon.entity.Anuncios;
 import com.cuevasdeayllon.entity.Documentos;
 import com.cuevasdeayllon.repository.AnuncioRepositoryImpl;
 import com.cuevasdeayllon.repository.DocumentosRepositoryImpl;
+import com.cuevasdeayllon.websocket.NotificationWebSocket;
 
 @CrossOrigin(origins = "*")
 @Controller
@@ -41,6 +42,7 @@ public class AnunciosController {
 
 	@Autowired
 	private DocumentosRepositoryImpl documentosRepositoryImpl;
+	
 
 	@GetMapping("/todosAnuncios")
 	public String listaDeAnuncios(Model model) {
@@ -98,6 +100,7 @@ public class AnunciosController {
 		 String rootPath="/uploadsAnuncios/";
 		//String rootPath = "C://TEMP//uploadsAnuncios";
 		logger.info("Entramos en metodo /subirAnuncio");
+		 NotificationWebSocket.notifyAllClients("Nuevo registro insertado");
 
 		int oraLen = file.getOriginalFilename().length();
 		logger.info("El nombre de la foto es: " + file.getOriginalFilename());
@@ -154,8 +157,14 @@ public class AnunciosController {
 					}
 
 				}
+				
+				// See documentation on defining a message payload.
+				
 
-				anuncioRepositoryImpl.insertarAnucio(anuncioeditable);
+				
+				 anuncioRepositoryImpl.insertarAnucio(anuncioeditable);
+				
+				
 
 				model.addAttribute("anuncioSubido", "El anuncio se ha agregado con exito.");
 

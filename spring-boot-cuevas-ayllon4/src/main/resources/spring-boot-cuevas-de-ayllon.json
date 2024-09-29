@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "spring-boot-cuevas-de-ayllon",
+  "private_key_id": "8d01fdd65e008c0483cecdec24c7f7c269d8ae6c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCugKfF9xbJQT2O\nnYTqFAfFjfX4L+JEqzALaym5fZHnk7wow/rZIvXCQCSAxpRhr7WTTDqhhfDt61lu\nHY1Yr6g7fUDksg5hi9J3pTb7yVuGikHlibL1fccECf+/d7PMYX1EruNp7I/88gjI\nlnM3lqN0f/ioSUyxz5nacYTmYnrc+K0ojAUsAKgcHNvTdm+NbjPcdj9/btgNMsVX\nNQN3+Kh7VHENEwQa/oDnhZrVOfALzFhQZsPaGhsJ1R0q+9pDkmosIxfpTgexIQcf\n+tKJXgb9nUbGcPcBzDzqUsssRLMhYkZYe8Gc7ArTCbP485nsTWclWVggem+0tYin\nT6TS1Io7AgMBAAECggEAGtwLtvF27OhhWLvPMxZ9Mb/NnfOE4Ov2m7NVe0skM6Bu\nRFoSGO0EJe+ojrfCLB0XFkKT/bu3n29r1wKueHmlK+72F51+kC4s6aShB3VxZI6Q\nYQvmY1oGUY1Wc7qxjqJs3S8MKwgyC42Xo4Rg3KwPocV22TRbHT1moZR6j9mVrsBJ\nFMpOAlMjIdA0V9yvsgFqJ9vLCioTOed/sjL6fUHvOU1+bn2NPgSSEgbysP9YT02h\ncBCOe/k7reVey75+9wOD65Q3FbpczJHcbVmfiyz4bz4aIsjlVCGSnKoJVeelFN9J\nywlW0HfKgEBM3EjLutmGRO3L7PTN98Nf7rSsFlgplQKBgQDYtKUol7wRCgVOT1S1\naXOrDPjior2fsUtZ+FN34nJcTUAjM35MhewTD2ZbfteI94X0kr2odtsgWEUiEdzC\nZ+0hjy/ahe5iHOncmhBK+XRwf5SXGaGIqi8jYDs7GNtJtAn5T2BZsgC0a6zkbFqP\n9ZRk9+F9C4Rru5z4Zi/6urmVLwKBgQDOJPdzgt4ddfiWdc4eNq3tUBs903BoXKWc\nowqw2Hk6eQ2MMPUlu8cxpTAkwWO6Ka7J0ZUYYS9Uc72RROqX9zGjVjsoH3atNO4Q\npRq2VrxPkXj2GglAdU7xNTY06DTQ/nwUYj5kqVcK08G8aX8Dc1wpCEzuxMyGRjx3\n47eu/d7wtQKBgDwbjxv9SlrnjqUz9+kBwOWXCYnDXhlnUeE4sd4030ee3cVlyQhs\ntRhsUxXZzurczTkTYqvRm+IS2cojbjo2HV4Lm1hfgcmQ/4UC7rX9D0ENAigPIfEI\nU17amFNCB8EfwQx36d+3Md7ZZvFM5Km9klWXM+I9SZOgTF/R6EkBdexdAoGBAIwL\nqxyLXLBxE9fL4qK+DPz6/fbLrUMJJe27CilId1tVH/IM1I60+kds7L8brs+rP7aW\nLo8ofwoFs1R8mE9zPQK1M203qt1S5yThtbsIQ9hegOnYmE51I5NUziW1VyRgrxT+\nBVtHe/28DJMerI5AkezCWdmgUz4pey0LxB8bE5k9AoGAZaAnTb1qyKu2BHNJTSKR\npp1pCy3trAnqbs2FymYt/4dY6i01p1ucITIJtxrau/PJyyKsH9vqJ6DbqU20E7oP\nCQ3yvtB+9jpiESNIBl1SoJrSTr71mIZbbcx4ypihS5QpvMDhUXf3qy7YBwE+uRjw\nBWRe33mkt0kDNwQ/sXkxvBw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-nlfdj@spring-boot-cuevas-de-ayllon.iam.gserviceaccount.com",
+  "client_id": "101064796986083975870",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-nlfdj%40spring-boot-cuevas-de-ayllon.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
